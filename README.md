@@ -18,15 +18,15 @@
 ### **Entidades**
 Indicar las entidades principales que gestionará la aplicación y las relaciones entre ellas:
 
-1. **[Entidad 1]**: [Ej: Usuario]
-2. **[Entidad 2]**: [Ej: Producto]
-3. **[Entidad 3]**: [Ej: Pedido]
-4. **[Entidad 4]**: [Ej: Categoría]
+1. Usuario
+2. Mazo
+3. Carta
+4. Comentario
 
 **Relaciones entre entidades:**
-- [Ej: Usuario - Pedido: Un usuario puede tener múltiples pedidos (1:N)]
-- [Ej: Pedido - Producto: Un pedido puede contener múltiples productos y un producto puede estar en múltiples pedidos (N:M)]
-- [Ej: Producto - Categoría: Un producto pertenece a una categoría (N:1)]
+- [Ej: Usuario - Mazo: Un usuario puede tener múltiples mazos (1:N)]
+- [Ej: Mazo - Carta: Un Mazo puede contener múltiples Cartas y una carta puede estar en múltiples Mazos (N:M)]
+- [Ej: Mazo - Comentario: Un Mazo puede tener multiples comentarios (N:1)]
 - [Descripción de otras relaciones relevantes]
 
 ### **Permisos de los Usuarios**
