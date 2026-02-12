@@ -1,0 +1,93 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Usuarios</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a class="brand" href="home.html">PokeDecks</a>
+            <div class="nav-right">
+                <a href="addCards.html">Añadir cartas</a>
+                <a href="adminUsers.html">Administrar usuarios</a>
+                <a href="social.html">Social</a>
+                <a href="decks.html">Mazos</a>
+                <a href="profile.html">Perfil</a>
+                <a href="login.html">Iniciar sesión</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Administrar Usuarios</h1>
+            
+            <div class="users-section">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-list">
+                        <tr data-id="1">
+                            <td>1</td>
+                            <td>Juan Pérez</td>
+                            <td>juan@example.com</td>
+                            <td>Usuario</td>
+                            <td>
+                                <a href="editUser.html" class="btn-edit">Editar</a>
+                                <button class="btn-delete" onclick="deleteUser(1)">Eliminar</button>
+                            </td>
+                        </tr>
+                        <tr data-id="2">
+                            <td>2</td>
+                            <td>María García</td>
+                            <td>maria@example.com</td>
+                            <td>Admin</td>
+                            <td>
+                                <a href="editUser.html" class="btn-edit">Editar</a>
+                                <button class="btn-delete" onclick="deleteUser(2)">Eliminar</button>
+                            </td>
+                        </tr>
+                        <tr data-id="3">
+                            <td>3</td>
+                            <td>Carlos López</td>
+                            <td>carlos@example.com</td>
+                            <td>Usuario</td>
+                            <td>
+                                <a href="editUser.html" class="btn-edit">Editar</a>
+                                <button class="btn-delete" onclick="deleteUser(3)">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 Mi Sitio Web. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function deleteUser(userId) {
+            if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
+                const row = document.querySelector(`tr[data-id="${userId}"]`);
+                if (row) {
+                    row.style.opacity = '0';
+                    row.style.transition = 'opacity 0.3s';
+                    setTimeout(() => {
+                        row.remove();
+                    }, 300);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
