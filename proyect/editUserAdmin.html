@@ -54,6 +54,15 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <label for="user-role" class="form-label fw-bold text-secondary">Rol</label>
+                                    <select class="form-select" id="user-role" name="role" required>
+                                        <option value="">Seleccionar rol</option>
+                                        <option value="Usuario">Usuario</option>
+                                        <option value="Admin">Admin</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
                                     <label for="user-password" class="form-label fw-bold text-secondary">Nueva contraseña (dejar vacío para no cambiar)</label>
                                     <input type="password" class="form-control" id="user-password" name="password">
                                 </div>
@@ -98,6 +107,7 @@
             const user = users[userId];
             document.getElementById('user-name').value = user.name;
             document.getElementById('user-email').value = user.email;
+            document.getElementById('user-role').value = user.role;
         }
 
         // Manejar envío del formulario

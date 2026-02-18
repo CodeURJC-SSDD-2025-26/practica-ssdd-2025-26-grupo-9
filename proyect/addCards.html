@@ -18,7 +18,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link active fw-bold" href="addCards.html">Añadir cartas</a></li>
+                        <li class="nav-item"><a class="nav-link active fw-bold" href="addCards.html">Administrar cartas</a></li>
                         <li class="nav-item"><a class="nav-link" href="adminUsers.html">Administrar usuarios</a></li>
                         <li class="nav-item"><a class="nav-link" href="social.html">Social</a></li>
                         <li class="nav-item"><a class="nav-link" href="decks.html">Mazos</a></li>
@@ -32,7 +32,78 @@
 
     <main class="flex-grow-1 py-5">
         <div class="container">
-            <h1 class="text-secondary">Añadir Cartas</h1>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="text-secondary">Administrar Cartas</h1>
+                <a href="gestionarCarta.html" class="btn btn-primary btn-add">Añadir carta</a>
+            </div>
+
+            <section class="cards-section">
+                <div class="table-responsive">
+                    <table class="table table-hover cards-table">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Tipo</th>
+                                <th>Coste</th>
+                                <th>Vidas</th>
+                                <th>Poder</th>
+                                <th>Color</th>
+                                <th>Atributo</th>
+                                <th>Clase</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cards-list">
+                            <tr data-id="101">
+                                <td>101</td>
+                                <td>Luffy</td>
+                                <td>Líder</td>
+                                <td>-</td>
+                                <td>5</td>
+                                <td>5000</td>
+                                <td>Rojo</td>
+                                <td>slash</td>
+                                <td>Straw Hat Crew Pirates</td>
+                                <td>
+                                    <a href="gestionarCarta.html?id=101" class="btn btn-sm btn-info">Editar</a>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteCard(101)">Eliminar</button>
+                                </td>
+                            </tr>
+                            <tr data-id="102">
+                                <td>102</td>
+                                <td>Zoro</td>
+                                <td>Personaje</td>
+                                <td>3</td>
+                                <td>-</td>
+                                <td>5000</td>
+                                <td>Verde</td>
+                                <td>special</td>
+                                <td>Straw Hat Crew Pirates</td>
+                                <td>
+                                    <a href="gestionarCarta.html?id=102" class="btn btn-sm btn-info">Editar</a>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteCard(102)">Eliminar</button>
+                                </td>
+                            </tr>
+                            <tr data-id="103">
+                                <td>103</td>
+                                <td>Gear Second</td>
+                                <td>Evento</td>
+                                <td>2</td>
+                                <td>-</td>
+                                <td>+3</td>
+                                <td>Rojo</td>
+                                <td>-</td>
+                                <td>Enies Lobby</td>
+                                <td>
+                                    <a href="gestionarCarta.html?id=103" class="btn btn-sm btn-info">Editar</a>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteCard(103)">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
         </div>
     </main>
 
@@ -41,6 +112,18 @@
             <p class="mb-0 small">&copy; 2026 Mi Sitio Web. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <script>
+        function deleteCard(cardId) {
+            if (!confirm('¿Eliminar esta carta?')) return;
+            const row = document.querySelector(`tr[data-id="${cardId}"]`);
+            if (!row) return;
+            row.style.transition = 'opacity 0.25s, transform 0.25s';
+            row.style.opacity = '0';
+            row.style.transform = 'translateX(-10px)';
+            setTimeout(() => row.remove(), 260);
+        }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
