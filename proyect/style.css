@@ -2,15 +2,14 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #f8f9fa; /* Color de fondo estándar de Bootstrap */
+    background-color: #f8f9fa; 
 }
 
 main {
-    flex: 1; /* Esto empuja el footer hacia abajo */
+    flex: 1; 
 }
 
-/* Opcional: Para mantener el color exacto de tu barra de navegación original,
-   aunque podríamos usar bg-dark de Bootstrap */
+
 .bg-custom-dark {
     background-color: #2c3e50;
 }
