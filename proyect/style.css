@@ -30,3 +30,13 @@ main {
     background-color: #2ecc71;
     border-color: #2ecc71;
 }
+
+.card {
+    background-color: #fdfaf6; 
+    border: 1px solid #d4c4a8; 
+}
+
+.sharp-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
