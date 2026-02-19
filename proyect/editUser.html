@@ -30,10 +30,11 @@
         </nav>
     </header>
 
-    <main class="flex-grow-1 py-5">
+    <main class="flex-grow-1 d-flex align-items-center py-5">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6">
+                <div class="col-md-6 col-lg-5">
+
                     <div class="card shadow border-0">
                         <div class="card-header bg-white py-3">
                             <h1 class="h4 mb-0 text-secondary">Editar Usuario</h1>
@@ -114,8 +115,15 @@
                 }
             }
 
-            alert('Cambios guardados para ' + document.getElementById('user-name').value);
-            window.location.href = 'adminUsers.html';
+            const updatedUser = {
+            name: document.getElementById('user-name').value,
+            email: document.getElementById('user-email').value
+            };
+
+            localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+
+            window.location.href = 'profile.html';
+
         });
 
         // Cargar datos al abrir la página
