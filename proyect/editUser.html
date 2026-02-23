@@ -64,6 +64,17 @@
                                     <input type="password" class="form-control" id="user-confirm" name="confirm">
                                 </div>
 
+                                <div class="mb-4">
+                                    <label for="user-image" class="form-label fw-bold text-secondary">
+                                        Foto de perfil (opcional)
+                                    </label>
+                                    <input type="file"
+                                        class="form-control"
+                                        id="user-image"
+                                        name="image"
+                                        accept="image/*">
+                                </div>
+
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                     <a href="adminUsers.html" class="btn btn-secondary me-md-2">Cancelar</a>
                                     <button type="submit" class="btn btn-primary fw-bold">Guardar cambios</button>
@@ -104,9 +115,11 @@
         // Manejar envío del formulario
         document.getElementById('edit-user-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            
+
             const pwd = document.getElementById('user-password').value;
             const confirm = document.getElementById('user-confirm').value;
+            const imageInput = document.getElementById('user-image');
+            const file = imageInput.files[0];
 
             if (pwd || confirm) {
                 if (pwd !== confirm) {
@@ -116,13 +129,23 @@
             }
 
             const updatedUser = {
-            name: document.getElementById('user-name').value,
-            email: document.getElementById('user-email').value
+                name: document.getElementById('user-name').value,
+                email: document.getElementById('user-email').value
             };
 
-            localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-
-            window.location.href = 'profile.html';
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    updatedUser.image = event.target.result;
+                    localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+                    window.location.href = 'profile.html';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+                window.location.href = 'profile.html';
+            }
+        });
 
         });
 
