@@ -1,11 +1,10 @@
-# [Nombre de la Aplicación]
-
+# OneDeck
 ## 👥 Miembros del Equipo
 | Nombre y Apellidos | Correo URJC | Usuario GitHub |
 |:--- |:--- |:--- |
-| [Pablo León] | [email1]@alumnos.urjc.es | [User1] |
-| [Aarón Fernández] | [email2]@alumnos.urjc.es | [User2] |
-| [Sergio Espinosa] | [email3]@alumnos.urjc.es | [User3] |
+| [Pablo León Molero] | p.leon.2019@alumnos.urjc.es | Pol1705 |
+| [Aarón Fernández Lijó] | a.fernandezli.2020@alumnos.urjc.es | zZAiron |
+| [Sergio Espinosa Robles] | s.espinosa.2020@alumnos.urjc.es | SergiOnLive3 |
 
 
 ---
@@ -13,7 +12,7 @@
 ## 🎭 **Preparación: Definición del Proyecto**
 
 ### **Descripción del Tema**
-[Escribe aquí una descripción breve y concisa de qué trata tu aplicación, el sector al que pertenece y qué valor aporta al usuario].
+Nuestra pagina web consiste en un pequeño foro en el que cada usuario podrá crear mazos libremente para el TCG(Trading Card Game) de One Piece, permitiendo agregar amigos, y comentar sobre los mazos de otras personas, los administradores, podrán tambien añadir, editar y eliminar cartas de modo que pueda estar al dia de los cambios del juego real.
 
 ### **Entidades**
 Indicar las entidades principales que gestionará la aplicación y las relaciones entre ellas:
@@ -24,44 +23,41 @@ Indicar las entidades principales que gestionará la aplicación y las relacione
 4. Comentario
 
 **Relaciones entre entidades:**
-- [Ej: Usuario - Mazo: Un usuario puede tener múltiples mazos (1:N)]
-- [Ej: Mazo - Carta: Un Mazo puede contener múltiples Cartas y una carta puede estar en múltiples Mazos (N:M)]
-- [Ej: Mazo - Comentario: Un Mazo puede tener multiples comentarios (N:1)]
-- [Descripción de otras relaciones relevantes]
+- Usuario - Mazo: Un usuario puede tener múltiples mazos (1:N)
+- Mazo - Carta: Un mazo puede contener múltiples Cartas y una carta puede estar en múltiples Mazos (N:M)
+- Mazo - Comentario: Un mazo puede tener multiples comentarios (N:1)
+- Usuario - Usuario: Todos los usuarios podran tener amigos y podran verlos desde su pagina de perfil(N:M)
 
 ### **Permisos de los Usuarios**
 Describir los permisos de cada tipo de usuario e indicar de qué entidades es dueño:
 
 * **Usuario Anónimo**: 
-  - Permisos: [Ej: Visualización de catálogo, búsqueda de productos, registro]
+  - Permisos: Unicamente podra navegar por la pagina a traves de la información pública, ver los mazos y comentarios posteados por la comunidad y visitar los perfiles de los usuarios. Podra registrarse para pasar a ser usuario registrado pero no podra postear ni comentar sobre mazos.
   - No es dueño de ninguna entidad
 
 * **Usuario Registrado**: 
-  - Permisos: [Ej: Gestión de perfil, realizar pedidos, crear valoraciones]
-  - Es dueño de: [Ej: Sus propios Pedidos, su Perfil de Usuario, sus Valoraciones]
+  - Permisos: Un usuario registrado tendrá todos los permisos de un usuario anónimo y además, podra agregar amistades, postear mazos, comentar sobre ellos y modificar su propio perfil.
+  - Es dueño de su perfil, de sus mazos y sus comentarios.
 
 * **Administrador**: 
-  - Permisos: [Ej: Gestión completa de productos (CRUD), visualización de estadísticas, moderación de contenido]
-  - Es dueño de: [Ej: Productos, Categorías, puede gestionar todos los Pedidos y Usuarios]
+  - Permisos: Todos los del usuario registrado y ademas, podrá moderar los post de la web independientemente de su dueño, permitiendo eliminar mazos o comentarios, tambien podra modificar las cartas, crearlas o (aun no decidido) eliminarlas, y finalmente, tendrá control absoluto sobre los usuarios de la web, permitiendo realizar cualquier cambio sobre el resto de usuarios que no sean tambien administradores.
+  - Es dueño de las mismas entidades que el usuario registrado, cartas y resto de usuarios no administradores.
 
 ### **Imágenes**
 Indicar qué entidades tendrán asociadas una o varias imágenes:
 
-- **[Entidad con imágenes 1]**: [Ej: Usuario - Una imagen de avatar por usuario]
-- **[Entidad con imágenes 2]**: [Ej: Producto - Múltiples imágenes por producto (galería)]
-- **[Entidad con imágenes 3]**: [Ej: Categoría - Una imagen representativa por categoría]
+- **[Cartas]**: Una carta contiene una imagen que define su aspecto
+- **[Usuario]**: Un usuario tendra una imagen asociada que servirá de foto de perfil.
 
 ### **Gráficos**
 Indicar qué información se mostrará usando gráficos y de qué tipo serán:
 
-- **Gráfico 1**: [Ej: Ventas mensuales - Gráfico de barras]
-- **Gráfico 2**: [Ej: Productos más vendidos - Gráfico de tarta/circular]
-- **Gráfico 3**: [Ej: Evolución de usuarios registrados - Gráfico de líneas]
-- **Gráfico 4**: [Ej: Distribución de pedidos por categoría - Gráfico de barras horizontales]
+- **Gráfico 1**: Cartas preferidas: Cada usuario tendrá en su perfil un gráfico radial que mostrará la proporción de uso de cartas en sus mazos, permitiendo asi ver cual/es son sus cartas preferidas.
 
 ### **Tecnología Complementaria**
 Indicar qué tecnología complementaria se empleará:
 
+- NO DECIDIDO TODAVIA
 - [Ej: Envío de correos electrónicos automáticos mediante JavaMailSender]
 - [Ej: Generación de PDFs de facturas usando iText o similar]
 
@@ -122,31 +118,17 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 
 ---
 
-#### **Alumno 3 - [Nombre Completo]**
+#### **Alumno 3 - Sergio Espinosa Robles**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
-
-| Nº    | Commits      | Files      |
-|:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
-
----
-
-#### **Alumno 4 - [Nombre Completo]**
-
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Principalmente mis tareas fueron migrar los estilos de la pagina para usar Bootstrap y la realizacion de la pagina los mazos, el resto fueron tareas secundarias para complementar el trabajo.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Este fue el primer commit "grande" que hice, en él, borre casi todo el contenido de  nuestro style.css para usar los estilos de Bootstrap](c20782651c241a5037403b98352f1872556bc942)  | [style.css](proyect\style.css)   |
+|2| [En este commit añadi la logica de creacion de posts y comentarios, aunque todavia no se reflejen al no haber base de datos](49acde8a50cc66dea7948747dc10f290e2178450)  | [addDeck.html](proyect\addDeck.html)   |
+|3| [Añadi una breve pagina para mostrar como se verá la pagina social a traves de la que agregar amistades y visitar perfiles](d29f8f2d57322e02589de0201627eb468f5779df)  | [social.html](proyect\social.html)   |
+|4| [Decidimos cambiar la tematica de la pagina por lo que hubo que renombrarla, sin mayor importancia](398ed3023a9c2a93519d70e3d2bcc16bdd0abde9)  | [Sin archivo editado principal](*vacio)   |
+|5| [Justo al inicio del proyecto un pequeño commit para probar los enlaces](7476fd0b7a3c155e9d6e4a462f4ffcd150e04408)  | [home.html](proyect\home.html)   |
 
 ---
 
