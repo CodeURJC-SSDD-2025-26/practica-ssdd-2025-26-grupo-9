@@ -33,9 +33,9 @@
     <main class="flex-grow-1 d-flex align-items-center py-5">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-6 col-lg-5">
+                <div class="col-md-12 col-lg-10">
 
-                    <div class="card shadow border-0">
+                    <div class="card shadow border-0 card-profile-edit">
                         <div class="card-header bg-white py-3">
                             <h1 class="h4 mb-0 text-secondary">Editar Usuario</h1>
                         </div>
@@ -75,8 +75,8 @@
                                         accept="image/*">
                                 </div>
 
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <a href="adminUsers.html" class="btn btn-secondary me-md-2">Cancelar</a>
+                                <div class="d-grid gap-2">
+                                    <a href="profile.html" class="btn btn-secondary">Cancelar</a>
                                     <button type="submit" class="btn btn-primary fw-bold">Guardar cambios</button>
                                 </div>
                             </form>
@@ -106,7 +106,7 @@
 
         // Cargar datos del usuario
         function loadUserData() {
-            const userId = 1; // Por defecto cargar usuario 1
+            const userId = 2; // Por defecto cargar usuario 2 (María García)
             const user = users[userId];
             document.getElementById('user-name').value = user.name;
             document.getElementById('user-email').value = user.email;
@@ -147,7 +147,7 @@
             }
         });
 
-        });
+        
 
         // Cargar datos al abrir la página
         window.addEventListener('DOMContentLoaded', loadUserData);
