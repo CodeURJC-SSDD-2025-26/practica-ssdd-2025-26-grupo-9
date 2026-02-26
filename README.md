@@ -90,17 +90,17 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 
 ### **Participación de Miembros en la Práctica 1**
 
-#### **Alumno 1 - [Nombre Completo]**
+#### **Alumno 1 - [Pablo León Molero]**
 
 [Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [login, navbar,and footer added to all pages, en este commit puse las paginas que en ese momento vi necesarias y las conecte todas con un diseño simple](URL_commit_1)  | [Casi todos los archivos de ese momento]  |
+|2| [added edit user and admin user añadi con completa funcionalidad estas paginas](URL_commit_2)  | [principalmente edit user y admin user](adminuser.html edituser.html)   |
+|3| [add cards añadi la pagina add cards](URL_commit_3)  | [addcards](addcards.html)   |
+|4| [Edit/Create Card añadi una pagina para crear o editar la entidad, el anterior commit solo mostraba el listado y navega aqui](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
+|5| [Fixes in profile and edituser ](URL_commit_5)  | [profile y edituser](profile.html edituser.html)   |
 
 ---
 
