@@ -82,11 +82,59 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 ### **Capturas de Pantalla y Descripción de Páginas**
 
 #### **1. Página Principal / Home**
-![Página Principal](images/home-page.png)
+![Página Principal](images/home.png)
 
-> [Descripción breve: Ej: "Página de inicio que muestra los productos destacados, categorías principales y un banner promocional. Incluye barra de navegación y acceso a registro/login para usuarios no autenticados."]
+> Pagina que unicamente da la bienvenida a la pagina, teniendo una barra superior que permite navegar a todas las distintas paginas.
 
-#### **AQUÍ AÑADIR EL RESTO DE PÁGINAS**
+#### **2. Página Registro / Login**
+![Página de Registro/Inicio de Sesion](images/login1.png)(images/login2.png)
+
+> Pagina que permite al usuario tanto iniciar sesion como registrarse, en funcion de las necesidades del usuario, solo se mostrará a usuarios no logueados.
+
+#### **3. Página Gestion de Cartas / Add Cards**
+![Página de gestión de cartas](images/addCards.png)
+
+> Esta pagina permitira a los usuarios administradores gestionar las cartas disponibles en la pagina, tanto crear como editar o eliminarlas.
+
+#### **4. Página Edicion de Cartas / Admin Card**
+![Página de edicion de cartas](images/adminCard.png)
+
+> Esta pagina consiste en un formulario completo para poder editar cualquier campo de una carta que el administrador desee.
+
+#### **5. Página Gestion de Usuarios / Admin Users**
+![Página de gestion de usuarios](images/adminUsers.png)
+
+> Esta pagina permitirá a los usuarios administradores gestionar a los usuarios registrados en la pagina para poder moderar o regular cualquier incidencia, pudiendo navegar a una pagina de edicion de usuario o eliminarlo por completo.
+
+#### **6. Página Edicion de Usuarios / Edit User Admin**
+![Página de edición de usuarios](images/editUserAdmin.png)
+
+> En esta pagina, el administrador dispondrá de un formulario para poder editar cualquier campo de un usuario registrado excepto la imagen(en estamos considerando permitirlo)
+
+#### **7. Página Social / Social**
+![Página Social](images/social.png)
+
+> En esta pagina, tanto usuarios registrados como no registrados, se podrá navegar por todos los perfiles de usuarios registrados, permitiendo a estos ultimos tambien agregar amistades para que aparezcan en un futuro en su feed del perfil
+
+#### **8. Mazos de la Comunidad / Decks**
+![Mazos de la Comunidad](images/decks.png)
+
+> Esta es la pagina de mayor actividad de la web, en ella todos los usuarios podrán ver los distintos mazos creados por los usuarios para probarlos si gustan en sus partidas y visitar los perfiles de los creadores de dichos mazos, ademas los usuarios registrados podrán acceder a la creación de mazos, eliminación de sus propios mazos y tendrán la posibilidad de comentar sobre los mazos posteados
+
+#### **9. Pagina de Creacion de Mazos / Add Decks**
+![Creación de mazos](images/addDeck.png)
+
+> En esta pagina los usuarios dispondrán de las herramientas necesarias para poder crear sus mazos personalizados para postearlos.
+
+#### **10. Perfil / Profile**
+![Perfil](images/profile.png)
+
+> En esta pagina se podrá visualizar el perfil de los distintos usuarios, por ahora muestra un perfil estatico, en proximas entregas cargará el perfil que corresponda, permitiendo acceder a la edicion del perfil si es el del usuario logueado.
+
+#### **11. Editar Perfil / Edit User**
+![Editar Perfil](images/editUser.png)
+
+> En esta pagina el usuario podra modificar cualquier campo de su perfil, incluida su foto de perfil, que será necesaria ya que al registrarse todos los perfiles tendrán una imagen por defecto.
 
 ### **Participación de Miembros en la Práctica 1**
 
