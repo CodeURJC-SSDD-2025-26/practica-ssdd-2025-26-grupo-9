@@ -172,11 +172,11 @@ Principalmente mis tareas fueron migrar los estilos de la pagina para usar Boots
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Este fue el primer commit "grande" que hice, en él, borre casi todo el contenido de  nuestro style.css para usar los estilos de Bootstrap](c20782651c241a5037403b98352f1872556bc942)  | [style.css](proyect\style.css)   |
-|2| [En este commit añadi la logica de creacion de posts y comentarios, aunque todavia no se reflejen al no haber base de datos](49acde8a50cc66dea7948747dc10f290e2178450)  | [addDeck.html](proyect\addDeck.html)   |
-|3| [Añadi una breve pagina para mostrar como se verá la pagina social a traves de la que agregar amistades y visitar perfiles](d29f8f2d57322e02589de0201627eb468f5779df)  | [social.html](proyect\social.html)   |
-|4| [Decidimos cambiar la tematica de la pagina por lo que hubo que renombrarla, sin mayor importancia](398ed3023a9c2a93519d70e3d2bcc16bdd0abde9)  | [Sin archivo editado principal](*vacio)   |
-|5| [Justo al inicio del proyecto un pequeño commit para probar los enlaces](7476fd0b7a3c155e9d6e4a462f4ffcd150e04408)  | [home.html](proyect\home.html)   |
+|1| [Este fue el primer commit "grande" que hice, en él, borre casi todo el contenido de  nuestro style.css para usar los estilos de Bootstrap](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/c20782651c241a5037403b98352f1872556bc942)  | [style.css](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/proyect/style.css)   |
+|2| [En este commit añadi la logica de creacion de posts y comentarios, aunque todavia no se reflejen al no haber base de datos](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/49acde8a50cc66dea7948747dc10f290e2178450)  | [addDeck.html](http://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/proyect/addDeck.html)   |
+|3| [Añadi una breve pagina para mostrar como se verá la pagina social a traves de la que agregar amistades y visitar perfiles](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/d29f8f2d57322e02589de0201627eb468f5779df)  | [social.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/proyect/social.html)   |
+|4| [Decidimos cambiar la tematica de la pagina por lo que hubo que renombrarla, sin mayor importancia](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/398ed3023a9c2a93519d70e3d2bcc16bdd0abde9)  | [Sin archivo editado principal](*vacio)   |
+|5| [Justo al inicio del proyecto un pequeño commit para probar los enlaces](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/7476fd0b7a3c155e9d6e4a462f4ffcd150e04408)  | [home.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/proyect/home.html)   |
 
 ---
 
