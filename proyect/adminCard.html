@@ -39,18 +39,7 @@
                             <h3 class="mb-0">Gestionar Carta</h3>
                             <a href="addCards.html" class="btn btn-sm btn-secondary">← Volver</a>
                         </div>
-                        <div class="card-body">
-                            <form id="carta-form">
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="id" class="form-label">ID</label>
-                                        <input type="text" class="form-control" id="id" name="id" readonly value="101">
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="nombre" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" required value="Luffy">
-                                    </div>
-                                </div>
+                        <div class="card-body">                              
                                 <form id="carta-form">
                                     <div class="row">
                                         <div class="col-md-8">
@@ -64,14 +53,18 @@
                                                     <input type="text" class="form-control" id="nombre" name="nombre" required value="Luffy">
                                                 </div>
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="imagen" class="form-label">Imagen (ruta):</label>
-                                                <input type="text" class="form-control" id="imagen" name="imagen" value="/cardimages/luffy.png">
+                                            
                                             </div>
-                                        </div>
-                                        <div class="col-md-4 d-flex align-items-start justify-content-center">
-                                            <img id="preview-imagen" src="/cardimages/luffy.png" alt="Luffy" width="150" class="img-fluid border rounded mt-2">
-                                        </div>
+                                            <div class="mb-4">
+                                                <label for="user-image" class="form-label fw-bold text-secondary">
+                                                    Imagen de la carta (archivo):
+                                                </label>
+                                                <input type="file"
+                                                    class="form-control"
+                                                    id="user-image"
+                                                    name="image"
+                                                    accept="image/*">
+                                            </div>
                                     </div>
                                 </form>
                                 <div class="row">
