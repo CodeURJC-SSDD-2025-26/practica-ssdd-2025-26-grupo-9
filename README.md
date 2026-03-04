@@ -77,7 +77,7 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 
 ![Diagrama de Navegación](images/navigation-diagram.png)
 
-> [Descripción opcional del flujo de navegación: Ej: "El usuario puede acceder desde la página principal a todas las secciones mediante el menú de navegación. Los usuarios anónimos solo tienen acceso a las páginas públicas, mientras que los registrados pueden acceder a su perfil y panel de usuario."]
+> [El color rojo representa las acciones que puede hacer el administrador y solo el administrador, el color azul representa las acciones que puede realizar el admin y los usuarios registrados, y por ultimo en verde estan las acciones que cualquier usuario puede hacer aunque no este registrado]
 
 ### **Capturas de Pantalla y Descripción de Páginas**
 
@@ -140,15 +140,15 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 
 #### **Alumno 1 - [Pablo León Molero]**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+[Principalmente desarrollar codigo de ciertas pantallas como las listadas abajo y funcionalidades de add create edit card, tambien algun arreglo]
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [login, navbar,and footer added to all pages, en este commit puse las paginas que en ese momento vi necesarias y las conecte todas con un diseño simple](URL_commit_1)  | [Casi todos los archivos de ese momento]  |
-|2| [added edit user and admin user añadi con completa funcionalidad estas paginas](URL_commit_2)  | [principalmente edit user y admin user](adminuser.html edituser.html)   |
-|3| [add cards añadi la pagina add cards](URL_commit_3)  | [addcards](addcards.html)   |
-|4| [Edit/Create Card añadi una pagina para crear o editar la entidad, el anterior commit solo mostraba el listado y navega aqui](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Fixes in profile and edituser ](URL_commit_5)  | [profile y edituser](profile.html edituser.html)   |
+|1| [login, navbar,and footer added to all pages, en este commit puse las paginas que en ese momento vi necesarias y las conecte todas con un diseño simple](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/e4e4b94df7655cf9b2b352b264381488a4631420)  | [Casi todos los archivos de ese momento]()  |
+|2| [added edit user and admin user añadi con completa funcionalidad estas paginas](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/274851a2495370d19dc2cf356af1aa99162d1ea4)  | [principalmente edit user y admin user](C:\Users\pablo\Documents\GitHub\practica-ssdd-2025-26-grupo-9\proyect\editUser.html)   |
+|3| [add cards añadi la pagina add cards](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/4358a02f2046eda30c0ae156b0aa82ac2424d112)  | [addcards](C:\Users\pablo\Documents\GitHub\practica-ssdd-2025-26-grupo-9\proyect\addCards.html)   |
+|4| [Edit/Create Card añadi una pagina para crear o editar la entidad, el anterior commit solo mostraba el listado y navega aqui](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/8594d4d547f3f74917a2d0f13448cfd70d2b54a6)  | [admincard](C:\Users\pablo\Documents\GitHub\practica-ssdd-2025-26-grupo-9\proyect\adminCard.html)   |
+|5| [Fixes in profile and edituser ](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/de67916894eef33cb0c7982d92e0122b226ff715)  | [profile y edituser](C:\Users\pablo\Documents\GitHub\practica-ssdd-2025-26-grupo-9\proyect\profile.html) |
 
 ---
 
