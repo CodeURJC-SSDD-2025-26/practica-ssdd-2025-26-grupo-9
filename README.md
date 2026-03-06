@@ -152,17 +152,15 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 
 ---
 
-#### **Alumno 2 - [Nombre Completo]**
+#### **Alumno 2 - Aarón Fernández Lijó**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+[Mis principales tareas fueron el desarrollo de  y funcionalidad del perfil(profile) y de la capacidad del sistema de editar el usuario brindándole la posibilidad de modificar sus datos e inclusive cambiando su foto de perfil por una local(editUser)]
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Profile mods, commit en el cual implemento y pulo la interfaz del perfil, a pesar de seguir siendo una versión primitiva respecto a la versión final](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/0f3ce0a8b719953e7e280901a3b9fb957577ad34)  | [profile](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/proyect/profile.html)   |
+|2| [added new style on Login and  editUser buttom created, commit en el que hago el estilo final del perfil en base a estilos prediseñados por mis compañeros](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/40988f40c80c1fc9eb37162bb7b416abe008361f)  | [editUser, profile](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/proyect/profile.html) (https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/proyect/editUser.html)  |
+|3| [Edit Profile Photo using PC archives, commit en el que consigo poder insertar una foto obtenida por el usuario de forma local, básicamente elegir tu foto de perfil](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/5348077dfbde5da4554ce010000505573027afe1)  | [editUser, profile](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/proyect/profile.html) (https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/proyect/editUser.html)  
 
 ---
 
