@@ -166,7 +166,7 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 
 #### **Alumno 3 - Sergio Espinosa Robles**
 
-Principalmente mis tareas fueron migrar los estilos de la pagina para usar Bootstrap y la realizacion de la pagina los mazos, el resto fueron tareas secundarias para complementar el trabajo.
+Principalmente mis tareas fueron migrar los estilos de la pagina para usar Bootstrap, la realizacion de la pagina los mazos y la pagina detalle de las cartas, el resto fueron tareas secundarias para complementar el trabajo.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
@@ -174,7 +174,7 @@ Principalmente mis tareas fueron migrar los estilos de la pagina para usar Boots
 |2| [En este commit añadi la logica de creacion de posts y comentarios, aunque todavia no se reflejen al no haber base de datos](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/49acde8a50cc66dea7948747dc10f290e2178450)  | [addDeck.html](http://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/proyect/addDeck.html)   |
 |3| [Añadi una breve pagina para mostrar como se verá la pagina social a traves de la que agregar amistades y visitar perfiles](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/d29f8f2d57322e02589de0201627eb468f5779df)  | [social.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/proyect/social.html)   |
 |4| [Decidimos cambiar la tematica de la pagina por lo que hubo que renombrarla, sin mayor importancia](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/398ed3023a9c2a93519d70e3d2bcc16bdd0abde9)  | [Sin archivo editado principal](*vacio)   |
-|5| [Justo al inicio del proyecto un pequeño commit para probar los enlaces](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/7476fd0b7a3c155e9d6e4a462f4ffcd150e04408)  | [home.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/proyect/home.html)   |
+|5| [Pagina de detalle de las cartas creada](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/343596f5421c663ef2659801a9b4bbcbc938d5ec)  | [cardDetail.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/proyect/cardDetail.html)   |
 
 ---
 
