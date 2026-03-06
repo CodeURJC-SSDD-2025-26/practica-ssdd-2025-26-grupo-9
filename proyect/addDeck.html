@@ -34,53 +34,65 @@
 
     <main class="flex-grow-1 py-5">
         <div class="container">
-            
+
             <div class="card shadow-sm p-4">
                 <h2 class="mb-4 fw-bold text-center">Crear Nuevo Mazo</h2>
-                
+
                 <form action="decks.html" method="GET">
-                    
+
                     <h5 class="fw-bold mb-3">Cartas del mazo</h5>
                     <div class="row g-3 mb-4 text-center">
-                        
+
                         <div class="col-6 col-md-2">
-                            <input type="text" class="form-control form-control-sm mb-2 text-center card-input" placeholder="ID Carta 1" required readonly>
-                            <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot" style="aspect-ratio: 2/3;">
+                            <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
+                                placeholder="ID Carta 1" required readonly>
+                            <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
+                                style="aspect-ratio: 2/3;">
                                 <small>Imagen 1</small>
                             </div>
                         </div>
 
                         <div class="col-6 col-md-2">
-                            <input type="text" class="form-control form-control-sm mb-2 text-center card-input" placeholder="ID Carta 2" required readonly>
-                            <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot" style="aspect-ratio: 2/3;">
+                            <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
+                                placeholder="ID Carta 2" required readonly>
+                            <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
+                                style="aspect-ratio: 2/3;">
                                 <small>Imagen 2</small>
                             </div>
                         </div>
 
                         <div class="col-6 col-md-2">
-                            <input type="text" class="form-control form-control-sm mb-2 text-center card-input" placeholder="ID Carta 3" required readonly>
-                            <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot" style="aspect-ratio: 2/3;">
+                            <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
+                                placeholder="ID Carta 3" required readonly>
+                            <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
+                                style="aspect-ratio: 2/3;">
                                 <small>Imagen 3</small>
                             </div>
                         </div>
 
                         <div class="col-6 col-md-2">
-                            <input type="text" class="form-control form-control-sm mb-2 text-center card-input" placeholder="ID Carta 4" required readonly>
-                            <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot" style="aspect-ratio: 2/3;">
+                            <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
+                                placeholder="ID Carta 4" required readonly>
+                            <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
+                                style="aspect-ratio: 2/3;">
                                 <small>Imagen 4</small>
                             </div>
                         </div>
 
                         <div class="col-6 col-md-2">
-                            <input type="text" class="form-control form-control-sm mb-2 text-center card-input" placeholder="ID Carta 5" required readonly>
-                            <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot" style="aspect-ratio: 2/3;">
+                            <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
+                                placeholder="ID Carta 5" required readonly>
+                            <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
+                                style="aspect-ratio: 2/3;">
                                 <small>Imagen 5</small>
                             </div>
                         </div>
 
                         <div class="col-6 col-md-2">
-                            <input type="text" class="form-control form-control-sm mb-2 text-center card-input" placeholder="ID Carta 6" required readonly>
-                            <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot" style="aspect-ratio: 2/3;">
+                            <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
+                                placeholder="ID Carta 6" required readonly>
+                            <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
+                                style="aspect-ratio: 2/3;">
                                 <small>Imagen 6</small>
                             </div>
                         </div>
@@ -89,73 +101,168 @@
 
                     <div class="mb-4">
                         <label for="deckDescription" class="form-label fw-bold">Descripción</label>
-                        <textarea class="form-control" id="deckDescription" rows="4" placeholder="Explica la estrategia o temática de este mazo..." required></textarea>
+                        <textarea class="form-control" id="deckDescription" rows="4"
+                            placeholder="Explica la estrategia o temática de este mazo..." required></textarea>
                     </div>
 
                     <hr class="text-muted">
 
                     <div class="d-flex justify-content-end gap-2 mt-3">
                         <a href="decks.html" class="btn btn-secondary fw-bold px-4">Cancelar</a>
-                        
+
                         <button type="submit" class="btn btn-success fw-bold px-4">Postear</button>
                     </div>
-                    
+
                 </form>
                 <hr class="text-muted my-4">
-                
+
                 <h5 class="fw-bold mb-3">Cartas Disponibles</h5>
                 <p class="text-muted small">Haz clic en una carta para añadirla a tu mazo.</p>
-                
+
                 <div class="row row-cols-3 row-cols-md-6 g-2">
-                    
+
                     <div class="col text-center">
-                        <img src="/cardimages/Luffy.png" class="img-fluid rounded border selectable-card shadow-sm sharp-image" data-id="101" style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
-                        <small class="d-block mt-1 fw-bold">101</small>
-                    </div>
-                    <div class="col text-center">
-                        <img src="/cardimages/Zoro.png" class="img-fluid rounded border selectable-card shadow-sm sharp-image" data-id="102" style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
-                        <small class="d-block mt-1 fw-bold">102</small>
-                    </div>
-                    <div class="col text-center">
-                        <img src="/cardimages/Nami.png" class="img-fluid rounded border selectable-card shadow-sm sharp-image" data-id="103" style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
-                        <small class="d-block mt-1 fw-bold">103</small>
-                    </div>
-                    <div class="col text-center">
-                        <img src="/cardimages/Usopp.png" class="img-fluid rounded border selectable-card shadow-sm sharp-image" data-id="104" style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
-                        <small class="d-block mt-1 fw-bold">104</small>
-                    </div>
-                    <div class="col text-center">
-                        <img src="/cardimages/Sanji.png" class="img-fluid rounded border selectable-card shadow-sm sharp-image" data-id="105" style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
-                        <small class="d-block mt-1 fw-bold">105</small>
-                    </div>
-                    <div class="col text-center">
-                        <img src="/cardimages/Chopper.png" class="img-fluid rounded border selectable-card shadow-sm sharp-image" data-id="106" style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
-                        <small class="d-block mt-1 fw-bold">106</small>
-                    </div>
-                    <div class="col text-center">
-                        <img src="/cardimages/Robin.png" class="img-fluid rounded border selectable-card shadow-sm sharp-image" data-id="107" style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
-                        <small class="d-block mt-1 fw-bold">107</small>
-                    </div>
-                    <div class="col text-center">
-                        <img src="/cardimages/Franky.png" class="img-fluid rounded border selectable-card shadow-sm sharp-image" data-id="108" style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
-                        <small class="d-block mt-1 fw-bold">108</small>
-                    </div>
-                    <div class="col text-center">
-                        <img src="/cardimages/Brook.png" class="img-fluid rounded border selectable-card shadow-sm sharp-image" data-id="109" style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
-                        <small class="d-block mt-1 fw-bold">109</small>
-                    </div>
-                    <div class="col text-center">
-                        <img src="/cardimages/Jimbe.png" class="img-fluid rounded border selectable-card shadow-sm sharp-image" data-id="110" style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
-                        <small class="d-block mt-1 fw-bold">110</small>
+                        <div class="border border-dark border-2 rounded p-2">
+                            <img src="/cardimages/Luffy.png"
+                                class="img-fluid rounded selectable-card shadow-sm sharp-image" data-id="101"
+                                style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
+                            <small class="d-block mt-1 fw-bold text-dark">101</small>
+                            <a href="cardDetail.html" target="_blank" class="d-block mt-2">
+                                <button class="btn btn-primary btn-sm">Detalle</button>
+                            </a>
+                        </div>
                     </div>
 
                     <div class="col text-center">
-                        <img src="/cardimages/Shanks.png" class="img-fluid rounded border selectable-card shadow-sm sharp-image" data-id="201" style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
-                        <small class="d-block mt-1 fw-bold">201</small>
+                        <div class="border border-dark border-2 rounded p-2">
+                            <img src="/cardimages/Zoro.png"
+                                class="img-fluid rounded selectable-card shadow-sm sharp-image" data-id="102"
+                                style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
+                            <small class="d-block mt-1 fw-bold text-dark">102</small>
+                            <a href="cardDetail.html" target="_blank" class="d-block mt-2">
+                                <button class="btn btn-primary btn-sm">Detalle</button>
+                            </a>
+                        </div>
                     </div>
+
                     <div class="col text-center">
-                        <img src="/cardimages/Marco.png" class="img-fluid rounded border selectable-card shadow-sm sharp-image" data-id="302" style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
-                        <small class="d-block mt-1 fw-bold">302</small>
+                        <div class="border border-dark border-2 rounded p-2">
+                            <img src="/cardimages/Nami.png"
+                                class="img-fluid rounded selectable-card shadow-sm sharp-image" data-id="103"
+                                style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
+                            <small class="d-block mt-1 fw-bold text-dark">103</small>
+                            <a href="cardDetail.html" target="_blank" class="d-block mt-2">
+                                <button class="btn btn-primary btn-sm">Detalle</button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col text-center">
+                        <div class="border border-dark border-2 rounded p-2">
+                            <img src="/cardimages/Usopp.png"
+                                class="img-fluid rounded selectable-card shadow-sm sharp-image" data-id="104"
+                                style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
+                            <small class="d-block mt-1 fw-bold text-dark">104</small>
+                            <a href="cardDetail.html" target="_blank" class="d-block mt-2">
+                                <button class="btn btn-primary btn-sm">Detalle</button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col text-center">
+                        <div class="border border-dark border-2 rounded p-2">
+                            <img src="/cardimages/Sanji.png"
+                                class="img-fluid rounded selectable-card shadow-sm sharp-image" data-id="105"
+                                style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
+                            <small class="d-block mt-1 fw-bold text-dark">105</small>
+                            <a href="cardDetail.html" target="_blank" class="d-block mt-2">
+                                <button class="btn btn-primary btn-sm">Detalle</button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col text-center">
+                        <div class="border border-dark border-2 rounded p-2">
+                            <img src="/cardimages/Chopper.png"
+                                class="img-fluid rounded selectable-card shadow-sm sharp-image" data-id="106"
+                                style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
+                            <small class="d-block mt-1 fw-bold text-dark">106</small>
+                            <a href="cardDetail.html" target="_blank" class="d-block mt-2">
+                                <button class="btn btn-primary btn-sm">Detalle</button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col text-center">
+                        <div class="border border-dark border-2 rounded p-2">
+                            <img src="/cardimages/Robin.png"
+                                class="img-fluid rounded selectable-card shadow-sm sharp-image" data-id="107"
+                                style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
+                            <small class="d-block mt-1 fw-bold text-dark">107</small>
+                            <a href="cardDetail.html" target="_blank" class="d-block mt-2">
+                                <button class="btn btn-primary btn-sm">Detalle</button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col text-center">
+                        <div class="border border-dark border-2 rounded p-2">
+                            <img src="/cardimages/Franky.png"
+                                class="img-fluid rounded selectable-card shadow-sm sharp-image" data-id="108"
+                                style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
+                            <small class="d-block mt-1 fw-bold text-dark">108</small>
+                            <a href="cardDetail.html" target="_blank" class="d-block mt-2">
+                                <button class="btn btn-primary btn-sm">Detalle</button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col text-center">
+                        <div class="border border-dark border-2 rounded p-2">
+                            <img src="/cardimages/Brook.png"
+                                class="img-fluid rounded selectable-card shadow-sm sharp-image" data-id="109"
+                                style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
+                            <small class="d-block mt-1 fw-bold text-dark">109</small>
+                            <a href="cardDetail.html" target="_blank" class="d-block mt-2">
+                                <button class="btn btn-primary btn-sm">Detalle</button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col text-center">
+                        <div class="border border-dark border-2 rounded p-2">
+                            <img src="/cardimages/Jimbe.png"
+                                class="img-fluid rounded selectable-card shadow-sm sharp-image" data-id="110"
+                                style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
+                            <small class="d-block mt-1 fw-bold text-dark">110</small>
+                            <a href="cardDetail.html" target="_blank" class="d-block mt-2">
+                                <button class="btn btn-primary btn-sm">Detalle</button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col text-center">
+                        <div class="border border-dark border-2 rounded p-2">
+                            <img src="/cardimages/Shanks.png"
+                                class="img-fluid rounded selectable-card shadow-sm sharp-image" data-id="201"
+                                style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
+                            <small class="d-block mt-1 fw-bold text-dark">201</small>
+                            <a href="cardDetail.html" target="_blank" class="d-block mt-2">
+                                <button class="btn btn-primary btn-sm">Detalle</button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col text-center">
+                        <div class="border border-dark border-2 rounded p-2">
+                            <img src="/cardimages/Marco.png"
+                                class="img-fluid rounded selectable-card shadow-sm sharp-image" data-id="302"
+                                style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
+                            <small class="d-block mt-1 fw-bold text-dark">302</small>
+                            <a href="cardDetail.html" target="_blank" class="d-block mt-2">
+                                <button class="btn btn-primary btn-sm">Detalle</button>
+                            </a>
+                        </div>
                     </div>
 
                 </div>
@@ -172,17 +279,17 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const selectableCards = document.querySelectorAll('.selectable-card');
             const inputs = document.querySelectorAll('.card-input');
             const imageSlots = document.querySelectorAll('.card-image-slot');
+            const form = document.querySelector('form'); 
 
             selectableCards.forEach(card => {
-
                 card.addEventListener('mouseover', () => card.style.transform = 'scale(1.05)');
                 card.addEventListener('mouseout', () => card.style.transform = 'scale(1)');
 
-                card.addEventListener('click', function() {
+                card.addEventListener('click', function () {
                     const cardId = this.getAttribute('data-id');
                     const cardImageSrc = this.getAttribute('src');
 
@@ -195,34 +302,47 @@
                     }
 
                     if (isDuplicate) {
-                        alert('¡Esta carta ya está en tu mazo!'); 
-                        return; 
+                        alert('¡Esta carta ya está en tu mazo!');
+                        return;
                     }
 
                     for (let i = 0; i < inputs.length; i++) {
                         if (inputs[i].value === '') {
                             inputs[i].value = cardId;
-                            imageSlots[i].innerHTML = `<img src="${cardImageSrc}" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">`; 
-                            break; 
+                            imageSlots[i].innerHTML = `<img src="${cardImageSrc}" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">`;
+                            break;
                         }
                     }
                 });
             });
 
             imageSlots.forEach((slot, index) => {
-                
                 slot.style.cursor = 'pointer';
-
-                slot.addEventListener('click', function() {
-                    
+                slot.addEventListener('click', function () {
                     if (inputs[index].value !== '') {
-                        
                         inputs[index].value = '';
-                        
-                        
                         slot.innerHTML = `<small>Imagen ${index + 1}</small>`;
                     }
                 });
+            });
+
+            
+            form.addEventListener('submit', function (event) {
+                let mazoIncompleto = false;
+
+                
+                for (let i = 0; i < inputs.length; i++) {
+                    if (inputs[i].value === '') {
+                        mazoIncompleto = true;
+                        break;
+                    }
+                }
+
+                
+                if (mazoIncompleto) {
+                    event.preventDefault();
+                    alert('Por favor, selecciona las 6 cartas para completar tu mazo antes de postear.');
+                }
             });
         });
     </script>
