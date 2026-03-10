@@ -139,7 +139,7 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 #### **12. Detalle de la Carta / Card Detail**
 ![Editar Perfil](screenshots/cardDetail.png)
 
-> En esta pagina el usuario podra modificar cualquier campo de su perfil, incluida su foto de perfil, que será necesaria ya que al registrarse todos los perfiles tendrán una imagen por defecto.
+> En esta pagina el usuario podra ver cualquier campo de la carta,.
 
 ### **Participación de Miembros en la Práctica 1**
 
