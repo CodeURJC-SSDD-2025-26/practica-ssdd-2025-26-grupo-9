@@ -69,7 +69,7 @@
                                 <td>Straw Hat Crew</td>
                                 <td>
                                     <a href="adminCard.html" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="deleteCard(101)">Eliminar</button>
+                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(101)">Eliminar</button>
                                 </td>
                             </tr>
                             <tr data-id="102">
@@ -85,7 +85,7 @@
                                 <td>Straw Hat Crew</td>
                                 <td>
                                     <a href="adminCard.html" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="deleteCard(102)">Eliminar</button>
+                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(102)">Eliminar</button>
                                 </td>
                             </tr>
                             <tr data-id="103">
@@ -101,7 +101,7 @@
                                 <td>Straw Hat Crew</td>
                                 <td>
                                     <a href="adminCard.html" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="deleteCard(103)">Eliminar</button>
+                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(103)">Eliminar</button>
                                 </td>
                             </tr>
                             <tr data-id="104">
@@ -117,7 +117,7 @@
                                 <td>Straw Hat Crew</td>
                                 <td>
                                     <a href="adminCard.html" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="deleteCard(104)">Eliminar</button>
+                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(104)">Eliminar</button>
                                 </td>
                             </tr>
                             <tr data-id="105">
@@ -133,7 +133,7 @@
                                 <td>Straw Hat Crew</td>
                                 <td>
                                     <a href="adminCard.html" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="deleteCard(105)">Eliminar</button>
+                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(105)">Eliminar</button>
                                 </td>
                             </tr>
                             <tr data-id="106">
@@ -149,7 +149,7 @@
                                 <td>Straw Hat Crew</td>
                                 <td>
                                     <a href="adminCard.html" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="deleteCard(106)">Eliminar</button>
+                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(106)">Eliminar</button>
                                 </td>
                             </tr>
                             <tr data-id="107">
@@ -165,7 +165,7 @@
                                 <td>Straw Hat Crew</td>
                                 <td>
                                     <a href="adminCard.html" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="deleteCard(107)">Eliminar</button>
+                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(107)">Eliminar</button>
                                 </td>
                             </tr>
                             <tr data-id="108">
@@ -181,7 +181,7 @@
                                 <td>Straw Hat Crew</td>
                                 <td>
                                     <a href="adminCard.html" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="deleteCard(108)">Eliminar</button>
+                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(108)">Eliminar</button>
                                 </td>
                             </tr>
                             <tr data-id="109">
@@ -197,7 +197,7 @@
                                 <td>Straw Hat Crew</td>
                                 <td>
                                     <a href="adminCard.html" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="deleteCard(109)">Eliminar</button>
+                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(109)">Eliminar</button>
                                 </td>
                             </tr>
                             <tr data-id="110">
@@ -213,7 +213,7 @@
                                 <td>Straw Hat Crew</td>
                                 <td>
                                     <a href="adminCard.html" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="deleteCard(110)">Eliminar</button>
+                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(110)">Eliminar</button>
                                 </td>
                             </tr>
                             <tr data-id="201">
@@ -229,7 +229,7 @@
                                 <td>Red Hair Pirates</td>
                                 <td>
                                     <a href="adminCard.html" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="deleteCard(201)">Eliminar</button>
+                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(201)">Eliminar</button>
                                 </td>
                             </tr>
                             <tr data-id="302">
@@ -245,7 +245,7 @@
                                 <td>Whitebeard Pirates</td>
                                 <td>
                                     <a href="adminCard.html" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="deleteCard(302)">Eliminar</button>
+                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(302)">Eliminar</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -261,15 +261,40 @@
         </div>
     </footer>
 
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirmar eliminación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas eliminar esta carta?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="confirmDelete()">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function deleteCard(cardId) {
-            if (!confirm('¿Eliminar esta carta?')) return;
-            const row = document.querySelector(`tr[data-id="${cardId}"]`);
+        let cardToDelete = null;
+        function showDeleteModal(cardId) {
+            cardToDelete = cardId;
+            const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+            modal.show();
+        }
+        function confirmDelete() {
+            if (!cardToDelete) return;
+            const row = document.querySelector(`tr[data-id="${cardToDelete}"]`);
             if (!row) return;
             row.style.transition = 'opacity 0.25s, transform 0.25s';
             row.style.opacity = '0';
             row.style.transform = 'translateX(-10px)';
             setTimeout(() => row.remove(), 260);
+            cardToDelete = null;
         }
     </script>
 
