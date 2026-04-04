@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DistribuidosApplication<distribuidos>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "es.codeujrc.distribuidos.DistribuidosApplication",
+            "projectName": "distribuidos",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
