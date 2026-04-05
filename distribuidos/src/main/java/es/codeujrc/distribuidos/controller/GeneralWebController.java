@@ -1,4 +1,4 @@
-package es.codeujrc.distribuidos;
+package es.codeujrc.distribuidos.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
