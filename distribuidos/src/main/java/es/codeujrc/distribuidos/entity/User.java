@@ -3,6 +3,7 @@ package es.codeujrc.distribuidos.entity;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,9 +21,11 @@ public class User {
     private String password;
     private String email;
 
-    private enum Role {
+    public enum Role {
         USER, ADMIN
     }
+
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     @OneToMany(mappedBy = "user")
@@ -30,9 +33,18 @@ public class User {
 
     public User() {
     }
+
     public User(Long id, String username, String password, String email, Role role) {
         super();
         this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+    }
+
+    public User(String username, String password, String email, Role role) {
+        super();
         this.username = username;
         this.password = password;
         this.email = email;
