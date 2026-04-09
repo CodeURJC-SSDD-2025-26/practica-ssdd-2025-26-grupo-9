@@ -10,6 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
+import jakarta.persistence.Lob;
+
 
 @Entity
 public class User {
@@ -21,8 +23,11 @@ public class User {
     private String password;
     private String email;
 
+    @Lob
+    private byte[] image;
+
     public enum Role {
-        USER, ADMIN
+        NOTREGISTERED, ADMIN, REGISTERED
     }
 
     @Enumerated(EnumType.STRING)
@@ -34,21 +39,25 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String username, String password, String email, Role role) {
+    public User(Long id, String username, String password, String email, Role role, byte[] image) {
         super();
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.role = role;
+        this.image = null;
+        this.image = image;
     }
 
-    public User(String username, String password, String email, Role role) {
+    public User(String username, String password, String email, Role role, byte[] image) {
         super();
         this.username = username;
         this.password = password;
         this.email = email;
         this.role = role;
+        this.image = null;
+        this.image = image;
     }
 
     public Long getId() {
@@ -65,6 +74,14 @@ public class User {
     }   
     public Role getRole() {
         return role;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public void setId(Long id) {
