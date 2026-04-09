@@ -8,6 +8,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 
 @Entity
@@ -25,6 +26,8 @@ public class Card {
     private enum color {
         RED, BLUE, GREEN, YELLOW, PURPLE, BLACK
     }
+     @Lob
+    private byte[] image;
 
     private String name;
     
@@ -53,7 +56,7 @@ public class Card {
     public Card() {
     }
 
-    public Card(String name, String description, String trigger, String crew, int cost, int power, int health, CardType type, Atribute atribute, color color, List<Deck> decks) {
+    public Card(String name, String description, String trigger, String crew, int cost, int power, int health, CardType type, Atribute atribute, color color, List<Deck> decks, byte[] image) {
         super();
         this.name = name;
         this.description = description;
@@ -66,6 +69,7 @@ public class Card {
         this.atribute = atribute;
         this.color = color;
         this.decks = decks;
+        this.image = image;
     }
 
 
