@@ -16,14 +16,16 @@ public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = null;
-
-    private enum CardType {
+    public enum Counter {
+        ONETHOUSAND, TWOTHOUSAND, NONE
+    }
+    public enum CardType {
         LEADER, EVENT, STAGE, CHARACTER
     }
-    private enum Atribute {
+    public enum Atribute {
         STRIKE, SLASH, SPECIAL, RANGED, WISDOM
     }
-    private enum color {
+    public enum color {
         RED, BLUE, GREEN, YELLOW, PURPLE, BLACK
     }
      @Lob
@@ -49,14 +51,16 @@ public class Card {
     private Atribute atribute;
     @Enumerated(EnumType.STRING)
     private color color;
+    @Enumerated(EnumType.STRING)
+    private Counter counter;
 
     @ManyToMany
     private List<Deck> decks;
 
     public Card() {
     }
-
-    public Card(String name, String description, String trigger, String crew, int cost, int power, int health, CardType type, Atribute atribute, color color, List<Deck> decks, byte[] image) {
+    // Constructor for CHARACTER type cards
+    public Card(String name, String description, String trigger, String crew, int cost, int power, Atribute atribute,Counter counter, color color, List<Deck> decks, byte[] image) {
         super();
         this.name = name;
         this.description = description;
@@ -64,15 +68,41 @@ public class Card {
         this.crew = crew;
         this.cost = cost;
         this.power = power;
-        this.health = health;
-        this.type = type;
+        this.type = CardType.CHARACTER;
         this.atribute = atribute;
+        this.counter = counter;
         this.color = color;
         this.decks = decks;
         this.image = image;
     }
-
-
+    // Constructor for events and stage type cards
+    public Card(String name, String description, String trigger, String crew, int cost, CardType type, color color, List<Deck> decks, byte[] image) {
+        super();
+        this.name = name;
+        this.description = description;
+        this.trigger = trigger;
+        this.crew = crew;
+        this.cost = cost;
+        this.type = type;
+        this.counter = Counter.NONE;
+        this.color = color;
+        this.decks = decks;
+        this.image = image;
+    }
+    // Constructor for leader type cards
+    public Card(String name, String description,String crew,int health, int power,Atribute atribute, color color, List<Deck> decks, byte[] image) {
+        super();
+        this.name = name;
+        this.description = description;
+        this.health = health;
+        this.atribute = atribute;
+        this.crew = crew;
+        this.power = power;
+        this.type = CardType.LEADER;
+        this.color = color;
+        this.decks = decks;
+        this.image = image;
+    }
     public Long getId() {
         return id;
     }

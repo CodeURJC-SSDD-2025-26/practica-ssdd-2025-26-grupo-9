@@ -41,8 +41,8 @@ public class DatabaseInitializer {
 	@PostConstruct
 	public void init() throws IOException, URISyntaxException {
         // Sample users
-        User Carlos = new User(1L, "carlos", passwordEncoder.encode("pass"), "algo@gmail.com", User.Role.USER);
-        User adminuser = new User(2L, "admin", passwordEncoder.encode("adminpass"), "admin@gmail.com", User.Role.ADMIN);
+        User Carlos = new User(1L, "carlos", passwordEncoder.encode("pass"), "algo@gmail.com", User.Role.REGISTERED, null);
+        User adminuser = new User(2L, "admin", passwordEncoder.encode("adminpass"), "admin@gmail.com", User.Role.ADMIN, null);
 
 		userRepository.save(Carlos);
 		userRepository.save(adminuser);
@@ -57,17 +57,27 @@ public class DatabaseInitializer {
 		deckService.save(deck3);
 
         // Sample cards
-        Card card1 = new Card(1L, "Gomu Gomu no Pistol", "Luffy's signature move", deck1);
-        
+		// Leader type cards
+        Card GreenZoro = new Card("Card 1", "Description of Card 1","Crew 1", 5, 5000, Card.Atribute.SLASH, Card.color.RED, Arrays.asList(deck1), null);
+        // Event and stage type cards
+		Card EventCard = new Card("Card 3", "Description of Card 3", "Trigger of Card 3", "Crew 3", 2, Card.CardType.EVENT, Card.color.GREEN, Arrays.asList(deck2), null);
+		Card StageCard = new Card("Card 4", "Description of Card 4", "Trigger of Card 4", "Crew 4", 1, Card.CardType.STAGE, Card.color.YELLOW, Arrays.asList(deck3), null);
+		// Character type cards
+		Card CharacterCard = new Card("Card 2", "Description of Card 2", "Trigger of Card 2", "Crew 2", 3, Card.CardType.CHARACTER, Card.color.BLUE, Arrays.asList(deck1, deck2), null);
 
+		cardService.save(GreenZoro);
+		cardService.save(EventCard);
+		cardService.save(StageCard);
+		cardService.save(CharacterCard);
 
+		// Sample commentaries
+		Commentary commentary1 = new Commentary(1L, "Great deck!", deck1, Carlos);
+		Commentary commentary2 = new Commentary(2L, "Needs more power.", deck2, adminuser);
+
+		commentaryService.save(commentary1);
+		commentaryService.save(commentary2);
 
 	}
 
-	public void setBookImage(Book book, String classpathResource) throws IOException {
-		Resource image = new ClassPathResource(classpathResource);
 
-		Image createdImage = imageService.createImage(image.getInputStream());
-		book.setImage(createdImage);
-	}
 }
