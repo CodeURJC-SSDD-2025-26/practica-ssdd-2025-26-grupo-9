@@ -7,12 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import es.codeujrc.distribuidos.security.UserSession;
+import es.codeujrc.distribuidos.service.CardService;
 import es.codeujrc.distribuidos.entity.User;
 
 @Controller
 public class DecksController {
     @Autowired
     private UserSession userSession;
+    @Autowired
+    private CardService cardService;
 
     @ModelAttribute
     public void addAttributes(Model model) {
@@ -31,7 +34,8 @@ public class DecksController {
     }
 
     @GetMapping("/addDeck")
-    public String addDeckForm() {
+    public String addDeckForm(Model model) {
+        model.addAttribute("cards", cardService.findAll());
         return "addDeck";
     }
 }
