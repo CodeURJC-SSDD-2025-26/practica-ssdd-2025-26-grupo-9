@@ -20,17 +20,6 @@ public class DecksController {
     @Autowired
     private DeckService deckService;
 
-    @ModelAttribute
-    public void addAttributes(Model model) {
-        if (userSession.isLogged()) {
-            model.addAttribute("logged", true);
-            model.addAttribute("userName", userSession.getUser().getUsername());
-            model.addAttribute("isAdmin", userSession.getUser().getRole() == User.Role.ADMIN);
-        } else {
-            model.addAttribute("logged", false);
-        }
-    }
-
     @GetMapping("/decks")
     public String listDecks(Model model) {
         model.addAttribute("decks", deckService.findAll());
