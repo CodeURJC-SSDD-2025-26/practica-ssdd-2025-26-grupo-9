@@ -12,33 +12,43 @@ import es.codeujrc.distribuidos.repository.UserRepository;
 public class UserService {
 
 	@Autowired
-	private UserRepository repository;
+	private UserRepository usersRepository;
 
 	public Optional<User> findById(long id) {
-		return repository.findById(id);
+		return usersRepository.findById(id);
 	}
 	
 	public boolean exist(long id) {
-		return repository.existsById(id);
+		return usersRepository.existsById(id);
 	}
 
 	public List<User> findAll() {
-		return repository.findAll();
+		return usersRepository.findAll();
 	}
 
 	public void save(User user) {
-		repository.save(user);
+		usersRepository.save(user);
 	}
 
 	public void delete(long id) {
-		repository.deleteById(id);
+		usersRepository.deleteById(id);
 	}
 	public boolean registerNewUser(User user){
-		if(repository.existsByEmail(user.getEmail())){
+		if(usersRepository.existsByEmail(user.getEmail())){
 			return false;
 		}
 		user.setRole(User.Role.REGISTERED);
-		repository.save(user);
+		usersRepository.save(user);
 		return true;
 	}
+
+	public User login(String email, String password) {
+    Optional<User> user = usersRepository.findByEmail(email);
+    
+    if (user.isPresent() && user.get().getPassword().equals(password)) {
+        return user.get();
+    }
+    
+    return null;
+}
 }

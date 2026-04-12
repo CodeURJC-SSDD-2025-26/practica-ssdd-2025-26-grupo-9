@@ -18,12 +18,22 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
+                        {{#isAdmin}}
                         <li class="nav-item"><a class="nav-link" href="/addCards">Administrar cartas</a></li>
                         <li class="nav-item"><a class="nav-link" href="/adminUsers">Administrar Usuarios</a></li>
+                        {{/isAdmin}}
+                        
                         <li class="nav-item"><a class="nav-link" href="/social">Social</a></li>
                         <li class="nav-item"><a class="nav-link" href="/decks">Mazos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/profile">Perfil</a></li>
+
+                        {{#logged}}
+                        <li class="nav-item"><a class="nav-link fw-bold text-info" href="/profile">{{userName}} </a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Cerrar sesión</a></li>
+                        {{/logged}}
+
+                        {{^logged}}
                         <li class="nav-item"><a class="nav-link" href="/login">Iniciar sesión</a></li>
+                        {{/logged}}
                     </ul>
                 </div>
             </div>

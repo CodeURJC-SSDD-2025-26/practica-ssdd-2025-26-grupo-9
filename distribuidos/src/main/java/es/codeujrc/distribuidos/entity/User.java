@@ -12,7 +12,6 @@ import jakarta.persistence.OneToMany;
 
 import jakarta.persistence.Lob;
 
-
 @Entity
 public class User {
     @Id
@@ -27,7 +26,7 @@ public class User {
     private byte[] image;
 
     public enum Role {
-        NOTREGISTERED, ADMIN, REGISTERED
+        ADMIN, REGISTERED
     }
 
     @Enumerated(EnumType.STRING)
@@ -52,15 +51,19 @@ public class User {
     public Long getId() {
         return id;
     }
+
     public String getUsername() {
         return username;
     }
+
     public String getPassword() {
         return password;
     }
+
     public String getEmail() {
         return email;
-    }   
+    }
+
     public Role getRole() {
         return role;
     }
@@ -76,18 +79,21 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
+
     public void setRole(Role role) {
         this.role = role;
     }
-
 
 }
