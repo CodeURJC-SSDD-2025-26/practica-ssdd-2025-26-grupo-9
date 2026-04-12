@@ -57,7 +57,7 @@ public class DatabaseInitializer {
 		Card EventCard = new Card("Card 3", "Description of Card 3", "Trigger of Card 3", "Crew 3", 2, Card.CardType.EVENT, Card.color.GREEN, Arrays.asList(deck2), null);
 		Card StageCard = new Card("Card 4", "Description of Card 4", "Trigger of Card 4", "Crew 4", 1, Card.CardType.STAGE, Card.color.YELLOW, Arrays.asList(deck3), null);
 		// Character type cards
-		Card CharacterCard = new Card("Card 2", "Description of Card 2", "Trigger of Card 2", "Crew 2", 3, Card.CardType.CHARACTER, Card.color.BLUE, Arrays.asList(deck1, deck2), null);
+		Card CharacterCard = new Card("Card 2", "Description of Card 2", "Trigger of Card 2", "Crew 2", 3, 3000, Card.Atribute.SLASH,Card.Counter.TWOTHOUSAND, Card.color.BLUE, Arrays.asList(deck1, deck2), null);
 
 		cardService.save(GreenZoro);
 		cardService.save(EventCard);
