@@ -41,16 +41,16 @@ public class DatabaseInitializer {
 	@PostConstruct
 	public void init() throws IOException, URISyntaxException {
         // Sample users
-        User Carlos = new User(1L, "carlos", passwordEncoder.encode("pass"), "algo@gmail.com", User.Role.REGISTERED, null);
-        User adminuser = new User(2L, "admin", passwordEncoder.encode("adminpass"), "admin@gmail.com", User.Role.ADMIN, null);
+        User Carlos = new User( "carlos", passwordEncoder.encode("pass"), "algo@gmail.com", User.Role.REGISTERED, null);
+        User adminuser = new User( "admin", passwordEncoder.encode("adminpass"), "admin@gmail.com", User.Role.ADMIN, null);
 
 		userRepository.save(Carlos);
 		userRepository.save(adminuser);
 
 		// Sample decks
-		Deck deck1 = new Deck(1L, "Luffy", "Deck de Luffy", new ArrayList<>(), new ArrayList<>(), Carlos);
-		Deck deck2 = new Deck(2L, "Zoro", "Deck de Zoro", new ArrayList<>(), new ArrayList<>(), adminuser);
-		Deck deck3 = new Deck(3L, "Sanji", "Deck de Sanji", new ArrayList<>(), new ArrayList<>(), adminuser);
+		Deck deck1 = new Deck( "Luffy", "Deck de Luffy", new ArrayList<>(), new ArrayList<>(), Carlos);
+		Deck deck2 = new Deck( "Zoro", "Deck de Zoro", new ArrayList<>(), new ArrayList<>(), adminuser);
+		Deck deck3 = new Deck( "Sanji", "Deck de Sanji", new ArrayList<>(), new ArrayList<>(), adminuser);
 
 		deckService.save(deck1);
 		deckService.save(deck2);
@@ -71,8 +71,8 @@ public class DatabaseInitializer {
 		cardService.save(CharacterCard);
 
 		// Sample commentaries
-		Commentary commentary1 = new Commentary(1L, "Great deck!", deck1, Carlos);
-		Commentary commentary2 = new Commentary(2L, "Needs more power.", deck2, adminuser);
+		Commentary commentary1 = new Commentary( "Great deck!", deck1, Carlos);
+		Commentary commentary2 = new Commentary( "Needs more power.", deck2, adminuser);
 
 		commentaryService.save(commentary1);
 		commentaryService.save(commentary2);

@@ -23,9 +23,8 @@ public class Commentary {
     public Commentary() {
     }
 
-    public Commentary(Long id, String content, Deck deck, User user) {
+    public Commentary( String content, Deck deck, User user) {
         super();
-        this.id = id;
         this.content = content;
         this.deck = deck;
         this.user = user;

@@ -35,9 +35,8 @@ public class Deck {
 
     public Deck() {
     }
-    public Deck(Long id, String name, String description, List<Card> cards, List<Commentary> commentaries, User user) {
+    public Deck( String name, String description, List<Card> cards, List<Commentary> commentaries, User user) {
         super();
-        this.id = id;
         this.name = name;
         this.description = description;
         this.cards = cards;

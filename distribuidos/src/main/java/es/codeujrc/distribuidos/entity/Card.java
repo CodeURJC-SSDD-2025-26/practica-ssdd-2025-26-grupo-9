@@ -37,7 +37,7 @@ public class Card {
     private String description;
 
     @Column(columnDefinition = "TEXT")
-    private String trigger;
+    private String triggerEffect;
 
     private String crew;
 
@@ -64,7 +64,7 @@ public class Card {
         super();
         this.name = name;
         this.description = description;
-        this.trigger = trigger;
+        this.triggerEffect = trigger;
         this.crew = crew;
         this.cost = cost;
         this.power = power;
@@ -80,7 +80,7 @@ public class Card {
         super();
         this.name = name;
         this.description = description;
-        this.trigger = trigger;
+        this.triggerEffect = trigger;
         this.crew = crew;
         this.cost = cost;
         this.type = type;
@@ -112,8 +112,8 @@ public class Card {
     public String getDescription() {
         return description;
     }
-    public String getTrigger() {
-        return trigger;
+    public String getTriggerEffect() {
+        return triggerEffect;
     }
     public String getCrew() {
         return crew;
@@ -149,8 +149,8 @@ public class Card {
     public void setDescription(String description) {
         this.description = description;
     }
-    public void setTrigger(String trigger) {
-        this.trigger = trigger;
+    public void setTriggerEffect(String triggerEffect) {
+        this.triggerEffect = triggerEffect;
     }
     public void setCrew(String crew) {
         this.crew = crew;
