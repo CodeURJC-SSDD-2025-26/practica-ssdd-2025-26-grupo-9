@@ -33,4 +33,12 @@ public class UserService {
 	public void delete(long id) {
 		repository.deleteById(id);
 	}
+	public boolean registerNewUser(User user){
+		if(repository.existsByEmail(user.getEmail())){
+			return false;
+		}
+		user.setRole(User.Role.REGISTERED);
+		repository.save(user);
+		return true;
+	}
 }
