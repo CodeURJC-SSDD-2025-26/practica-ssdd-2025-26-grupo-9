@@ -46,7 +46,7 @@
                                 </div>
 
                                 <div class="d-grid gap-2">
-                                    <a href="profile.html" class="btn btn-secondary">Cancelar</a>
+                                    <a href="/profile" class="btn btn-secondary">Cancelar</a>
                                     <button type="submit" class="btn btn-primary fw-bold">Guardar cambios</button>
                                 </div>
                             </form>
@@ -102,12 +102,12 @@
                 reader.onload = function (event) {
                     updatedUser.image = event.target.result;
                     localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-                    window.location.href = 'profile.html';
+                    window.location.href = '/profile';
                 };
                 reader.readAsDataURL(file);
             } else {
                 localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-                window.location.href = 'profile.html';
+                window.location.href = 'profile';
             }
         });
 

@@ -31,4 +31,8 @@ public class UserController {
     public String editUserAdmin(Model model) {
         return "editUserAdmin";
     }
+    @GetMapping("/editUser")
+    public String editUser(Model model) {
+        return "editUser";
+    }
 }
