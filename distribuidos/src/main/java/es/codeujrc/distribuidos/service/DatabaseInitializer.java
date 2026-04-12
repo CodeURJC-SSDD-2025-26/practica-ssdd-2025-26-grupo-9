@@ -8,9 +8,6 @@ import java.util.Arrays;
 import jakarta.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import es.codeujrc.distribuidos.entity.Card;
@@ -35,14 +32,11 @@ public class DatabaseInitializer {
 	@Autowired
 	private UserRepository userRepository;
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-
 	@PostConstruct
 	public void init() throws IOException, URISyntaxException {
         // Sample users
-        User Carlos = new User( "carlos", passwordEncoder.encode("pass"), "algo@gmail.com", User.Role.REGISTERED, null);
-        User adminuser = new User( "admin", passwordEncoder.encode("adminpass"), "admin@gmail.com", User.Role.ADMIN, null);
+        User Carlos = new User( "carlos", "pass", "algo@gmail.com", User.Role.REGISTERED, null);
+        User adminuser = new User( "admin", "adminpass", "admin@gmail.com", User.Role.ADMIN, null);
 
 		userRepository.save(Carlos);
 		userRepository.save(adminuser);
