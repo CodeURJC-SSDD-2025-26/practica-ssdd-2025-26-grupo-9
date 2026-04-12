@@ -14,6 +14,8 @@ public class CardsController {
 
     @Autowired
     private UserSession userSession;
+    @Autowired
+    private es.codeujrc.distribuidos.service.CardService cardService;
 
     @ModelAttribute
     public void addAttributes(Model model) {
@@ -28,6 +30,7 @@ public class CardsController {
 
     @GetMapping("/addCards")
     public String addCards(Model model) {
+        model.addAttribute("cards", cardService.findAll()); // Aquí deberías cargar las cartas desde tu servicio
         return "addCards";
     }
 

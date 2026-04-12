@@ -21,204 +21,30 @@
                                 <th>Poder</th>
                                 <th>Color</th>
                                 <th>Atributo</th>
-                                <th>Clase</th>
+                                <th>Tripulación</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody id="cards-list" class="bg-white">
-                            <tr data-id="101">
-                                <td class="text-center"><img src="/cardimages/Luffy.png" alt="Luffy" style="height: 55px; width: 40px; object-fit: cover;" class="rounded border"></td>
-                                <td>101</td>
-                                <td class="fw-bold">Luffy</td>
-                                <td>Líder</td>
-                                <td>-</td>
-                                <td>5</td>
-                                <td>5000</td>
-                                <td>Rojo</td>
-                                <td>Strike</td>
-                                <td>Straw Hat Crew</td>
+                        {{#cards}}
+                            <tr data-id="{{id}}">
+                                <td class="text-center"><img src="/cardimages/{{name}}.png" alt="{{name}}" style="height: 55px; width: 40px; object-fit: cover;" class="rounded border"></td>
+                                <td>{{id}}</td>
+                                <td class="fw-bold">{{name}}</td>
+                                <td>{{type}}</td>
+                                <td>{{cost}}</td>
+                                <td>{{health}}</td>
+                                <td>{{power}}</td>
+                                <td>{{color}}</td>
+                                <td>{{#attribute}}{{attribute}}{{/attribute}}{{^attribute}}-{{/attribute}}</td>
+                                <td>{{crew}}</td>
                                 <td>
                                     <a href="/adminCard" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(101)">Eliminar</button>
+                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal('{{id}}')">Eliminar</button>
                                 </td>
                             </tr>
-                            <tr data-id="102">
-                                <td class="text-center"><img src="/cardimages/Zoro.png" alt="Zoro" style="height: 55px; width: 40px; object-fit: cover;" class="rounded border"></td>
-                                <td>102</td>
-                                <td class="fw-bold">Zoro</td>
-                                <td>Personaje</td>
-                                <td>3</td>
-                                <td>-</td>
-                                <td>5000</td>
-                                <td>Verde</td>
-                                <td>Slash</td>
-                                <td>Straw Hat Crew</td>
-                                <td>
-                                    <a href="/adminCard" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(102)">Eliminar</button>
-                                </td>
-                            </tr>
-                            <tr data-id="103">
-                                <td class="text-center"><img src="/cardimages/Nami.png" alt="Nami" style="height: 55px; width: 40px; object-fit: cover;" class="rounded border"></td>
-                                <td>103</td>
-                                <td class="fw-bold">Nami</td>
-                                <td>Personaje</td>
-                                <td>1</td>
-                                <td>-</td>
-                                <td>1000</td>
-                                <td>Azul</td>
-                                <td>Special</td>
-                                <td>Straw Hat Crew</td>
-                                <td>
-                                    <a href="/adminCard" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(103)">Eliminar</button>
-                                </td>
-                            </tr>
-                            <tr data-id="104">
-                                <td class="text-center"><img src="/cardimages/Usopp.png" alt="Usopp" style="height: 55px; width: 40px; object-fit: cover;" class="rounded border"></td>
-                                <td>104</td>
-                                <td class="fw-bold">Usopp</td>
-                                <td>Personaje</td>
-                                <td>2</td>
-                                <td>-</td>
-                                <td>3000</td>
-                                <td>Amarillo</td>
-                                <td>Ranged</td>
-                                <td>Straw Hat Crew</td>
-                                <td>
-                                    <a href="/adminCard" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(104)">Eliminar</button>
-                                </td>
-                            </tr>
-                            <tr data-id="105">
-                                <td class="text-center"><img src="/cardimages/Sanji.png" alt="Sanji" style="height: 55px; width: 40px; object-fit: cover;" class="rounded border"></td>
-                                <td>105</td>
-                                <td class="fw-bold">Sanji</td>
-                                <td>Personaje</td>
-                                <td>4</td>
-                                <td>-</td>
-                                <td>5000</td>
-                                <td>Azul</td>
-                                <td>Strike</td>
-                                <td>Straw Hat Crew</td>
-                                <td>
-                                    <a href="/adminCard" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(105)">Eliminar</button>
-                                </td>
-                            </tr>
-                            <tr data-id="106">
-                                <td class="text-center"><img src="/cardimages/Chopper.png" alt="Chopper" style="height: 55px; width: 40px; object-fit: cover;" class="rounded border"></td>
-                                <td>106</td>
-                                <td class="fw-bold">Chopper</td>
-                                <td>Personaje</td>
-                                <td>1</td>
-                                <td>-</td>
-                                <td>1000</td>
-                                <td>Rojo</td>
-                                <td>Strike</td>
-                                <td>Straw Hat Crew</td>
-                                <td>
-                                    <a href="/adminCard" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(106)">Eliminar</button>
-                                </td>
-                            </tr>
-                            <tr data-id="107">
-                                <td class="text-center"><img src="/cardimages/Robin.png" alt="Robin" style="height: 55px; width: 40px; object-fit: cover;" class="rounded border"></td>
-                                <td>107</td>
-                                <td class="fw-bold">Robin</td>
-                                <td>Personaje</td>
-                                <td>3</td>
-                                <td>-</td>
-                                <td>4000</td>
-                                <td>Morado</td>
-                                <td>Special</td>
-                                <td>Straw Hat Crew</td>
-                                <td>
-                                    <a href="/adminCard" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(107)">Eliminar</button>
-                                </td>
-                            </tr>
-                            <tr data-id="108">
-                                <td class="text-center"><img src="/cardimages/Franky.png" alt="Franky" style="height: 55px; width: 40px; object-fit: cover;" class="rounded border"></td>
-                                <td>108</td>
-                                <td class="fw-bold">Franky</td>
-                                <td>Personaje</td>
-                                <td>5</td>
-                                <td>-</td>
-                                <td>6000</td>
-                                <td>Rojo</td>
-                                <td>Strike</td>
-                                <td>Straw Hat Crew</td>
-                                <td>
-                                    <a href="/adminCard" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(108)">Eliminar</button>
-                                </td>
-                            </tr>
-                            <tr data-id="109">
-                                <td class="text-center"><img src="/cardimages/Brook.png" alt="Brook" style="height: 55px; width: 40px; object-fit: cover;" class="rounded border"></td>
-                                <td>109</td>
-                                <td class="fw-bold">Brook</td>
-                                <td>Personaje</td>
-                                <td>2</td>
-                                <td>-</td>
-                                <td>3000</td>
-                                <td>Negro</td>
-                                <td>Slash</td>
-                                <td>Straw Hat Crew</td>
-                                <td>
-                                    <a href="/adminCard" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(109)">Eliminar</button>
-                                </td>
-                            </tr>
-                            <tr data-id="110">
-                                <td class="text-center"><img src="/cardimages/Jimbe.png" alt="Jimbe" style="height: 55px; width: 40px; object-fit: cover;" class="rounded border"></td>
-                                <td>110</td>
-                                <td class="fw-bold">Jimbe</td>
-                                <td>Personaje</td>
-                                <td>4</td>
-                                <td>-</td>
-                                <td>5000</td>
-                                <td>Verde</td>
-                                <td>Strike</td>
-                                <td>Straw Hat Crew</td>
-                                <td>
-                                    <a href="/adminCard" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(110)">Eliminar</button>
-                                </td>
-                            </tr>
-                            <tr data-id="201">
-                                <td class="text-center"><img src="/cardimages/Shanks.png" alt="Shanks" style="height: 55px; width: 40px; object-fit: cover;" class="rounded border"></td>
-                                <td>201</td>
-                                <td class="fw-bold">Shanks</td>
-                                <td>Líder</td>
-                                <td>-</td>
-                                <td>4</td>
-                                <td>5000</td>
-                                <td>Rojo</td>
-                                <td>Slash</td>
-                                <td>Red Hair Pirates</td>
-                                <td>
-                                    <a href="/adminCard" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(201)">Eliminar</button>
-                                </td>
-                            </tr>
-                            <tr data-id="302">
-                                <td class="text-center"><img src="/cardimages/Marco.png" alt="Marco" style="height: 55px; width: 40px; object-fit: cover;" class="rounded border"></td>
-                                <td>302</td>
-                                <td class="fw-bold">Marco</td>
-                                <td>Personaje</td>
-                                <td>5</td>
-                                <td>-</td>
-                                <td>6000</td>
-                                <td>Rojo</td>
-                                <td>Special</td>
-                                <td>Whitebeard Pirates</td>
-                                <td>
-                                    <a href="/adminCard" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal(302)">Eliminar</button>
-                                </td>
-                            </tr>
-                        </tbody>
+                        {{/cards}}
+                        </tbody>                       
                     </table>
                 </div>
             </section>

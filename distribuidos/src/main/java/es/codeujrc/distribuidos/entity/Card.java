@@ -48,7 +48,7 @@ public class Card {
     @Enumerated(EnumType.STRING)
     private CardType type;
     @Enumerated(EnumType.STRING)
-    private Atribute atribute;
+    private Atribute attribute;
     @Enumerated(EnumType.STRING)
     private color color;
     @Enumerated(EnumType.STRING)
@@ -69,7 +69,7 @@ public class Card {
         this.cost = cost;
         this.power = power;
         this.type = CardType.CHARACTER;
-        this.atribute = atribute;
+        this.attribute = atribute;
         this.counter = counter;
         this.color = color;
         this.decks = decks;
@@ -84,6 +84,7 @@ public class Card {
         this.crew = crew;
         this.cost = cost;
         this.type = type;
+        this.attribute = null;
         this.counter = Counter.NONE;
         this.color = color;
         this.decks = decks;
@@ -95,7 +96,7 @@ public class Card {
         this.name = name;
         this.description = description;
         this.health = health;
-        this.atribute = atribute;
+        this.attribute = atribute;
         this.crew = crew;
         this.power = power;
         this.type = CardType.LEADER;
@@ -130,8 +131,8 @@ public class Card {
     public CardType getType() {
         return type;
     }
-    public Atribute getAtribute() {
-        return atribute;
+    public Atribute getAttribute() {
+        return attribute;
     }
     public color getColor() {
         return color;
@@ -167,8 +168,8 @@ public class Card {
     public void setType(CardType type) {
         this.type = type;
     }
-    public void setAtribute(Atribute atribute) {
-        this.atribute = atribute;
+    public void setAttribute(Atribute attribute) {
+        this.attribute = attribute;
     }
     public void setColor(color color) {
         this.color = color;

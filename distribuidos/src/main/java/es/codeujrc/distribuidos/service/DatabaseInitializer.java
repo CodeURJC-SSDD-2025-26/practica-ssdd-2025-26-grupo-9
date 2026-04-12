@@ -52,17 +52,26 @@ public class DatabaseInitializer {
 
         // Sample cards
 		// Leader type cards
-        Card GreenZoro = new Card("Card 1", "Description of Card 1","Crew 1", 5, 5000, Card.Atribute.SLASH, Card.color.RED, Arrays.asList(deck1), null);
+        Card GreenZoro = new Card("Card 1", "Description of Card 1","Crew 1", 5, 5000, Card.Atribute.SLASH, Card.color.RED, new ArrayList<>(), null);
         // Event and stage type cards
-		Card EventCard = new Card("Card 3", "Description of Card 3", "Trigger of Card 3", "Crew 3", 2, Card.CardType.EVENT, Card.color.GREEN, Arrays.asList(deck2), null);
-		Card StageCard = new Card("Card 4", "Description of Card 4", "Trigger of Card 4", "Crew 4", 1, Card.CardType.STAGE, Card.color.YELLOW, Arrays.asList(deck3), null);
+		Card EventCard = new Card("Card 3", "Description of Card 3", "Trigger of Card 3", "Crew 3", 2, Card.CardType.EVENT, Card.color.GREEN, new ArrayList<>(), null);
+		Card StageCard = new Card("Card 4", "Description of Card 4", "Trigger of Card 4", "Crew 4", 1, Card.CardType.STAGE, Card.color.YELLOW, new ArrayList<>(), null);
 		// Character type cards
-		Card CharacterCard = new Card("Card 2", "Description of Card 2", "Trigger of Card 2", "Crew 2", 3, 3000, Card.Atribute.SLASH,Card.Counter.TWOTHOUSAND, Card.color.BLUE, Arrays.asList(deck1, deck2), null);
+		Card CharacterCard = new Card("Card 2", "Description of Card 2", "Trigger of Card 2", "Crew 2", 3, 3000, Card.Atribute.SLASH,Card.Counter.TWOTHOUSAND, Card.color.BLUE, new ArrayList<>(), null);
 
 		cardService.save(GreenZoro);
 		cardService.save(EventCard);
 		cardService.save(StageCard);
 		cardService.save(CharacterCard);
+		
+		// Associate cards with decks
+		deck1.setCards(Arrays.asList(GreenZoro, CharacterCard));
+		deck2.setCards(Arrays.asList(EventCard, CharacterCard));
+		deck3.setCards(Arrays.asList(StageCard));
+		
+		deckService.save(deck1);
+		deckService.save(deck2);
+		deckService.save(deck3);
 
 		// Sample commentaries
 		Commentary commentary1 = new Commentary( "Great deck!", deck1, Carlos);
