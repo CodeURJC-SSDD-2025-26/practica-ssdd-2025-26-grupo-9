@@ -56,5 +56,4 @@ public class Commentary {
         this.user = user;
     }
 
-
 }
