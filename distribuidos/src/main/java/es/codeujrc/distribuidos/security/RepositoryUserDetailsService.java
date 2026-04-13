@@ -27,7 +27,7 @@ public class RepositoryUserDetailsService implements UserDetailsService {
         String role = "ROLE_" + user.getRole().name();
 
         return org.springframework.security.core.userdetails.User
-                .withUsername(user.getEmail())
+                .withUsername(user.getUsername())
                 .password(user.getPassword())
                 .authorities(List.of(new SimpleGrantedAuthority(role)))
                 .build();

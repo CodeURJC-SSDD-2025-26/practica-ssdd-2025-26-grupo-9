@@ -1,109 +1,95 @@
 {{>header}}
 
-  <main class="flex-grow-1 py-4">
-    <div class="container">
-      <div class="row">
+<main class="flex-grow-1 py-4">
+  <div class="container">
+    <div class="row">
 
-        <!-- PERFIL (izquierda) -->
-        <div class="col-md-7 col-lg-6">
-          <div class="card shadow border-0">
-            <div class="card-header bg-white py-3">
-              <h1 class="h4 mb-0 text-secondary text-center">Perfil</h1>
-            </div>
+      <div class="col-md-7 col-lg-6">
+        <div class="card shadow border-0">
+          <div class="card-header bg-white py-3">
+            <h1 class="h4 mb-0 text-secondary text-center">Perfil</h1>
+          </div>
 
-            <div class="card-body d-flex align-items-center gap-4">
-              <img id="profile-image" src="/profileimages/OpeOpeNoMi.webp" class="rounded-circle border"
-                style="width: 96px; height: 96px; object-fit: cover;">
+          <div class="card-body d-flex align-items-center gap-4">
+            <img id="profile-image" src="/user/{{user.id}}/image" class="rounded-circle border"
+              style="width: 192px; height: 192px; object-fit: cover;"
+              onerror="this.src='/profileimages/default-avatar.png';">
 
-              <div class="flex-grow-1">
-                <h2 id="profile-name" class="h5 mb-1">María García</h2>
-                <p class="mb-2 text-muted">Rol: <span class="fw-semibold">Admin</span></p>
-                <p class="mb-0">
-                  <span class="text-muted">Correo:</span>
-                  <a id="profile-email" href="mailto:maria@example.com">maria@example.com</a>
-                </p>
-                <div class="mt-3 d-grid">
-                  <a href="/editUser" class="btn btn-primary fw-bold">Editar perfil</a>
-                </div>
+            <div class="flex-grow-1">
+              <h2 id="profile-name" class="h5 mb-1">{{user.username}}</h2>
+              <p class="mb-2 text-muted">Rol: <span class="fw-semibold">{{user.role}}</span></p>
+              <p class="mb-0">
+                <span class="text-muted">Correo:</span>
+                <a id="profile-email" href="mailto:{{user.email}}">{{user.email}}</a>
+              </p>
+              <div class="mt-3 d-grid">
+                <a href="/editUser" class="btn btn-primary fw-bold">Editar perfil</a>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- GRÁFICA (derecha) -->
-        <div class="col-md-6 col-lg-4 offset-lg-2">
-          <div class="card shadow border-0">
-            <div class="card-header bg-white text-center fw-bold">Cartas favoritas</div>
-            <div class="card-body text-center">
-              <canvas id="favCardsChart" style="max-width:300px; max-height:300px;"></canvas>
-            </div>
+      <div class="col-md-6 col-lg-4 offset-lg-2">
+        <div class="card shadow border-0">
+          <div class="card-header bg-white text-center fw-bold">Cartas favoritas</div>
+          <div class="card-body text-center">
+            <canvas id="favCardsChart" style="max-width:300px; max-height:300px;"></canvas>
           </div>
         </div>
-
       </div>
+
     </div>
-    <div class="container">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="mb-0 fw-bold">Mis mazos</h2>
-      </div>
-      <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-          <div class="row g-0">
-            <div
-              class="col-md-3 col-lg-2 d-flex flex-column align-items-center justify-content-center border-end pe-3 mb-3 mb-md-0">
-              <img src="/profileimages/OpeOpeNoMi.webp" class="rounded-circle mb-2"
-                style="width: 80px; height: 80px; object-fit: cover; background-color: #ddd;">
-              <h6 class="mb-0 fw-bold">María García</h6>
-              <small class="text-muted">17 Feb 2026</small>
-              <button class="btn btn-outline-danger btn-sm mt-3 w-100" type="button">Borrar mazo</button>
-            </div>
+  </div>
 
-            <div class="col-md-9 col-lg-10 ps-md-4">
-              <div class="row row-cols-3 row-cols-md-6 g-2 mb-3">
-                <div class="col"><img src="/cardimages/Luffy.png" class="img-fluid rounded border w-100" alt="Carta 1"
-                    style="aspect-ratio: 2/3; object-fit: cover; background-color: #eee;"></div>
-                <div class="col"><img src="/cardimages/Zoro.png" class="img-fluid rounded border w-100" alt="Carta 2"
-                    style="aspect-ratio: 2/3; object-fit: cover; background-color: #eee;"></div>
-                <div class="col"><img src="/cardimages/Nami.png" class="img-fluid rounded border w-100" alt="Carta 3"
-                    style="aspect-ratio: 2/3; object-fit: cover; background-color: #eee;"></div>
-                <div class="col"><img src="/cardimages/Usopp.png" class="img-fluid rounded border w-100" alt="Carta 4"
-                    style="aspect-ratio: 2/3; object-fit: cover; background-color: #eee;"></div>
-                <div class="col"><img src="/cardimages/Sanji.png" class="img-fluid rounded border w-100" alt="Carta 5"
-                    style="aspect-ratio: 2/3; object-fit: cover; background-color: #eee;"></div>
-                <div class="col"><img src="/cardimages/Robin.png" class="img-fluid rounded border w-100" alt="Carta 6"
-                    style="aspect-ratio: 2/3; object-fit: cover; background-color: #eee;"></div>
-              </div>
-              <p class="card-text mb-0">No le se mucho a esto pero pinta chetao</p>
+  <div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="mb-0 fw-bold">Mis mazos</h2>
+    </div>
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <div class="row g-0">
+          <div class="col-md-3 col-lg-2 d-flex flex-column align-items-center justify-content-center border-end pe-3 mb-3 mb-md-0">
+            <img src="/user/{{user.id}}/image" class="rounded-circle mb-2"
+              style="width: 80px; height: 80px; object-fit: cover; background-color: #ddd;">
+            <h6 class="mb-0 fw-bold">{{user.username}}</h6>
+            <small class="text-muted">17 Feb 2026</small>
+            <button class="btn btn-outline-danger btn-sm mt-3 w-100" type="button">Borrar mazo</button>
+          </div>
+
+          <div class="col-md-9 col-lg-10 ps-md-4">
+            <div class="row row-cols-3 row-cols-md-6 g-2 mb-3">
+              <div class="col"><img src="/cardimages/Zoro.png" class="img-fluid rounded border w-100" style="aspect-ratio: 2/3; object-fit: cover;"></div>
+              <div class="col"><img src="/cardimages/Zoro.png" class="img-fluid rounded border w-100" style="aspect-ratio: 2/3; object-fit: cover;"></div>
+              <div class="col"><img src="/cardimages/Zoro.png" class="img-fluid rounded border w-100" style="aspect-ratio: 2/3; object-fit: cover;"></div>
+              <div class="col"><img src="/cardimages/Zoro.png" class="img-fluid rounded border w-100" style="aspect-ratio: 2/3; object-fit: cover;"></div>
+              <div class="col"><img src="/cardimages/Zoro.png" class="img-fluid rounded border w-100" style="aspect-ratio: 2/3; object-fit: cover;"></div>
+              <div class="col"><img src="/cardimages/Zoro.png" class="img-fluid rounded border w-100" style="aspect-ratio: 2/3; object-fit: cover;"></div>
             </div>
+            <p class="card-text mb-0">No le se mucho a esto pero pinta chetao</p>
           </div>
         </div>
       </div>
     </div>
-  </main>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedUser = localStorage.getItem('currentUser');
-      if (savedUser) {
-        const user = JSON.parse(savedUser);
-        document.getElementById('profile-name').textContent = user.name;
-        document.getElementById('profile-email').textContent = user.email;
-        document.getElementById('profile-email').href = 'mailto:' + user.email;
-        if (user.image) document.getElementById('profile-image').src = user.image;
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const ctx = document.getElementById('favCardsChart');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Chopper', 'Luffy', 'Robin'],
+        datasets: [{
+          data: [6, 4, 3],
+          backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56']
+        }]
       }
-
-      const ctx = document.getElementById('favCardsChart');
-      new Chart(ctx, {
-        type: 'pie',
-        data: {
-          labels: ['Chopper', 'Luffy', 'Robin'],
-          datasets: [{
-            data: [6, 4, 3],
-            backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56']
-          }]
-        }
-      });
     });
-  </script>
+  });
+</script>
 
 </body>
 {{>footer}}
