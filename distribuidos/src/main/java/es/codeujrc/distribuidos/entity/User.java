@@ -2,6 +2,7 @@ package es.codeujrc.distribuidos.entity;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -23,6 +24,7 @@ public class User {
     private String email;
 
     @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
     private byte[] image;
 
     public enum Role {
