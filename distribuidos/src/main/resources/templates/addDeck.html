@@ -6,14 +6,19 @@
             <div class="card shadow-sm p-4">
                 <h2 class="mb-4 fw-bold text-center">Crear Nuevo Mazo</h2>
 
-                <form action="/decks" method="GET">
+                <form action="/saveDeck" method="POST">
+
+                    <div class="mb-4">
+                        <label for="deckName" class="form-label fw-bold">Nombre del Mazo</label>
+                        <input type="text" class="form-control" id="deckName" name="name" placeholder="Ej: Mazo de Luffy" required>
+                    </div>
 
                     <h5 class="fw-bold mb-3">Cartas del mazo</h5>
                     <div class="row g-3 mb-4 text-center">
 
                         <div class="col-6 col-md-2">
                             <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
-                                placeholder="ID Carta 1" required readonly>
+                                name="cardId1" placeholder="ID Carta 1" required readonly>
                             <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
                                 style="aspect-ratio: 2/3;">
                                 <small>Imagen 1</small>
@@ -22,7 +27,7 @@
 
                         <div class="col-6 col-md-2">
                             <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
-                                placeholder="ID Carta 2" required readonly>
+                                name="cardId2" placeholder="ID Carta 2" required readonly>
                             <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
                                 style="aspect-ratio: 2/3;">
                                 <small>Imagen 2</small>
@@ -31,7 +36,7 @@
 
                         <div class="col-6 col-md-2">
                             <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
-                                placeholder="ID Carta 3" required readonly>
+                                name="cardId3" placeholder="ID Carta 3" required readonly>
                             <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
                                 style="aspect-ratio: 2/3;">
                                 <small>Imagen 3</small>
@@ -40,7 +45,7 @@
 
                         <div class="col-6 col-md-2">
                             <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
-                                placeholder="ID Carta 4" required readonly>
+                                name="cardId4" placeholder="ID Carta 4" required readonly>
                             <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
                                 style="aspect-ratio: 2/3;">
                                 <small>Imagen 4</small>
@@ -49,7 +54,7 @@
 
                         <div class="col-6 col-md-2">
                             <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
-                                placeholder="ID Carta 5" required readonly>
+                                name="cardId5" placeholder="ID Carta 5" required readonly>
                             <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
                                 style="aspect-ratio: 2/3;">
                                 <small>Imagen 5</small>
@@ -58,7 +63,7 @@
 
                         <div class="col-6 col-md-2">
                             <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
-                                placeholder="ID Carta 6" required readonly>
+                                name="cardId6" placeholder="ID Carta 6" required readonly>
                             <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
                                 style="aspect-ratio: 2/3;">
                                 <small>Imagen 6</small>
@@ -69,7 +74,7 @@
 
                     <div class="mb-4">
                         <label for="deckDescription" class="form-label fw-bold">Descripción</label>
-                        <textarea class="form-control" id="deckDescription" rows="4"
+                        <textarea class="form-control" id="deckDescription" name="description" rows="4"
                             placeholder="Explica la estrategia o temática de este mazo..." required></textarea>
                     </div>
 
