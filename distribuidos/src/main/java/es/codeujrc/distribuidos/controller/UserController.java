@@ -4,22 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.codeujrc.distribuidos.entity.User;
-import es.codeujrc.distribuidos.security.UserSession;
 import es.codeujrc.distribuidos.service.UserService;
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private UserSession userSession;
 
     @GetMapping("/login")
     public String login(Model model, @RequestParam(required = false) String error,
@@ -36,15 +31,6 @@ public class UserController {
         }
 
         return "login";
-    }
-
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-
-        userSession.setUser(null);
-        session.invalidate();
-
-        return "redirect:/login";
     }
 
     @GetMapping("/profile")
@@ -81,16 +67,4 @@ public class UserController {
         return "redirect:/login?registrationSuccess=true";
     }
 
-    @PostMapping("/login")
-    public String loginUser(@RequestParam String email, @RequestParam String password) {
-
-        User user = userService.login(email, password);
-
-        if (user != null) {
-            userSession.setUser(user);
-            return "redirect:/";
-        }
-
-        return "redirect:/login?errorlogin=true";
-    }
 }

@@ -17,6 +17,8 @@ import es.codeujrc.distribuidos.entity.Commentary;
 
 import es.codeujrc.distribuidos.repository.*;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 @Service
 public class DatabaseInitializer {
 
@@ -32,11 +34,14 @@ public class DatabaseInitializer {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	@PostConstruct
 	public void init() throws IOException, URISyntaxException {
         // Sample users
-        User Carlos = new User( "carlos", "pass", "algo@gmail.com", User.Role.REGISTERED, null);
-        User adminuser = new User( "admin", "adminpass", "admin@gmail.com", User.Role.ADMIN, null);
+        User Carlos = new User("carlos", passwordEncoder.encode("pass"), "algo@gmail.com", User.Role.REGISTERED, null);
+		User adminuser = new User("admin", passwordEncoder.encode("adminpass"), "admin@gmail.com", User.Role.ADMIN, null);
 
 		userRepository.save(Carlos);
 		userRepository.save(adminuser);
