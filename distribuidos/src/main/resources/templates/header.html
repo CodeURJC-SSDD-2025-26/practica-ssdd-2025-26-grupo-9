@@ -30,6 +30,7 @@
                         <li class="nav-item"><a class="nav-link fw-bold text-info" href="/profile">{{userName}} </a></li>
                         <li class="nav-item">
                             <form action="/logout" method="post" style="display:inline;">
+                                <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
                                 <button type="submit" class="nav-link btn btn-link" style="text-decoration:none;">Cerrar sesión</button>
                             </form>
                         </li>

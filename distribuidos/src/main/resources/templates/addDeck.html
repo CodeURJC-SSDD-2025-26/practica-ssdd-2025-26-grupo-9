@@ -1,188 +1,190 @@
 {{>header}}
 
-    <main class="flex-grow-1 py-5">
-        <div class="container">
+<main class="flex-grow-1 py-5">
+    <div class="container">
 
-            <div class="card shadow-sm p-4">
-                <h2 class="mb-4 fw-bold text-center">Crear Nuevo Mazo</h2>
+        <div class="card shadow-sm p-4">
+            <h2 class="mb-4 fw-bold text-center">Crear Nuevo Mazo</h2>
 
-                <form action="/saveDeck" method="POST">
+            <form action="/saveDeck" method="POST">
+                <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
 
-                    <div class="mb-4">
-                        <label for="deckName" class="form-label fw-bold">Nombre del Mazo</label>
-                        <input type="text" class="form-control" id="deckName" name="name" placeholder="Ej: Mazo de Luffy" required>
-                    </div>
+                <div class="mb-4">
+                    <label for="deckName" class="form-label fw-bold">Nombre del Mazo</label>
+                    <input type="text" class="form-control" id="deckName" name="name" placeholder="Ej: Mazo de Luffy"
+                        required>
+                </div>
 
-                    <h5 class="fw-bold mb-3">Cartas del mazo</h5>
-                    <div class="row g-3 mb-4 text-center">
+                <h5 class="fw-bold mb-3">Cartas del mazo</h5>
+                <div class="row g-3 mb-4 text-center">
 
-                        <div class="col-6 col-md-2">
-                            <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
-                                name="cardId1" placeholder="ID Carta 1" required readonly>
-                            <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
-                                style="aspect-ratio: 2/3;">
-                                <small>Imagen 1</small>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-2">
-                            <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
-                                name="cardId2" placeholder="ID Carta 2" required readonly>
-                            <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
-                                style="aspect-ratio: 2/3;">
-                                <small>Imagen 2</small>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-2">
-                            <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
-                                name="cardId3" placeholder="ID Carta 3" required readonly>
-                            <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
-                                style="aspect-ratio: 2/3;">
-                                <small>Imagen 3</small>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-2">
-                            <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
-                                name="cardId4" placeholder="ID Carta 4" required readonly>
-                            <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
-                                style="aspect-ratio: 2/3;">
-                                <small>Imagen 4</small>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-2">
-                            <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
-                                name="cardId5" placeholder="ID Carta 5" required readonly>
-                            <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
-                                style="aspect-ratio: 2/3;">
-                                <small>Imagen 5</small>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-md-2">
-                            <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
-                                name="cardId6" placeholder="ID Carta 6" required readonly>
-                            <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
-                                style="aspect-ratio: 2/3;">
-                                <small>Imagen 6</small>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="deckDescription" class="form-label fw-bold">Descripción</label>
-                        <textarea class="form-control" id="deckDescription" name="description" rows="4"
-                            placeholder="Explica la estrategia o temática de este mazo..." required></textarea>
-                    </div>
-
-                    <hr class="text-muted">
-
-                    <div class="d-flex justify-content-end gap-2 mt-3">
-                        <a href="/decks" class="btn btn-secondary fw-bold px-4">Cancelar</a>
-
-                        <button type="submit" class="btn btn-success fw-bold px-4">Postear</button>
-                    </div>
-
-                </form>
-                <hr class="text-muted my-4">
-
-                <h5 class="fw-bold mb-3">Cartas Disponibles</h5>
-                <p class="text-muted small">Haz clic en una carta para añadirla a tu mazo.</p>
-
-                <div class="row row-cols-3 row-cols-md-6 g-2">
-
-                    {{#cards}}
-                    <div class="col text-center">
-                        <div class="border border-dark border-2 rounded p-2">
-                            <img src="/cardimages/{{name}}.png"
-                                class="img-fluid rounded selectable-card shadow-sm sharp-image" data-id="{{id}}"
-                                style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
-                            <small class="d-block mt-1 fw-bold text-dark">{{id}}</small>
-                            <a href="/cardDetail" target="_blank" class="d-block mt-2">
-                                <button class="btn btn-primary btn-sm">Detalle</button>
-                            </a>
+                    <div class="col-6 col-md-2">
+                        <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
+                            name="cardId1" placeholder="ID Carta 1" required readonly>
+                        <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
+                            style="aspect-ratio: 2/3;">
+                            <small>Imagen 1</small>
                         </div>
                     </div>
-                    {{/cards}}
+
+                    <div class="col-6 col-md-2">
+                        <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
+                            name="cardId2" placeholder="ID Carta 2" required readonly>
+                        <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
+                            style="aspect-ratio: 2/3;">
+                            <small>Imagen 2</small>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-2">
+                        <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
+                            name="cardId3" placeholder="ID Carta 3" required readonly>
+                        <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
+                            style="aspect-ratio: 2/3;">
+                            <small>Imagen 3</small>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-2">
+                        <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
+                            name="cardId4" placeholder="ID Carta 4" required readonly>
+                        <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
+                            style="aspect-ratio: 2/3;">
+                            <small>Imagen 4</small>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-2">
+                        <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
+                            name="cardId5" placeholder="ID Carta 5" required readonly>
+                        <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
+                            style="aspect-ratio: 2/3;">
+                            <small>Imagen 5</small>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-2">
+                        <input type="text" class="form-control form-control-sm mb-2 text-center card-input"
+                            name="cardId6" placeholder="ID Carta 6" required readonly>
+                        <div class="w-100 border rounded bg-light d-flex align-items-center justify-content-center text-muted overflow-hidden card-image-slot"
+                            style="aspect-ratio: 2/3;">
+                            <small>Imagen 6</small>
+                        </div>
+                    </div>
 
                 </div>
+
+                <div class="mb-4">
+                    <label for="deckDescription" class="form-label fw-bold">Descripción</label>
+                    <textarea class="form-control" id="deckDescription" name="description" rows="4"
+                        placeholder="Explica la estrategia o temática de este mazo..." required></textarea>
+                </div>
+
+                <hr class="text-muted">
+
+                <div class="d-flex justify-content-end gap-2 mt-3">
+                    <a href="/decks" class="btn btn-secondary fw-bold px-4">Cancelar</a>
+
+                    <button type="submit" class="btn btn-success fw-bold px-4">Postear</button>
+                </div>
+
+            </form>
+            <hr class="text-muted my-4">
+
+            <h5 class="fw-bold mb-3">Cartas Disponibles</h5>
+            <p class="text-muted small">Haz clic en una carta para añadirla a tu mazo.</p>
+
+            <div class="row row-cols-3 row-cols-md-6 g-2">
+
+                {{#cards}}
+                <div class="col text-center">
+                    <div class="border border-dark border-2 rounded p-2">
+                        <img src="/cardimages/{{name}}.png"
+                            class="img-fluid rounded selectable-card shadow-sm sharp-image" data-id="{{id}}"
+                            style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
+                        <small class="d-block mt-1 fw-bold text-dark">{{id}}</small>
+                        <a href="/cardDetail" target="_blank" class="d-block mt-2">
+                            <button class="btn btn-primary btn-sm">Detalle</button>
+                        </a>
+                    </div>
+                </div>
+                {{/cards}}
+
             </div>
-
         </div>
-    </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const selectableCards = document.querySelectorAll('.selectable-card');
-            const inputs = document.querySelectorAll('.card-input');
-            const imageSlots = document.querySelectorAll('.card-image-slot');
-            const form = document.querySelector('form'); 
+    </div>
+</main>
 
-            selectableCards.forEach(card => {
-                card.addEventListener('mouseover', () => card.style.transform = 'scale(1.05)');
-                card.addEventListener('mouseout', () => card.style.transform = 'scale(1)');
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectableCards = document.querySelectorAll('.selectable-card');
+        const inputs = document.querySelectorAll('.card-input');
+        const imageSlots = document.querySelectorAll('.card-image-slot');
+        const form = document.querySelector('form');
 
-                card.addEventListener('click', function () {
-                    const cardId = this.getAttribute('data-id');
-                    const cardImageSrc = this.getAttribute('src');
+        selectableCards.forEach(card => {
+            card.addEventListener('mouseover', () => card.style.transform = 'scale(1.05)');
+            card.addEventListener('mouseout', () => card.style.transform = 'scale(1)');
 
-                    let isDuplicate = false;
-                    for (let i = 0; i < inputs.length; i++) {
-                        if (inputs[i].value === cardId) {
-                            isDuplicate = true;
-                            break;
-                        }
-                    }
+            card.addEventListener('click', function () {
+                const cardId = this.getAttribute('data-id');
+                const cardImageSrc = this.getAttribute('src');
 
-                    if (isDuplicate) {
-                        alert('¡Esta carta ya está en tu mazo!');
-                        return;
-                    }
-
-                    for (let i = 0; i < inputs.length; i++) {
-                        if (inputs[i].value === '') {
-                            inputs[i].value = cardId;
-                            imageSlots[i].innerHTML = `<img src="${cardImageSrc}" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">`;
-                            break;
-                        }
-                    }
-                });
-            });
-
-            imageSlots.forEach((slot, index) => {
-                slot.style.cursor = 'pointer';
-                slot.addEventListener('click', function () {
-                    if (inputs[index].value !== '') {
-                        inputs[index].value = '';
-                        slot.innerHTML = `<small>Imagen ${index + 1}</small>`;
-                    }
-                });
-            });
-
-            
-            form.addEventListener('submit', function (event) {
-                let mazoIncompleto = false;
-
-                
+                let isDuplicate = false;
                 for (let i = 0; i < inputs.length; i++) {
-                    if (inputs[i].value === '') {
-                        mazoIncompleto = true;
+                    if (inputs[i].value === cardId) {
+                        isDuplicate = true;
                         break;
                     }
                 }
 
-                
-                if (mazoIncompleto) {
-                    event.preventDefault();
-                    alert('Por favor, selecciona las 6 cartas para completar tu mazo antes de postear.');
+                if (isDuplicate) {
+                    alert('¡Esta carta ya está en tu mazo!');
+                    return;
+                }
+
+                for (let i = 0; i < inputs.length; i++) {
+                    if (inputs[i].value === '') {
+                        inputs[i].value = cardId;
+                        imageSlots[i].innerHTML = `<img src="${cardImageSrc}" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">`;
+                        break;
+                    }
                 }
             });
         });
-    </script>
+
+        imageSlots.forEach((slot, index) => {
+            slot.style.cursor = 'pointer';
+            slot.addEventListener('click', function () {
+                if (inputs[index].value !== '') {
+                    inputs[index].value = '';
+                    slot.innerHTML = `<small>Imagen ${index + 1}</small>`;
+                }
+            });
+        });
+
+
+        form.addEventListener('submit', function (event) {
+            let mazoIncompleto = false;
+
+
+            for (let i = 0; i < inputs.length; i++) {
+                if (inputs[i].value === '') {
+                    mazoIncompleto = true;
+                    break;
+                }
+            }
+
+
+            if (mazoIncompleto) {
+                event.preventDefault();
+                alert('Por favor, selecciona las 6 cartas para completar tu mazo antes de postear.');
+            }
+        });
+    });
+</script>
 </body>
 
 {{>footer}}

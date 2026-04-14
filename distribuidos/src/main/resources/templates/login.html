@@ -5,19 +5,19 @@
             <div class="col-md-6 col-lg-5">
                 <div class="card shadow border-0">
                     {{#registrationSuccess}}
-                        <div class="alert alert-success text-center mb-3">
-                            Usuario registrado con éxito.
-                        </div>
+                    <div class="alert alert-success text-center mb-3">
+                        Usuario registrado con éxito.
+                    </div>
                     {{/registrationSuccess}}
                     {{#error}}
-                        <div class="alert alert-danger text-center mb-3">
-                            El correo o el nombre de usuario ya estan en uso. Pruebe con otro.
-                        </div>
+                    <div class="alert alert-danger text-center mb-3">
+                        El correo o el nombre de usuario ya estan en uso. Pruebe con otro.
+                    </div>
                     {{/error}}
                     {{#errorlogin}}
-                        <div class="alert alert-danger text-center mb-3">
-                            Correo o contraseña incorrectos. Pruebe otra vez.
-                        </div>
+                    <div class="alert alert-danger text-center mb-3">
+                        Correo o contraseña incorrectos. Pruebe otra vez.
+                    </div>
                     {{/errorlogin}}
                     <div class="card-header bg-white p-0">
                         <ul class="nav nav-tabs nav-fill" id="authTab" role="tablist">
@@ -41,6 +41,7 @@
                                 aria-labelledby="login-tab">
                                 <h3 class="text-center mb-4 text-secondary">Bienvenido</h3>
                                 <form id="login-form" action="/login" method="POST">
+                                    <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
                                     <div class="mb-3">
                                         <label for="login-email" class="form-label">Correo electrónico</label>
                                         <input type="email" class="form-control" id="login-email" name="email" required>
@@ -57,6 +58,7 @@
                             <div class="tab-pane fade" id="signup-pane" role="tabpanel" aria-labelledby="signup-tab">
                                 <h3 class="text-center mb-4 text-secondary">Crear cuenta</h3>
                                 <form id="signup-form" action="/register" method="POST">
+                                    <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
                                     <div class="mb-3">
                                         <label for="signup-name" class="form-label">Nombre completo</label>
                                         <input type="text" class="form-control" id="signup-name" name="username"
