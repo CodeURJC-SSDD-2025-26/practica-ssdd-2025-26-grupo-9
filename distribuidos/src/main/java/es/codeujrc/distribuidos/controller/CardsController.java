@@ -6,13 +6,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 
 import es.codeujrc.distribuidos.security.UserSession;
 import es.codeujrc.distribuidos.service.CardService;
 import es.codeujrc.distribuidos.entity.User;
-import es.codeujrc.distribuidos.entity.Card;
 
 @Controller
 public class CardsController {
@@ -59,4 +59,11 @@ public class CardsController {
         }
         return ResponseEntity.notFound().build();
     }
+    @PostMapping("/deleteCard/{id}")
+    public String deleteCard(@PathVariable Long id) {
+
+        cardService.delete(id);
+        return "redirect:/addCards";
+    }
 }
+

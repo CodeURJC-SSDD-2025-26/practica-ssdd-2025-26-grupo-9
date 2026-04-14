@@ -40,7 +40,11 @@
                                 <td>{{crew}}</td>
                                 <td>
                                     <a href="/adminCard" class="btn btn-sm btn-info text-white">Editar</a>
-                                    <button class="btn btn-sm btn-danger" onclick="showDeleteModal('{{id}}')">Eliminar</button>
+                                    <form action="/deleteCard/{{id}}" method="post" class="d-inline"
+                                        onsubmit="return confirm('¿Estás seguro de que quieres eliminar la carta {{name}}?');">
+                                        <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
+                                        <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                    </form>
                                 </td>
                             </tr>
                         {{/cards}}

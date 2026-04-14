@@ -107,12 +107,17 @@ public class DatabaseInitializer {
 		Card CharacterCard3 = new Card("Robin", "Description of Card 6", "Trigger of Card 6", "Crew 6", 8, 9000,
 				Card.Atribute.SLASH, Card.Counter.NONE, Card.color.BLUE, new ArrayList<>(), imgRobin);
 
+		byte[] imgJimbe = loadImage("cardimages/Jimbe.png");
+		Card CharacterCard4 = new Card("Jimbe", "Description of Card 7", "Trigger of Card 7", "Crew 7", 6, 7000,
+				Card.Atribute.SLASH, Card.Counter.NONE, Card.color.BLUE, new ArrayList<>(), imgJimbe);
+				
 		cardService.save(GreenZoro);
 		cardService.save(EventCard);
 		cardService.save(StageCard);
 		cardService.save(CharacterCard);
 		cardService.save(CharacterCard2);
 		cardService.save(CharacterCard3);
+		cardService.save(CharacterCard4);
 
 
 		deck1.setCards(Arrays.asList(GreenZoro, CharacterCard));
