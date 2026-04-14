@@ -77,7 +77,7 @@ public class CardsController {
             card.setImage(imageFile.getBytes());
         }
         cardService.save(card);
-        return "redirect:/adddCards";
+        return "redirect:/addCards";
     }
 }
 
