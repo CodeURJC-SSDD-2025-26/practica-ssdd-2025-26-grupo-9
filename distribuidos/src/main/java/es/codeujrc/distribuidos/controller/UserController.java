@@ -2,6 +2,8 @@ package es.codeujrc.distribuidos.controller;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
@@ -42,8 +44,8 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String profile(Model model, Principal principal,@RequestParam(required = false) boolean userConflict,
-        @RequestParam(required = false) boolean emailConflict) {
+    public String profile(Model model, Principal principal, @RequestParam(required = false) boolean userConflict,
+            @RequestParam(required = false) boolean emailConflict) {
         String username = principal.getName();
         User user = userService.findByUsername(username);
         model.addAttribute("user", user);
@@ -58,7 +60,15 @@ public class UserController {
     }
 
     @GetMapping("/adminUsers")
-    public String adminUsers(Model model) {
+    public String adminUsers(Model model, Principal principal) {
+        List<User> users = userService.findAll();
+        String currentUsername = principal.getName();
+        List<Pair<User, Boolean>> usersForView = new ArrayList<>();
+        for (User user : users) {
+            boolean isSelf = user.getUsername().equals(currentUsername);
+            usersForView.add(Pair.of(user, isSelf));
+        }
+        model.addAttribute("users", usersForView);
         return "adminUsers";
     }
 
@@ -107,6 +117,12 @@ public class UserController {
                     .body(image);
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable long id) {
+        userService.delete(id);
+        return "redirect:/adminUsers";
     }
 
 }

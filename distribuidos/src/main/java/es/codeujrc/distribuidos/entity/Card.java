@@ -1,16 +1,7 @@
 package es.codeujrc.distribuidos.entity;
 
 import java.util.List;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 
 @Entity
 public class Card {
@@ -61,7 +52,7 @@ public class Card {
     @Enumerated(EnumType.STRING)
     private Counter counter;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "cards")
     private List<Deck> decks;
 
     public Card() {
@@ -218,4 +209,7 @@ public class Card {
         this.decks = decks;
     }
 
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 }

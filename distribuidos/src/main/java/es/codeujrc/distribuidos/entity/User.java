@@ -1,20 +1,11 @@
 package es.codeujrc.distribuidos.entity;
 
 import java.util.List;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-
-import jakarta.persistence.Lob;
+import jakarta.persistence.*;
 
 @Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,8 +25,23 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Deck> decks;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Commentary> commentaries;
+
+    @ManyToMany
+    @JoinTable(
+        name = "user_following",
+        joinColumns = @JoinColumn(name = "follower_id"),
+        inverseJoinColumns = @JoinColumn(name = "followed_id")
+    )
+    private List<User> following;
+
+    @ManyToMany(mappedBy = "following")
+    private List<User> followers;
+
 
     public User() {
     }
@@ -46,7 +52,6 @@ public class User {
         this.password = password;
         this.email = email;
         this.role = role;
-        this.image = null;
         this.image = image;
     }
 
@@ -74,8 +79,20 @@ public class User {
         return image;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public List<Deck> getDecks() {
+        return decks;
+    }
+
+    public List<Commentary> getCommentaries() {
+        return commentaries;
+    }
+
+    public List<User> getFollowing() {
+        return following;
+    }
+
+    public List<User> getFollowers() {
+        return followers;
     }
 
     public void setId(Long id) {
@@ -98,4 +115,23 @@ public class User {
         this.role = role;
     }
 
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public void setDecks(List<Deck> decks) {
+        this.decks = decks;
+    }
+
+    public void setCommentaries(List<Commentary> commentaries) {
+        this.commentaries = commentaries;
+    }
+
+    public void setFollowing(List<User> following) {
+        this.following = following;
+    }
+
+    public void setFollowers(List<User> followers) {
+        this.followers = followers;
+    }
 }
