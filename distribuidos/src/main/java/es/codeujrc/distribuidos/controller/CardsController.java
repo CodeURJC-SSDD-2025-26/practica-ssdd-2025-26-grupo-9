@@ -44,9 +44,18 @@ public class CardsController {
     }
 
     @GetMapping("/adminCard")
-    public String adminCard(Model model) {
-        return "adminCard";
+    public String adminCard(Model model, @RequestParam(required = false) Long id) {
+    if (id != null) {
+        // Si editamos, buscamos la carta
+        Card card = cardService.findById(id).orElseThrow();
+        model.addAttribute("card", card);
+    } else {
+        // SI ES NUEVA: Pasamos un objeto vacío. 
+        // Si no haces esto, el HTML "peta" al no encontrar {{card}}
+        model.addAttribute("card", new Card());
     }
+    return "adminCard";
+}
 
     @GetMapping("/cardDetail")
     public String cardDetail(Model model) {

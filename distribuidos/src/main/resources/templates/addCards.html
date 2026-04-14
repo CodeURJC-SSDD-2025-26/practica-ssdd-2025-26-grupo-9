@@ -39,7 +39,7 @@
                                 <td>{{#attribute}}{{attribute}}{{/attribute}}{{^attribute}}-{{/attribute}}</td>
                                 <td>{{crew}}</td>
                                 <td>
-                                    <a href="/adminCard" class="btn btn-sm btn-info text-white">Editar</a>
+                                    <a href="/adminCard?id={{id}}" class="btn btn-sm btn-info text-white">Editar</a>
                                     <form action="/deleteCard/{{id}}" method="post" class="d-inline"
                                         onsubmit="return confirm('¿Estás seguro de que quieres eliminar la carta {{name}}?');">
                                         <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
