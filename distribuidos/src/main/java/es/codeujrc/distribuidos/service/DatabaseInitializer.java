@@ -105,7 +105,7 @@ public class DatabaseInitializer {
 		cardService.save(CharacterCard2);
 		cardService.save(CharacterCard3);
 
-		// Associate cards with decks
+
 		deck1.setCards(Arrays.asList(GreenZoro, CharacterCard));
 		deck2.setCards(Arrays.asList(EventCard, CharacterCard));
 		deck3.setCards(Arrays.asList(StageCard));
@@ -114,7 +114,7 @@ public class DatabaseInitializer {
 		deckService.save(deck2);
 		deckService.save(deck3);
 
-		// Sample commentaries
+
 		Commentary commentary1 = new Commentary("Great deck!", deck1, Carlos);
 		Commentary commentary2 = new Commentary("Needs more power.", deck2, adminuser);
 

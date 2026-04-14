@@ -6,7 +6,13 @@
                 <h2 class="mb-0 fw-bold">Mazos de la Comunidad</h2>
                 <a href="/addDeck" class="btn btn-primary fw-bold shadow-sm">Crear Mazo</a>
             </div>
+            {{#error}}
+            <div class="alert alert-danger">{{error}}</div>
+            {{/error}}
 
+            {{#success}}
+            <div class="alert alert-success">{{success}}</div>
+            {{/success}}
 
             {{#decks}}
             <div class="card mb-4 shadow-sm">

@@ -5,7 +5,13 @@
 
         <div class="card shadow-sm p-4">
             <h2 class="mb-4 fw-bold text-center">Crear Nuevo Mazo</h2>
+            {{#error}}
+            <div class="alert alert-danger">{{error}}</div>
+            {{/error}}
 
+            {{#success}}
+            <div class="alert alert-success">{{success}}</div>
+            {{/success}}
             <form action="/saveDeck" method="POST">
                 <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
 
