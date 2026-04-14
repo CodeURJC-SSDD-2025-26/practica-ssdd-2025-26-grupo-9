@@ -53,7 +53,8 @@ public class DecksController {
         
         if (principal == null) {
             model.addAttribute("error", "Debes estar logueado para crear un mazo");
-            return "redirect:/login";
+            model.addAttribute("cards", cardService.findAll());
+            return "addDeck";
         }
 
         User currentUser = userService.findByUsername(principal.getName());

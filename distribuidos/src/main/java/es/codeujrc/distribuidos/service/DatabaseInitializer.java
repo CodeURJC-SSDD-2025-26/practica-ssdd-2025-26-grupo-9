@@ -9,6 +9,7 @@ import jakarta.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
@@ -40,10 +41,18 @@ public class DatabaseInitializer {
 	private PasswordEncoder passwordEncoder;
 
 	private byte[] loadImage(String path) throws IOException {
+
 		Resource imageRes = new ClassPathResource(path);
 		if (imageRes.exists()) {
 			return imageRes.getContentAsByteArray();
 		}
+		
+		String fsPath = "src/main/resources/" + path;
+		Resource fsResource = new FileSystemResource(fsPath);
+		if (fsResource.exists()) {
+			return fsResource.getContentAsByteArray();
+		}
+		
 		return null; 
 	}
 

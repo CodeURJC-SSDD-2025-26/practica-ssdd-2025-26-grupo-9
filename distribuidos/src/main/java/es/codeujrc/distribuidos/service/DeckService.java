@@ -46,7 +46,7 @@ public class DeckService {
 
 		Deck newDeck = new Deck(name, description, new ArrayList<>(), new ArrayList<>(), user);
 		
-		
+
 		List<Long> cardIds = new ArrayList<>();
 		if (cardId1 != null && !cardId1.isEmpty()) cardIds.add(Long.parseLong(cardId1));
 		if (cardId2 != null && !cardId2.isEmpty()) cardIds.add(Long.parseLong(cardId2));
@@ -64,11 +64,21 @@ public class DeckService {
 			return false;
 		}
 
-
 		newDeck.setCards(cards);
-		
+		for (Card card : cards) {
+			if (card.getDecks() == null) {
+				card.setDecks(new ArrayList<>());
+			}
+			card.getDecks().add(newDeck);
+		}
 
 		save(newDeck);
+		
+	
+		for (Card card : cards) {
+			cardService.save(card);
+		}
+		
 		return true;
 	}
 }
