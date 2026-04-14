@@ -19,7 +19,9 @@ public class DeckService {
 
 	@Autowired
 	private CardService cardService;
-
+	public List<Deck> findByUserId(Long userId) {
+		return repository.findByUserId(userId);
+	}
 	public Optional<Deck> findById(long id) {
 		return repository.findById(id);
 	}

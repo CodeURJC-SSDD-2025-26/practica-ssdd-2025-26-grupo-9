@@ -19,12 +19,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.codeujrc.distribuidos.entity.User;
 import es.codeujrc.distribuidos.service.UserService;
-
+import es.codeujrc.distribuidos.service.CardService;
+import es.codeujrc.distribuidos.service.DeckService;
 @Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private CardService cardService;
+    @Autowired
+    private DeckService deckService;
 
     @GetMapping("/login")
     public String login(Model model, @RequestParam(required = false) String error,
@@ -51,6 +56,8 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("usernameError", userConflict);
         model.addAttribute("emailError", emailConflict);
+        model.addAttribute("cards", cardService.findAll());
+        model.addAttribute("decks", deckService.findByUserId(user.getId()));
         return "profile";
     }
 
