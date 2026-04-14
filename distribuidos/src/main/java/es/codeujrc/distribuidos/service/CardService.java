@@ -33,4 +33,12 @@ public class CardService {
 	public void delete(long id) {
 		repository.deleteById(id);
 	}
+
+	public byte[] getCardImage(long id) {
+		Optional<Card> card = repository.findById(id);
+		if (card.isPresent()) {
+			return card.get().getImage();
+		}
+		return null;
+	}
 }
