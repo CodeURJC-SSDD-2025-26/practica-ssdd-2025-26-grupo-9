@@ -26,8 +26,9 @@ public class UserService {
 	@Autowired
 	private SecurityContextUpdater securityContextManager;
 
-	public Optional<User> findById(long id) {
-		return usersRepository.findById(id);
+	public User findById(long id) {
+		return usersRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("User not found: " + id));
 	}
 
 	public User findByUsername(String username) {
@@ -62,26 +63,19 @@ public class UserService {
 	}
 
 	public byte[] getUserImage(long id) {
-		Optional<User> user = usersRepository.findById(id);
-		if (user.isPresent()) {
-			return user.get().getImage();
-		}
-		return null;
+		User user = this.findById(id);
+		return user.getImage();
 	}
 
-	public Pair<Boolean, Boolean> updateUser(long id, String newUsername, String newEmail, String newPassword,
-			MultipartFile imageFile)
-			throws IOException {
-		User user = usersRepository.findById(id).orElseThrow();
+	private Pair<Boolean, Boolean> updateCommon(User user, String newUsername, String newEmail, String newPassword,
+			MultipartFile imageFile) throws IOException {
 		boolean userConflict = false;
 		boolean emailConflict = false;
-
 		if (newUsername != null && !newUsername.isBlank() && !newUsername.equals(user.getUsername())) {
 			if (usersRepository.existsByUsername(newUsername)) {
 				userConflict = true;
 			} else {
 				user.setUsername(newUsername);
-				securityContextManager.updateSession(user);
 			}
 		}
 		if (newEmail != null && !newEmail.isBlank() && !newEmail.equals(user.getEmail())) {
@@ -97,8 +91,37 @@ public class UserService {
 		if (imageFile != null && !imageFile.isEmpty()) {
 			user.setImage(imageFile.getBytes());
 		}
-		usersRepository.save(user);
-
 		return Pair.of(userConflict, emailConflict);
+	}
+
+	public Pair<Boolean, Boolean> updateUser(long id, String newUsername, String newEmail, String newPassword,
+			MultipartFile imageFile)
+			throws IOException {
+		User user = this.findById(id);
+		String oldUsername = user.getUsername();
+
+		Pair<Boolean, Boolean> conflicts = updateCommon(user, newUsername, newEmail, newPassword, imageFile);
+
+		if (!oldUsername.equals(user.getUsername()) && !conflicts.getFirst()) {
+			securityContextManager.updateSession(user);
+		}
+
+		usersRepository.save(user);
+		return conflicts;
+	}
+
+	public Pair<Boolean, Boolean> updateUserAsAdmin(long id, String newUsername, String newEmail, String newPassword,
+			String newRole, MultipartFile imageFile) throws IOException {
+		User user = this.findById(id);
+		Pair<Boolean, Boolean> conflicts = updateCommon(user, newUsername, newEmail, newPassword, imageFile);
+
+		if (newRole != null && !newRole.isBlank()) {
+			try {
+				user.setRole(User.Role.valueOf(newRole));
+			} catch (IllegalArgumentException e) {
+			}
+		}
+		usersRepository.save(user);
+		return conflicts;
 	}
 }

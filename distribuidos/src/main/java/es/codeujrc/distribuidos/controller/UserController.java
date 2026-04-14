@@ -60,7 +60,9 @@ public class UserController {
     }
 
     @GetMapping("/adminUsers")
-    public String adminUsers(Model model, Principal principal) {
+    public String adminUsers(Model model, Principal principal,
+            @RequestParam(required = false) boolean userConflict,
+            @RequestParam(required = false) boolean emailConflict) {
         List<User> users = userService.findAll();
         String currentUsername = principal.getName();
         List<Pair<User, Boolean>> usersForView = new ArrayList<>();
@@ -69,11 +71,15 @@ public class UserController {
             usersForView.add(Pair.of(user, isSelf));
         }
         model.addAttribute("users", usersForView);
+        model.addAttribute("userConflict", userConflict);
+        model.addAttribute("emailConflict", emailConflict);
         return "adminUsers";
     }
 
-    @GetMapping("/editUserAdmin")
-    public String editUserAdmin(Model model) {
+    @GetMapping("/editUserAdmin/{id}")
+    public String editUserAdmin(Model model, @PathVariable long id) {
+        User userToEdit = userService.findById(id);
+        model.addAttribute("user", userToEdit);
         return "editUserAdmin";
     }
 
@@ -106,6 +112,22 @@ public class UserController {
         User user = userService.findByUsername(currentUsername);
         Pair<Boolean, Boolean> result = userService.updateUser(user.getId(), username, email, password, imageFile);
         return "redirect:/profile?userConflict=" + result.getFirst() + "&emailConflict=" + result.getSecond();
+    }
+
+    @PostMapping("/editUserAdmin")
+    public String editUserAdmin(
+            @RequestParam long id,
+            @RequestParam(required = false) String username,
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String role,
+            @RequestParam(required = false) String password,
+            @RequestParam(required = false) MultipartFile imageFile) throws IOException {
+        Pair<Boolean, Boolean> result = userService.updateUserAsAdmin(id, username, email, password, role, imageFile);
+        if (result.getFirst() || result.getSecond()) {
+            return "redirect:/adminUsers/" + id + "?userConflict=" + result.getFirst() + "&emailConflict="
+                    + result.getSecond();
+        }
+        return "redirect:/adminUsers";
     }
 
     @GetMapping("/user/{id}/image")

@@ -1,63 +1,77 @@
 {{>header}}
 
-<main class="flex-grow-1 py-5">
-    <div class="container">
+    <main class="flex-grow-1 py-5">
+        <div class="container">
 
-        <div class="card shadow-sm border-0">
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover mb-0 align-middle">
-                        <thead class="table-dark">
-                            <tr>
-                                <th scope="col" class="ps-4">ID</th>
-                                <th scope="col" class="text-center">Foto de perfil</th>
-                                <th scope="col">Nombre de usuario</th>
-                                <th scope="col">Correo</th>
-                                <th scope="col">Rol</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="users-list">
-                            {{#users}}
-                            <tr>
-                                <td class="ps-4">{{first.id}}</td>
-                                <td class="text-center">
-                                    <img src="/user/{{first.id}}/image" class="rounded-circle border"
-                                        style="width: 64px; height: 64px; object-fit: cover;"
-                                        onerror="this.src='/profileimages/default-avatar.png';">
-                                </td>
-                                <td>{{first.username}}</td>
-                                <td>{{first.email}}</td>
-                                <td>{{first.role}}</td>
-                                <td>
-                                    {{#second}}
-                                    <a href="/editUser" class="btn btn-sm btn-secondary me-1">Editar perfil</a>
-                                    <button class="btn btn-sm btn-danger opacity-50"
-                                        onclick="alert('Por seguridad, no puedes eliminar tu propia cuenta de administrador.');">
-                                        Eliminar
-                                    </button>
-                                    {{/second}}
+            {{#userConflict}}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Error al editar el usuario: El nombre de usuario introducido ya está siendo utilizado por otra cuenta.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {{/userConflict}}
+            
+            {{#emailConflict}}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Error al editar el email: El correo electrónico introducido ya está siendo utilizado por otra cuenta.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {{/emailConflict}}
 
-                                    {{^second}}
-                                    <a href="/editUserAdmin/{{first.id}}" class="btn btn-sm btn-primary me-1">Editar</a>
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover mb-0 align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col" class="ps-4">ID</th>
+                                    <th scope="col" class="text-center">Foto de perfil</th>
+                                    <th scope="col">Nombre de usuario</th>
+                                    <th scope="col">Correo</th>
+                                    <th scope="col">Rol</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-list">
+                                {{#users}}
+                                <tr>
+                                    <td class="ps-4">{{first.id}}</td>
+                                    <td class="text-center">
+                                        <img src="/user/{{first.id}}/image" class="rounded-circle border"
+                                            style="width: 64px; height: 64px; object-fit: cover;"
+                                            onerror="this.src='/profileimages/default-avatar.png';">
+                                    </td>
+                                    <td>{{first.username}}</td>
+                                    <td>{{first.email}}</td>
+                                    <td>{{first.role}}</td>
+                                    <td>
+                                        {{#second}}
+                                        <a href="/editUser" class="btn btn-sm btn-secondary me-1">Editar mi perfil</a>
+                                        <button class="btn btn-sm btn-danger opacity-50"
+                                            onclick="alert('Por seguridad, no puedes eliminar tu propia cuenta de administrador.');">
+                                            Eliminar
+                                        </button>
+                                        {{/second}}
 
-                                    <form action="/deleteUser/{{first.id}}" method="post" class="d-inline"
-                                        onsubmit="return confirm('¿Estás seguro de que quieres eliminar al usuario {{first.username}}?');">
-                                        <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
-                                        <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                                    </form>
-                                    {{/second}}
-                                </td>
-                            </tr>
-                            {{/users}}
-                        </tbody>
-                    </table>
+                                        {{^second}}
+                                        <a href="/editUserAdmin/{{first.id}}" class="btn btn-sm btn-primary me-1">Editar</a>
+
+                                        <form action="/deleteUser/{{first.id}}" method="post" class="d-inline"
+                                            onsubmit="return confirm('¿Estás seguro de que quieres eliminar al usuario {{first.username}}?');">
+                                            <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
+                                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                        </form>
+                                        {{/second}}
+                                    </td>
+                                </tr>
+                                {{/users}}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 {{>footer}}
