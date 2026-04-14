@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -47,7 +48,7 @@ public class UserService {
 	}
 
 	public boolean registerNewUser(User user) {
-		if (usersRepository.existsByEmail(user.getEmail())) {
+		if (usersRepository.existsByEmail(user.getEmail()) || usersRepository.existsByUsername(user.getUsername())) {
 			return false;
 		}
 		user.setRole(User.Role.REGISTERED);
@@ -64,15 +65,26 @@ public class UserService {
 		return null;
 	}
 
-	public void updateUser(long id, String newUsername, String newEmail, String newPassword, MultipartFile imageFile)
+	public Pair<Boolean, Boolean> updateUser(long id, String newUsername, String newEmail, String newPassword,
+			MultipartFile imageFile)
 			throws IOException {
 		User user = usersRepository.findById(id).orElseThrow();
+		boolean userConflict = false;
+		boolean emailConflict = false;
 
-		if (newUsername != null && !newUsername.isBlank()) {
-			user.setUsername(newUsername);
+		if (newUsername != null && !newUsername.isBlank() && !newUsername.equals(user.getUsername())) {
+			if (usersRepository.existsByUsername(newUsername)) {
+				userConflict = true;
+			} else {
+				user.setUsername(newUsername);
+			}
 		}
-		if (newEmail != null && !newEmail.isBlank()) {
-			user.setEmail(newEmail);
+		if (newEmail != null && !newEmail.isBlank() && !newEmail.equals(user.getEmail())) {
+			if (usersRepository.existsByEmail(newEmail)) {
+				emailConflict = true;
+			} else {
+				user.setEmail(newEmail);
+			}
 		}
 		if (newPassword != null && !newPassword.isBlank()) {
 			user.setPassword(passwordEncoder.encode(newPassword));
@@ -81,5 +93,7 @@ public class UserService {
 			user.setImage(imageFile.getBytes());
 		}
 		usersRepository.save(user);
+
+		return Pair.of(userConflict, emailConflict);
 	}
 }

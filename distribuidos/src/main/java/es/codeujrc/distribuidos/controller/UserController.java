@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -41,10 +42,13 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String profile(Model model, Principal principal) {
+    public String profile(Model model, Principal principal,@RequestParam(required = false) boolean userConflict,
+        @RequestParam(required = false) boolean emailConflict) {
         String username = principal.getName();
         User user = userService.findByUsername(username);
         model.addAttribute("user", user);
+        model.addAttribute("usernameError", userConflict);
+        model.addAttribute("emailError", emailConflict);
         return "profile";
     }
 
@@ -90,8 +94,8 @@ public class UserController {
 
         String currentUsername = principal.getName();
         User user = userService.findByUsername(currentUsername);
-        userService.updateUser(user.getId(), username, email, password, imageFile);
-        return "redirect:/profile";
+        Pair<Boolean, Boolean> result = userService.updateUser(user.getId(), username, email, password, imageFile);
+        return "redirect:/profile?userConflict=" + result.getFirst() + "&emailConflict=" + result.getSecond();
     }
 
     @GetMapping("/user/{id}/image")
