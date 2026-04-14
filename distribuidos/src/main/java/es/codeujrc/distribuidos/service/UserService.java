@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.codeujrc.distribuidos.entity.User;
 import es.codeujrc.distribuidos.repository.UserRepository;
+import es.codeujrc.distribuidos.security.SecurityContextUpdater;
 
 @Service
 public class UserService {
@@ -21,6 +22,9 @@ public class UserService {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	private SecurityContextUpdater securityContextManager;
 
 	public Optional<User> findById(long id) {
 		return usersRepository.findById(id);
@@ -77,6 +81,7 @@ public class UserService {
 				userConflict = true;
 			} else {
 				user.setUsername(newUsername);
+				securityContextManager.updateSession(user);
 			}
 		}
 		if (newEmail != null && !newEmail.isBlank() && !newEmail.equals(user.getEmail())) {

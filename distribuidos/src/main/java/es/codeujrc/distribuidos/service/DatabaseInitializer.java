@@ -51,11 +51,11 @@ public class DatabaseInitializer {
 	public void init() throws IOException, URISyntaxException {
 		// Sample users
 		byte[] imgCarlos = loadImage("profileimages/ItoItoNoMi.jpg");
-		byte[] imgAdmin = loadImage("profileimages/GomuGomuNoMi.jpg");
+		byte[] imgAdmin = loadImage("profileimages/Admin.webp");
 
 		User Carlos = new User("Carlos", passwordEncoder.encode("pass"), "algo@gmail.com", User.Role.REGISTERED,
 				imgCarlos);
-		User adminuser = new User("xXElAdmin360Xx", passwordEncoder.encode("adminpass"), "admin@gmail.com", User.Role.ADMIN,
+		User adminuser = new User("Admin", passwordEncoder.encode("adminpass"), "admin@gmail.com", User.Role.ADMIN,
 				imgAdmin);
 
 		userRepository.save(Carlos);

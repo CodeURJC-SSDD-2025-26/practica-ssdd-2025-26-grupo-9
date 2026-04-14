@@ -42,7 +42,7 @@ public class SecurityConfiguration {
 
         http.formLogin(form -> form
                 .loginPage("/login")
-                .usernameParameter("email")
+                .usernameParameter("username")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/", true)
                 .failureUrl("/login?errorlogin=true")

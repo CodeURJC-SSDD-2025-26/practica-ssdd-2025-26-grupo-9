@@ -43,8 +43,9 @@
                                 <form id="login-form" action="/login" method="POST">
                                     <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
                                     <div class="mb-3">
-                                        <label for="login-email" class="form-label">Correo electrónico</label>
-                                        <input type="email" class="form-control" id="login-email" name="email" required>
+                                        <label for="login-username" class="form-label">Nombre de usuario</label>
+                                        <input type="text" class="form-control" id="login-username" name="username"
+                                            required>
                                     </div>
                                     <div class="mb-4">
                                         <label for="login-password" class="form-label">Contraseña</label>
