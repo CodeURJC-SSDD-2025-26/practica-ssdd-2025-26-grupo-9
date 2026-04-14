@@ -5,7 +5,13 @@
 
         <div class="card shadow-sm p-4">
             <h2 class="mb-4 fw-bold text-center">Crear Nuevo Mazo</h2>
+            {{#error}}
+            <div class="alert alert-danger">{{error}}</div>
+            {{/error}}
 
+            {{#success}}
+            <div class="alert alert-success">{{success}}</div>
+            {{/success}}
             <form action="/saveDeck" method="POST">
                 <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
 
@@ -99,7 +105,7 @@
                 {{#cards}}
                 <div class="col text-center">
                     <div class="border border-dark border-2 rounded p-2">
-                        <img src="/cardimages/{{name}}.png"
+                        <img src="/card/{{id}}/image"
                             class="img-fluid rounded selectable-card shadow-sm sharp-image" data-id="{{id}}"
                             style="aspect-ratio: 2/3; object-fit: cover; cursor: pointer; transition: transform 0.2s;">
                         <small class="d-block mt-1 fw-bold text-dark">{{id}}</small>

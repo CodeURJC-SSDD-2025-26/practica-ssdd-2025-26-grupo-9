@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,7 +25,7 @@ public class Deck {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @ManyToMany(mappedBy = "decks")
+    @ManyToMany(mappedBy = "decks", fetch = FetchType.EAGER)
     private List<Card> cards;
 
     @OneToMany(mappedBy = "deck")

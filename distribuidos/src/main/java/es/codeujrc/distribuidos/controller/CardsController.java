@@ -5,10 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 
 import es.codeujrc.distribuidos.security.UserSession;
 import es.codeujrc.distribuidos.service.CardService;
 import es.codeujrc.distribuidos.entity.User;
+import es.codeujrc.distribuidos.entity.Card;
 
 @Controller
 public class CardsController {
@@ -18,10 +22,20 @@ public class CardsController {
     @Autowired
     private CardService cardService;
 
+    @ModelAttribute
+    public void addAttributes(Model model) {
+        if (userSession.isLogged()) {
+            model.addAttribute("logged", true);
+            model.addAttribute("userName", userSession.getUser().getUsername());
+            model.addAttribute("isAdmin", userSession.getUser().getRole() == User.Role.ADMIN);
+        } else {
+            model.addAttribute("logged", false);
+        }
+    }
 
     @GetMapping("/addCards")
     public String addCards(Model model) {
-        model.addAttribute("cards", cardService.findAll()); // Aquí deberías cargar las cartas desde tu servicio
+        model.addAttribute("cards", cardService.findAll());
         return "addCards";
     }
 
@@ -33,5 +47,16 @@ public class CardsController {
     @GetMapping("/cardDetail")
     public String cardDetail(Model model) {
         return "cardDetail";
+    }
+
+    @GetMapping("/card/{id}/image")
+    public ResponseEntity<byte[]> downloadCardImage(@PathVariable long id) {
+        byte[] image = cardService.getCardImage(id);
+        if (image != null && image.length > 0) {
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_TYPE, "image/png")
+                    .body(image);
+        }
+        return ResponseEntity.notFound().build();
     }
 }

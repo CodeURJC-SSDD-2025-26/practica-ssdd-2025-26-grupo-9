@@ -166,6 +166,10 @@ public class Card {
         return decks;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
