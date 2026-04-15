@@ -250,7 +250,7 @@ Mis principales tareas han estado centradas en la implementación completa de la
 
 #### **Alumno 2 - [Pablo León Molero]**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Me he encargado principalmente de dar vida a la web con el manejo(ver,editar,crear y eliminar) de las entidades carta , mazo y algo de comentarios.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
