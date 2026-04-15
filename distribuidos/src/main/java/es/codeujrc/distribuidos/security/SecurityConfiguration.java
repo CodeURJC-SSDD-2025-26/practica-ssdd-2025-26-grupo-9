@@ -35,6 +35,7 @@ public class SecurityConfiguration {
 
         http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/", "/login", "/register", "/social", "/decks", "/cardDetail").permitAll()
+                .requestMatchers("/card/*/image", "/user/*/image").permitAll()
                 .requestMatchers("/css/**", "/js/**", "/images/**", "/style.css").permitAll()
                 .requestMatchers("/profile", "/editUser", "/addDeck").hasAnyRole("REGISTERED", "ADMIN")
                 .requestMatchers("/adminUsers", "/editUserAdmin", "/addCards", "/adminCard").hasRole("ADMIN")
