@@ -52,7 +52,9 @@ public class SecurityConfiguration {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login")
                 .permitAll());
-
+        
+        http.exceptionHandling(exception -> exception
+        .accessDeniedPage("/error/403"));
         return http.build();
     }
 }
