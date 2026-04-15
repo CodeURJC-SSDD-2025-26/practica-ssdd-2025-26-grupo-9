@@ -43,15 +43,6 @@
         </div>
       </div>
 
-      <div class="col-md-6 col-lg-4 offset-lg-2">
-        <div class="card shadow border-0">
-          <div class="card-header bg-white text-center fw-bold">Cartas favoritas</div>
-          <div class="card-body text-center">
-            <canvas id="favCardsChart" style="max-width:300px; max-height:300px;"></canvas>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
   <div class="container mt-5">
@@ -91,22 +82,7 @@
   </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const ctx = document.getElementById('favCardsChart');
-    new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: ['Chopper', 'Luffy', 'Robin'],
-        datasets: [{
-          data: [6, 4, 3],
-          backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56']
-        }]
-      }
-    });
-  });
-</script>
+
 
 </body>
 {{>footer}}
