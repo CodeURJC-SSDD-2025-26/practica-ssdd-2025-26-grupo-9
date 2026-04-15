@@ -123,4 +123,25 @@ public class UserService {
 		usersRepository.save(user);
 		return conflicts;
 	}
+
+	public void follow(Long currentUserId, Long targetUserId) {
+		User currentUser = usersRepository.findById(currentUserId).orElseThrow();
+		User targetUser = usersRepository.findById(targetUserId).orElseThrow();
+
+		if (!currentUser.getFollowing().contains(targetUser)) {
+			currentUser.getFollowing().add(targetUser);
+			usersRepository.save(currentUser);
+		}
+	}
+
+	public void unfollow(Long currentUserId, Long targetUserId) {
+		User currentUser = usersRepository.findById(currentUserId).orElseThrow();
+		User targetUser = usersRepository.findById(targetUserId).orElseThrow();
+
+		if (currentUser.getFollowing().contains(targetUser)) {
+			currentUser.getFollowing().remove(targetUser);
+			usersRepository.save(currentUser);
+		}
+	}
+
 }

@@ -1,4 +1,5 @@
 package es.codeujrc.distribuidos.service;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,47 +16,53 @@ import es.codeujrc.distribuidos.repository.DeckRepository;
 public class DeckService {
 
 	@Autowired
-	private DeckRepository repository;
+	private DeckRepository deckRepository;
 
 	@Autowired
 	private CardService cardService;
+
 	public List<Deck> findByUserId(Long userId) {
-		return repository.findByUserId(userId);
+		return deckRepository.findByUserId(userId);
 	}
+
 	public Optional<Deck> findById(long id) {
-		return repository.findById(id);
+		return deckRepository.findById(id);
 	}
-	
+
 	public boolean exist(long id) {
-		return repository.existsById(id);
+		return deckRepository.existsById(id);
 	}
 
 	public List<Deck> findAll() {
-		return repository.findAll();
+		return deckRepository.findAll();
 	}
 
 	public void save(Deck deck) {
-		repository.save(deck);
+		deckRepository.save(deck);
 	}
 
 	public void delete(long id) {
-		repository.deleteById(id);
+		deckRepository.deleteById(id);
 	}
 
 	public boolean createDeckWithCards(String name, String description, User user,
 			String cardId1, String cardId2, String cardId3, String cardId4, String cardId5, String cardId6) {
-		
 
 		Deck newDeck = new Deck(name, description, new ArrayList<>(), new ArrayList<>(), user);
-		
 
 		List<Long> cardIds = new ArrayList<>();
-		if (cardId1 != null && !cardId1.isEmpty()) cardIds.add(Long.parseLong(cardId1));
-		if (cardId2 != null && !cardId2.isEmpty()) cardIds.add(Long.parseLong(cardId2));
-		if (cardId3 != null && !cardId3.isEmpty()) cardIds.add(Long.parseLong(cardId3));
-		if (cardId4 != null && !cardId4.isEmpty()) cardIds.add(Long.parseLong(cardId4));
-		if (cardId5 != null && !cardId5.isEmpty()) cardIds.add(Long.parseLong(cardId5));
-		if (cardId6 != null && !cardId6.isEmpty()) cardIds.add(Long.parseLong(cardId6));
+		if (cardId1 != null && !cardId1.isEmpty())
+			cardIds.add(Long.parseLong(cardId1));
+		if (cardId2 != null && !cardId2.isEmpty())
+			cardIds.add(Long.parseLong(cardId2));
+		if (cardId3 != null && !cardId3.isEmpty())
+			cardIds.add(Long.parseLong(cardId3));
+		if (cardId4 != null && !cardId4.isEmpty())
+			cardIds.add(Long.parseLong(cardId4));
+		if (cardId5 != null && !cardId5.isEmpty())
+			cardIds.add(Long.parseLong(cardId5));
+		if (cardId6 != null && !cardId6.isEmpty())
+			cardIds.add(Long.parseLong(cardId6));
 
 		List<Card> cards = new ArrayList<>();
 		for (Long cardId : cardIds) {
@@ -75,12 +82,19 @@ public class DeckService {
 		}
 
 		save(newDeck);
-		
-	
+
 		for (Card card : cards) {
 			cardService.save(card);
 		}
-		
+
 		return true;
+	}
+
+	public List<Deck> getDecksFromFollowing(User user) {
+		List<User> following = user.getFollowing();
+		if (following.isEmpty()) {
+			return new ArrayList<>();
+		}
+		return deckRepository.findByFollowing(following);
 	}
 }

@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,29 +12,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import es.codeujrc.distribuidos.entity.Card;   
-import es.codeujrc.distribuidos.security.UserSession;
+import es.codeujrc.distribuidos.entity.Card;
 import es.codeujrc.distribuidos.service.CardService;
-import es.codeujrc.distribuidos.entity.User;
+
 
 @Controller
 public class CardsController {
 
-    @Autowired
-    private UserSession userSession;
+    
     @Autowired
     private CardService cardService;
 
-    @ModelAttribute
-    public void addAttributes(Model model) {
-        if (userSession.isLogged()) {
-            model.addAttribute("logged", true);
-            model.addAttribute("userName", userSession.getUser().getUsername());
-            model.addAttribute("isAdmin", userSession.getUser().getRole() == User.Role.ADMIN);
-        } else {
-            model.addAttribute("logged", false);
-        }
-    }
+    
 
     @GetMapping("/addCards")
     public String addCards(Model model) {

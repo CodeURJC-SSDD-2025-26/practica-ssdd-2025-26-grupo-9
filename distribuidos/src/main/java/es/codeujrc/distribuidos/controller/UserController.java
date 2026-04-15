@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import es.codeujrc.distribuidos.entity.Deck;
 import es.codeujrc.distribuidos.entity.User;
 import es.codeujrc.distribuidos.service.UserService;
 import es.codeujrc.distribuidos.service.CardService;
 import es.codeujrc.distribuidos.service.DeckService;
+
 @Controller
 public class UserController {
 
@@ -62,7 +64,22 @@ public class UserController {
     }
 
     @GetMapping("/social")
-    public String social(Model model) {
+    public String social(Model model, Principal principal) {
+        User currentUser = userService.findByUsername(principal.getName());
+        List<User> followed = currentUser.getFollowing();
+        List<User> allUsers = userService.findAll();
+        List<User> unfollowed = new ArrayList<>();
+
+        for (User u : allUsers) {
+            if (!u.getId().equals(currentUser.getId()) && !followed.contains(u)) {
+                unfollowed.add(u);
+            }
+        }
+        List<Deck> followedDecks = deckService.getDecksFromFollowing(currentUser);
+
+        model.addAttribute("followed", followed);
+        model.addAttribute("unfollowed", unfollowed);
+        model.addAttribute("followedDecks", followedDecks);
         return "social";
     }
 
@@ -152,6 +169,24 @@ public class UserController {
     public String deleteUser(@PathVariable long id) {
         userService.delete(id);
         return "redirect:/adminUsers";
+    }
+
+    @PostMapping("/user/{id}/follow")
+    public String followUser(@PathVariable long id, Principal principal) {
+        if (principal != null) {
+            User currentUser = userService.findByUsername(principal.getName());
+            userService.follow(currentUser.getId(), id);
+        }
+        return "redirect:/social";
+    }
+
+    @PostMapping("/user/{id}/unfollow")
+    public String unfollowUser(@PathVariable long id, Principal principal) {
+        if (principal != null) {
+            User currentUser = userService.findByUsername(principal.getName());
+            userService.unfollow(currentUser.getId(), id);
+        }
+        return "redirect:/social";
     }
 
 }

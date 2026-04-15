@@ -1,6 +1,7 @@
 package es.codeujrc.distribuidos.entity;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import jakarta.persistence.*;
 
@@ -66,6 +67,14 @@ public class Deck {
 
     public User getUser() {
         return user;
+    }
+
+    public String getFormattedDate() {
+        if (this.creationDate == null) {
+            return "";
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        return this.creationDate.format(formatter);
     }
 
     public void setId(Long id) {
