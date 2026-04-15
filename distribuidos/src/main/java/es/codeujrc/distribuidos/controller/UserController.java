@@ -69,7 +69,6 @@ public class UserController {
             model.addAttribute("followed", new ArrayList<User>());
             model.addAttribute("unfollowed", new ArrayList<User>());
             model.addAttribute("followedDecks", new ArrayList<Deck>());
-            model.addAttribute("guestSocial", true);
             return "social";
         }
 
@@ -88,7 +87,6 @@ public class UserController {
         model.addAttribute("followed", followed);
         model.addAttribute("unfollowed", unfollowed);
         model.addAttribute("followedDecks", followedDecks);
-        model.addAttribute("guestSocial", false);
         return "social";
     }
 
