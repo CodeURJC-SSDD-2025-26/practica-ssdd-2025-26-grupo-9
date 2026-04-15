@@ -32,8 +32,8 @@ public class CommentaryController {
                              Principal principal) {
         
         if (principal != null && !content.isBlank()) {
-            // Obtenemos el mazo y el usuario actual
-            Optional<Deck> deck = deckService.findById(deckId);
+            
+            Deck deck = deckService.findById(deckId);
             User user = userService.findByUsername(principal.getName());
 
             commentService.saveComment(deck, user, content);

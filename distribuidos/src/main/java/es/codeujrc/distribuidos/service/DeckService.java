@@ -2,7 +2,6 @@ package es.codeujrc.distribuidos.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
@@ -27,8 +26,8 @@ public class DeckService {
 		return deckRepository.findByUserId(userId);
 	}
 
-	public Optional<Deck> findById(long id) {
-		return deckRepository.findById(id);
+	public Deck findById(long id) {
+		return deckRepository.findById(id).orElse(null);
 	}
 
 	public boolean exist(long id) {
