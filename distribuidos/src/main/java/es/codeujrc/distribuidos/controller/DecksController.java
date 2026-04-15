@@ -39,11 +39,11 @@ public class DecksController {
     @GetMapping("/admindeck/{id}")
     public String editDeck(@PathVariable Long id, Model model, Principal principal) {
 
-        Optional<Deck> optionalDeck = deckService.findById(id);
-        if (!optionalDeck.isPresent()) {
+        Deck optionalDeck = deckService.findById(id);
+        if (optionalDeck == null) {
             return "redirect:/profile";
         }
-        Deck deck = optionalDeck.get();
+        Deck deck = optionalDeck;
 
         User user = userService.findByUsername(principal.getName());
 
@@ -100,7 +100,7 @@ public class DecksController {
         model.addAttribute("decks", deckService.findAll());
         return "redirect:/profile";
     }
-    
+
     @PostMapping("/editDeck/{id}")
     public String editDeck(@RequestParam(required = false) Long id, 
                        @RequestParam String name, 
@@ -108,9 +108,9 @@ public class DecksController {
     Deck deck;
     if (id != null) {
        
-        Optional<Deck> optionalDeck = deckService.findById(id);
-        if (optionalDeck.isPresent()) {
-            deck = optionalDeck.get();
+        Deck optionalDeck = deckService.findById(id);
+        if (optionalDeck != null) {
+            deck = optionalDeck;
         } else {
             
             return "redirect:/profile";

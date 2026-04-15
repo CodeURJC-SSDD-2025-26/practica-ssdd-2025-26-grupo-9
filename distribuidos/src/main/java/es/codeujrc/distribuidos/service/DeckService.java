@@ -25,8 +25,8 @@ public class DeckService {
 		return deckRepository.findByUserId(userId);
 	}
 
-	public Optional<Deck> findById(long id) {
-		return deckRepository.findById(id);
+	public Deck findById(long id) {
+		return deckRepository.findById(id).orElse(null);
 	}
 
 	public boolean exist(long id) {

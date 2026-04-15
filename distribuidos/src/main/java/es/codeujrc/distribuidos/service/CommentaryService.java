@@ -38,12 +38,18 @@ public class CommentaryService {
 		repository.deleteById(id);
 	}
 
-    public void saveComment(Optional<Deck> deck, User user, String content) {
-        Commentary comment = new Commentary();
-        comment.setContent(content);
-        comment.setDeck(deck.orElse(null));
-        comment.setUser(user);
 
-        repository.save(comment);
+
+	public void saveComment(Deck deck, User user, String content) {
+    if (deck == null) {
+        throw new IllegalArgumentException("El mazo no puede ser nulo");
     }
+    
+    Commentary comment = new Commentary();
+    comment.setContent(content);
+    comment.setDeck(deck);
+    comment.setUser(user);
+
+    repository.save(comment); 
+}
 }
