@@ -214,8 +214,8 @@ Solo si han cambiado.
 2. **AQUÍ INDICAR LO SIGUIENTES PASOS**
 
 #### **Credenciales de prueba**
-- **Usuario Admin**: usuario: `admin`, contraseña: `admin`
-- **Usuario Registrado**: usuario: `user`, contraseña: `user`
+- **Usuario Admin**: usuario: `admin`, contraseña: `adminpass`
+- **Usuario Registrado**: usuario: `carlos`, contraseña: `pass`
 
 ### **Diagrama de Entidades de Base de Datos**
 
@@ -248,17 +248,17 @@ Mis principales tareas han estado centradas en la implementación completa de la
 |5| [Fix public access to social page and deck images](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/977d1cc) | [SecurityConfiguration.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/distribuidos/src/main/java/es/codeujrc/distribuidos/security/SecurityConfiguration.java), [DecksController.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/distribuidos/src/main/java/es/codeujrc/distribuidos/controller/DecksController.java) |
 ---
 
-#### **Alumno 2 - [Nombre Completo]**
+#### **Alumno 2 - [Pablo León Molero]**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Me he encargado principalmente de dar vida a la web con el manejo(ver,editar,crear y eliminar) de las entidades carta , mazo y algo de comentarios.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [EditCard](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/aa2d24739879037c805b12332f83d4f6d20fd633)  | [AdminCard](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/aa2d24739879037c805b12332f83d4f6d20fd633#diff-47633d3c6d969d9daa1f5967c43237c86f4ca579ee271507cb4dcb457eae3cab)   |
+|2| [CardImage](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/297bda23a149f9783520f8040354bbf289f9eff3)  | [CardController](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/297bda23a149f9783520f8040354bbf289f9eff3#diff-5d30feaff8710ce46e0d02f4c5eca5a8750aa02a0a3419774695b701d7daadcc)   |
+|3| [AddCards](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/5511f59994ff1ac2f4039d01d7beb3a418691b3c)  | [admincard.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/5511f59994ff1ac2f4039d01d7beb3a418691b3c#diff-47633d3c6d969d9daa1f5967c43237c86f4ca579ee271507cb4dcb457eae3cab)   |
+|4| [CardDetail](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/dbe326e51c039e68a9fd0fe3608589164b7efac9)  | [cardDetail.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/dbe326e51c039e68a9fd0fe3608589164b7efac9#diff-eb3124e9a814a372417851bc07e3722fbae88ff33d88f1e250ae02ba2927562c)   |
+|5| [Metacards](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/1c8979df759294aea45f401391ed771be414c2c0)  | [home.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/1c8979df759294aea45f401391ed771be414c2c0/distribuidos/src/main/resources/templates/home.html)  |
 
 ---
 
