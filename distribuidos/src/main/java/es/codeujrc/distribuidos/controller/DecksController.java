@@ -91,9 +91,8 @@ public class DecksController {
             return "addDeck";
         }
 
-        model.addAttribute("success", "¡Mazo creado correctamente!");
-        model.addAttribute("decks", deckService.findAll());
-        return "decks";
+        
+        return "redirect:/decks";
     }
 
     @PostMapping("/deleteDeck/{id}")
