@@ -1,82 +1,134 @@
+{{#card}}
 {{>header}}
 
-    <main class="flex-grow-1 py-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-10">
-                    <div class="card shadow-sm border-0">
-                        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                            <h3 class="mb-0">Detalles de la Carta</h3>
-                            <a href="/decks" class="btn btn-sm btn-outline-light"> Volver a Mazos</a>
-                        </div>
-                        <div class="card-body p-4">
-                            <div class="row">
-                                <div class="col-md-5 text-center mb-4 mb-md-0">
-                                    <img src="/cardimages/Luffy.png" alt="Carta de Luffy"
-                                        class="img-fluid rounded shadow"
-                                        style="max-height: 500px; object-fit: contain;">
+<main class="flex-grow-1 py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                        <a href="/addCards" class="btn btn-sm btn-secondary">← Volver</a>
+                    </div>
+                    <div class="card-body">                           
+                        {{#id}}<input type="hidden" name="id" value="{{id}}">{{/id}}
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="name" name="name" value="{{#name}}{{name}}{{/name}}" readonly>
                                 </div>
-
-                                <div class="col-md-7">
-                                    <h4 class="border-bottom pb-2 fw-bold">Luffy</h4>
-
-                                    <div class="row mt-3">
-                                        <div class="col-sm-6 mb-2">
-                                            <span class="text-muted small text-uppercase">ID</span>
-                                            <p class="fw-bold fs-5">101</p>
-                                        </div>
-                                        <div class="col-sm-6 mb-2">
-                                            <span class="text-muted small text-uppercase">Tipo</span>
-                                            <p class="fw-bold fs-5">Líder</p>
-                                        </div>
-                                        <div class="col-sm-6 mb-2">
-                                            <span class="text-muted small text-uppercase">Color</span>
-                                            <p class="fw-bold">Rojo</p>
-                                        </div>
-                                        <div class="col-sm-6 mb-2">
-                                            <span class="text-muted small text-uppercase">Atributo</span>
-                                            <p class="fw-bold">Strike</p>
-                                        </div>
-                                        <div class="col-sm-4 mb-2">
-                                            <span class="text-muted small text-uppercase">Coste</span>
-                                            <p class="fw-bold">-</p>
-                                        </div>
-                                        <div class="col-sm-4 mb-2">
-                                            <span class="text-muted small text-uppercase">Poder</span>
-                                            <p class="fw-bold">5000</p>
-                                        </div>
-                                        <div class="col-sm-4 mb-2">
-                                            <span class="text-muted small text-uppercase">Vidas</span>
-                                            <p class="fw-bold text-success">5</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3 mt-2">
-                                        <span class="text-muted small text-uppercase">Clase</span>
-                                        <p class="fw-bold">Straw Hat Crew Pirates</p>
-                                    </div>
-
-                                    <div class="bg-light p-3 rounded border mb-3">
-                                        <span class="text-muted small text-uppercase fw-bold">Descripción</span>
-                                        <p class="mb-0 mt-1"></p>
-                                    </div>
-
-                                    <div class="bg-light p-3 rounded border">
-                                        <span class="text-muted small text-uppercase fw-bold">Trigger</span>
-                                        <p class="mb-0 mt-1 fst-italic text-secondary">No tiene efecto trigger.</p>
-                                    </div>
-
-                                </div>
-
+                            </div>
+                            <div class="col-md-4 text-center mb-3">
+                                <img id="preview-imagen" 
+                                         src="{{#id}}/card/{{id}}/image{{/id}}{{^id}}/cardimages/Luffy.png{{/id}}" 
+                                         class="img-fluid rounded border" style="max-height: 180px;">
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="type" class="form-label">Tipo</label>
+                                <select class="form-select" id="type" name="type" disabled>
+                                    <option value="LEADER">Líder</option>
+                                    <option value="CHARACTER">Personaje</option>
+                                    <option value="EVENT">Evento</option>
+                                    <option value="STAGE">Estadio</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="cost" class="form-label">Coste</label>
+                                <input type="number" class="form-control" name="cost" value="{{#cost}}{{cost}}{{/cost}}{{^cost}}0{{/cost}}" readonly>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="health" class="form-label">Vidas</label>
+                                <input type="number" class="form-control" name="health" value="{{#health}}{{health}}{{/health}}{{^health}}0{{/health}}" readonly>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="power" class="form-label">Poder</label>
+                                <input type="number" class="form-control" name="power" value="{{#power}}{{power}}{{/power}}{{^power}}0{{/power}}" readonly>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="color" class="form-label">Color</label>
+                                <select class="form-select" id="color" name="color" disabled>
+                                    <option value="RED">Rojo</option>
+                                    <option value="GREEN">Verde</option>
+                                    <option value="BLUE">Azul</option>
+                                    <option value="YELLOW">Amarillo</option>
+                                    <option value="PURPLE">Púrpura</option>
+                                    <option value="BLACK">Negro</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="attribute" class="form-label">Atributo</label>
+                                <select class="form-select" id="attribute" name="attribute" disabled>
+                                    <option value="STRIKE">Strike</option>
+                                    <option value="SLASH">Slash</option>
+                                    <option value="SPECIAL">Special</option>
+                                    <option value="RANGED">Ranged</option>
+                                    <option value="WISDOM">Wisdom</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="crew" class="form-label">Tripulación / Clase</label>
+                                <input type="text" class="form-control" name="crew" value="{{#crew}}{{crew}}{{/crew}}" readonly>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="counter" class="form-label">Counter</label>
+                                <select class="form-select" id="counter" name="counter" disabled>
+                                    <option value="NONE">Ninguno</option>
+                                    <option value="ONETHOUSAND">+1000</option>
+                                    <option value="TWOTHOUSAND">+2000</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Descripción</label>
+                            <textarea class="form-control" name="description" rows="3" readonly>{{#description}}{{description}}{{/description}}</textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="triggerEffect" class="form-label">Efecto Trigger</label>
+                            <textarea class="form-control" name="triggerEffect" rows="2" readonly>{{#triggerEffect}}{{triggerEffect}}{{/triggerEffect}}</textarea>
+                        </div>
+                            
+                        
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+<script>
+    // Vista previa de imagen
+    document.getElementById('user-image').onchange = e => {
+        const [file] = e.target.files;
+        if (file) document.getElementById('preview-imagen').src = URL.createObjectURL(file);
+    };
 
+    // Sincronización de selects (SINTAXIS SEGURA)
+    (function() {
+        const data = {
+            type: "{{#type}}{{type}}{{/type}}",
+            color: "{{#color}}{{color}}{{/color}}",
+            attr: "{{#attribute}}{{attribute}}{{/attribute}}",
+            count: "{{#counter}}{{counter}}{{/counter}}"
+        };
+        
+        if (data.type) document.getElementById('type').value = data.type;
+        if (data.color) document.getElementById('color').value = data.color;
+        if (data.attr) document.getElementById('attribute').value = data.attr;
+        if (data.count) document.getElementById('counter').value = data.count;
+    })();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 {{>footer}}
+{{/card}}

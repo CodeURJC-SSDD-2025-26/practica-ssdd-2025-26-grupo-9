@@ -10,7 +10,6 @@ import es.codeujrc.distribuidos.entity.Commentary;
 import es.codeujrc.distribuidos.entity.Deck;
 import es.codeujrc.distribuidos.repository.CommentaryRepository;
 import es.codeujrc.distribuidos.entity.User;
-import jakarta.transaction.Transactional;
 
 @Service
 public class CommentaryService {
