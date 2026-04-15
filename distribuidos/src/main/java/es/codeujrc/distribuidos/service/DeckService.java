@@ -70,7 +70,7 @@ public class DeckService {
 			cardService.findById(cardId).ifPresent(cards::add);
 		}
 
-		if (cards.isEmpty()) {
+		if (cards.size() != 6) {
 			return false;
 		}
 

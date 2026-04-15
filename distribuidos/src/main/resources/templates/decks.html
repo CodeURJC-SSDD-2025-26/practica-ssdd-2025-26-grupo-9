@@ -1,92 +1,104 @@
 {{>header}}
 
-    <main class="flex-grow-1 py-5">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="mb-0 fw-bold">Mazos de la Comunidad</h2>
-                
-                {{#logged}}
-                <a href="/addDeck" class="btn btn-primary fw-bold shadow-sm">Crear Mazo</a>
-                {{/logged}}
-                
-            </div>
-            
-            {{#error}}
-            <div class="alert alert-danger">{{error}}</div>
-            {{/error}}
+<main class="flex-grow-1 py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0 fw-bold">Mazos de la Comunidad</h2>
 
-            {{#success}}
-            <div class="alert alert-success">{{success}}</div>
-            {{/success}}
+            {{#logged}}
+            <a href="/addDeck" class="btn btn-primary fw-bold shadow-sm">Crear Mazo</a>
+            {{/logged}}
 
-            {{#decksForView}}
-            <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                    <div class="row g-0">
-                        <div class="col-md-3 col-lg-2 d-flex flex-column align-items-center justify-content-center border-end pe-3 mb-3 mb-md-0">
-                            <img src="/user/{{first.user.id}}/image" class="rounded-circle mb-2" style="width: 80px; height: 80px; object-fit: cover; background-color: #ddd;" onerror="this.src='/images/default-profile.png'">
-                            <h6 class="mb-0 fw-bold">{{first.user.username}}</h6>
-                            <small class="text-muted">{{first.formattedDate}}</small>
-                        </div>
-                        
-                        <div class="col-md-9 col-lg-10 ps-md-4">
-                            <div class="row row-cols-3 row-cols-md-6 g-2 mb-3">
-                                {{#first.cards}}
-                                <div class="col"><img src="/card/{{id}}/image" class="img-fluid rounded border w-100" alt="{{name}}" style="aspect-ratio: 2/3; object-fit: cover; background-color: #eee;"></div>
-                                {{/first.cards}}
-                            </div>
-                            <p class="card-text mb-0">{{first.description}}</p>
-                        </div>
+        </div>
+
+        {{#error}}
+        <div class="alert alert-danger">{{error}}</div>
+        {{/error}}
+
+        {{#success}}
+        <div class="alert alert-success">{{success}}</div>
+        {{/success}}
+
+        {{#decksForView}}
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <div class="row g-0">
+                    <div
+                        class="col-md-3 col-lg-2 d-flex flex-column align-items-center justify-content-center border-end pe-3 mb-3 mb-md-0">
+                        <img src="/user/{{first.user.id}}/image" class="rounded-circle mb-2"
+                            style="width: 80px; height: 80px; object-fit: cover; background-color: #ddd;"
+                            onerror="this.src='/images/default-profile.png'">
+                        <h6 class="mb-0 fw-bold">{{first.user.username}}</h6>
+                        <small class="text-muted">{{first.formattedDate}}</small>
+                        <span class="badge bg-light text-dark border w-100 text-truncate"
+                            title="{{first.name}}">{{first.name}}</span>
                     </div>
-                    
-                    <hr class="text-muted mt-3 mb-3">
 
-                    {{#logged}}
-                    <form action="/commentDeck/{{first.id}}" method="POST" class="mb-3">
-                        <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
-                        <div class="input-group input-group-sm">
-                            <input type="text" name="content" class="form-control bg-light" placeholder="Escribe un comentario..." required>
-                            <button class="btn btn-outline-secondary" type="submit">Comentar</button>
+                    <div class="col-md-9 col-lg-10 ps-md-4">
+                        <div class="row row-cols-3 row-cols-md-6 g-2 mb-3">
+                            {{#first.cards}}
+                            <div class="col"><img src="/card/{{id}}/image" class="img-fluid rounded border w-100"
+                                    alt="{{name}}"
+                                    style="aspect-ratio: 2/3; object-fit: cover; background-color: #eee;"></div>
+                            {{/first.cards}}
                         </div>
-                    </form>
-                    {{/logged}}
-                    
-                    <button class="btn btn-sm btn-light border text-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#commentsDeck{{first.id}}" aria-expanded="false" aria-controls="commentsDeck{{first.id}}">
-                        Comentarios
-                        <span class="badge rounded-pill bg-secondary ms-1">
-                            {{second.size}}
-                        </span>
-                    </button>
-                    
-                    <div class="collapse mt-2" id="commentsDeck{{first.id}}">
-                        <div class="p-2 rounded bg-white border">
-                            
+                        <p class="card-text mb-0">{{first.description}}</p>
+                    </div>
+                </div>
+
+                <hr class="text-muted mt-3 mb-3">
+
+                {{#logged}}
+                <form action="/commentDeck/{{first.id}}" method="POST" class="mb-3">
+                    <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
+                    <div class="input-group input-group-sm">
+                        <input type="text" name="content" class="form-control bg-light"
+                            placeholder="Escribe un comentario..." required>
+                        <button class="btn btn-outline-secondary" type="submit">Comentar</button>
+                    </div>
+                </form>
+                {{/logged}}
+
+                <button class="btn btn-sm btn-light border text-secondary" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#commentsDeck{{first.id}}" aria-expanded="false"
+                    aria-controls="commentsDeck{{first.id}}">
+                    Comentarios
+                    <span class="badge rounded-pill bg-secondary ms-1">
+                        {{second.size}}
+                    </span>
+                </button>
+
+                <div class="collapse mt-2" id="commentsDeck{{first.id}}">
+                    <div class="p-2 rounded bg-white border">
+
+                        {{#second}}
+                        <div class="d-flex justify-content-between align-items-center border-bottom pb-1 mb-1">
+                            <p class="small mb-0"><strong>{{first.user.username}}</strong>: {{first.content}}</p>
+
                             {{#second}}
-                            <div class="d-flex justify-content-between align-items-center border-bottom pb-1 mb-1">
-                                <p class="small mb-0"><strong>{{first.user.username}}</strong>: {{first.content}}</p>
-                                
-                                {{#second}}
-                                <form action="/deleteComment/{{first.id}}" method="POST" class="m-0" onsubmit="return confirm('¿Seguro que quieres borrar este comentario?');">
-                                    <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
-                                    <button type="submit" class="btn btn-link text-danger p-0 ms-2" style="text-decoration: none;" title="Eliminar comentario">🗑️</button>
-                                </form>
-                                {{/second}}
-                            </div>
+                            <form action="/deleteComment/{{first.id}}" method="POST" class="m-0"
+                                onsubmit="return confirm('¿Seguro que quieres borrar este comentario?');">
+                                <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
+                                <button type="submit" class="btn btn-link text-danger p-0 ms-2"
+                                    style="text-decoration: none;" title="Eliminar comentario">🗑️</button>
+                            </form>
                             {{/second}}
-                            
-                            {{^second}}
-                            <p class="small text-muted mb-0 fst-italic">Aún no hay comentarios. ¡Sé el primero!</p>
-                            {{/second}}
-                            
                         </div>
+                        {{/second}}
+
+                        {{^second}}
+                        <p class="small text-muted mb-0 fst-italic">Aún no hay comentarios. ¡Sé el primero!</p>
+                        {{/second}}
+
                     </div>
                 </div>
             </div>
-            {{/decksForView}}
-
         </div>
-    </main>
+        {{/decksForView}}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 {{>footer}}
