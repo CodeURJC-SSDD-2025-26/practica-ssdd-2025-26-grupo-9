@@ -33,12 +33,15 @@
                             <p class="card-text mb-0">{{description}}</p>
                         </div>
                     </div>
+                    <form action="/commentDeck/{{id}}" method="POST" class="mt-3">
+                        <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
+                        <hr class="text-muted mt-3 mb-3">
 
-                    <hr class="text-muted mt-3 mb-3">
-                    <div class="input-group input-group-sm mb-2">
-                        <input type="text" class="form-control bg-light" placeholder="Escribe un comentario...">
-                        <button class="btn btn-outline-secondary" type="button">Comentar</button>
-                    </div>
+                        <div class="input-group input-group-sm mb-2">
+                            <input type="text" name="content" class="form-control bg-light" placeholder="Escribe un comentario..."required>
+                            <button class="btn btn-outline-secondary" type="submit">Comentar</button>
+                        </div>
+                    </form>
                     <button class="btn btn-sm btn-light border text-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#commentsDeck{{id}}" aria-expanded="false" aria-controls="commentsDeck{{id}}">
                         Comentarios
                     </button>
