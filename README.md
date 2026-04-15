@@ -235,18 +235,17 @@ Diagrama de clases de la aplicación con diferenciación por colores o secciones
 
 ### **Participación de Miembros en la Práctica 2**
 
-#### **Alumno 1 - [Nombre Completo]**
+#### **Alumno 1 - Aarón Fernández Lijó**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Mis principales tareas han estado centradas en la implementación completa de la seguridad de la aplicación con Spring Security, incluyendo autenticación, gestión de sesiones, control de accesos por roles y configuración del filtro de seguridad. Además, he trabajado en la protección CSRF de formularios, configuración de HTTPS con certificado autofirmado, creación de páginas de error personalizadas y corrección de accesos públicos a rutas y recursos estáticos.
 
-| Nº    | Commits      | Files      |
-|:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
-
+| Nº | Commits | Files |
+|:--:|:--------|:------|
+|1| [Managed Session With Spring Security, Filter Chain added](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/d21c2496527be4db758b8c27c9d059690513ac10) | [SecurityConfiguration.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/distribuidos/src/main/java/es/codeujrc/distribuidos/security/SecurityConfiguration.java), [UserService.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/distribuidos/src/main/java/es/codeujrc/distribuidos/service/UserService.java) |
+|2| [Enable CSRF protection and secure POST forms](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/cb7f546) | [login.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/distribuidos/src/main/resources/templates/login.html), [editUser.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/distribuidos/src/main/resources/templates/editUser.html) |
+|3| [Enable HTTPS with self-signed certificate](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/48fb1c0) | [application.properties](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/distribuidos/src/main/resources/application.properties), [keystore.p12](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/distribuidos/src/main/resources/keystore.p12) |
+|4| [Add custom error pages for 404, 403 and 500](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/b396b91) | [error.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/tree/main/distribuidos/src/main/resources/templates), [header.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/distribuidos/src/main/resources/templates/header.html) |
+|5| [Fix public access to social page and deck images](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/977d1cc) | [SecurityConfiguration.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/distribuidos/src/main/java/es/codeujrc/distribuidos/security/SecurityConfiguration.java), [DecksController.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/distribuidos/src/main/java/es/codeujrc/distribuidos/controller/DecksController.java) |
 ---
 
 #### **Alumno 2 - [Nombre Completo]**
