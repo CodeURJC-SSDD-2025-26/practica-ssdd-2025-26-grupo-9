@@ -38,7 +38,6 @@ public class CommentaryService {
 		repository.deleteById(id);
 	}
 
-    @Transactional
     public void saveComment(Optional<Deck> deck, User user, String content) {
         Commentary comment = new Commentary();
         comment.setContent(content);
