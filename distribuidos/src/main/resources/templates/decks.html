@@ -14,53 +14,68 @@
             <div class="alert alert-success">{{success}}</div>
             {{/success}}
 
-            {{#decks}}
+            {{#decksForView}}
             <div class="card mb-4 shadow-sm">
                 <div class="card-body">
                     <div class="row g-0">
                         <div class="col-md-3 col-lg-2 d-flex flex-column align-items-center justify-content-center border-end pe-3 mb-3 mb-md-0">
-                            <img src="/user/{{user.id}}/image" class="rounded-circle mb-2" style="width: 80px; height: 80px; object-fit: cover; background-color: #ddd;">
-                            <h6 class="mb-0 fw-bold">{{user.username}}</h6>
-                            <small class="text-muted">{{formattedDate}}</small>
+                            <img src="/user/{{first.user.id}}/image" class="rounded-circle mb-2" style="width: 80px; height: 80px; object-fit: cover; background-color: #ddd;" onerror="this.src='/images/default-profile.png'">
+                            <h6 class="mb-0 fw-bold">{{first.user.username}}</h6>
+                            <small class="text-muted">{{first.formattedDate}}</small>
                         </div>
                         
                         <div class="col-md-9 col-lg-10 ps-md-4">
                             <div class="row row-cols-3 row-cols-md-6 g-2 mb-3">
-                                {{#cards}}
+                                {{#first.cards}}
                                 <div class="col"><img src="/card/{{id}}/image" class="img-fluid rounded border w-100" alt="{{name}}" style="aspect-ratio: 2/3; object-fit: cover; background-color: #eee;"></div>
-                                {{/cards}}
+                                {{/first.cards}}
                             </div>
-                            <p class="card-text mb-0">{{description}}</p>
+                            <p class="card-text mb-0">{{first.description}}</p>
                         </div>
                     </div>
-                    <form action="/commentDeck/{{id}}" method="POST" class="mt-3">
+                    
+                    <form action="/commentDeck/{{first.id}}" method="POST" class="mt-3">
                         <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
                         <hr class="text-muted mt-3 mb-3">
 
                         <div class="input-group input-group-sm mb-2">
-                            <input type="text" name="content" class="form-control bg-light" placeholder="Escribe un comentario..."required>
+                            <input type="text" name="content" class="form-control bg-light" placeholder="Escribe un comentario..." required>
                             <button class="btn btn-outline-secondary" type="submit">Comentar</button>
                         </div>
                     </form>
-                    <button class="btn btn-sm btn-light border text-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#commentsDeck{{id}}" aria-expanded="false" aria-controls="commentsDeck{{id}}">
+                    
+                    <button class="btn btn-sm btn-light border text-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#commentsDeck{{first.id}}" aria-expanded="false" aria-controls="commentsDeck{{first.id}}">
                         Comentarios
                         <span class="badge rounded-pill bg-secondary ms-1">
-                            {{commentaries.size}}
+                            {{second.size}}
                         </span>
                     </button>
-                    <div class="collapse mt-2" id="commentsDeck{{id}}">
+                    
+                    <div class="collapse mt-2" id="commentsDeck{{first.id}}">
                         <div class="p-2 rounded bg-white border">
-                            {{#commentaries}}
-                            <p class="small mb-1"><strong>{{user.username}}</strong>: {{content}}</p>
-                            {{/commentaries}}
-                            {{^commentaries}}
+                            
+                            {{#second}}
+                            <div class="d-flex justify-content-between align-items-center border-bottom pb-1 mb-1">
+                                <p class="small mb-0"><strong>{{first.user.username}}</strong>: {{first.content}}</p>
+                                
+                                {{#second}}
+                                <form action="/deleteComment/{{first.id}}" method="POST" class="m-0" onsubmit="return confirm('¿Seguro que quieres borrar este comentario?');">
+                                    <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
+                                    <button type="submit" class="btn btn-link text-danger p-0 ms-2" style="text-decoration: none;" title="Eliminar comentario">X</button>
+                                </form>
+                                {{/second}}
+                            </div>
+                            {{/second}}
+                            
+                            {{^second}}
                             <p class="small text-muted mb-0 fst-italic">Aún no hay comentarios. ¡Sé el primero!</p>
-                            {{/commentaries}}
+                            {{/second}}
+                            
                         </div>
                     </div>
                 </div>
             </div>
-            {{/decks}}
+            {{/decksForView}}
 
         </div>
     </main>

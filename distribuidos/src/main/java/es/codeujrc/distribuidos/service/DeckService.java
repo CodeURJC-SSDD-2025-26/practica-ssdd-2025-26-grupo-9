@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import es.codeujrc.distribuidos.entity.Deck;
 import es.codeujrc.distribuidos.entity.Card;
+import es.codeujrc.distribuidos.entity.Commentary;
 import es.codeujrc.distribuidos.entity.User;
 import es.codeujrc.distribuidos.repository.DeckRepository;
 
@@ -96,5 +98,23 @@ public class DeckService {
 			return new ArrayList<>();
 		}
 		return deckRepository.findByFollowing(following);
+	}
+
+	public List<Pair<Deck, List<Pair<Commentary, Boolean>>>> getDecksWithCommentOwnership(String currentUsername) {
+
+		List<Deck> decks = this.findAll();
+		List<Pair<Deck, List<Pair<Commentary, Boolean>>>> decksForView = new ArrayList<>();
+
+		for (Deck deck : decks) {
+			List<Pair<Commentary, Boolean>> commentsList = new ArrayList<>();
+
+			for (Commentary comment : deck.getCommentaries()) {
+				boolean isOwner = currentUsername != null && comment.getUser().getUsername().equals(currentUsername);
+				commentsList.add(Pair.of(comment, isOwner));
+			}
+			decksForView.add(Pair.of(deck, commentsList));
+		}
+
+		return decksForView;
 	}
 }

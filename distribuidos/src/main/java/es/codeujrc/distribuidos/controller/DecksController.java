@@ -1,6 +1,7 @@
 package es.codeujrc.distribuidos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,10 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 import es.codeujrc.distribuidos.service.CardService;
 import es.codeujrc.distribuidos.service.DeckService;
 import es.codeujrc.distribuidos.service.UserService;
+import es.codeujrc.distribuidos.entity.Commentary;
 import es.codeujrc.distribuidos.entity.Deck;
 import es.codeujrc.distribuidos.entity.User;
 
@@ -25,8 +28,12 @@ public class DecksController {
     private UserService userService;
 
     @GetMapping("/decks")
-    public String listDecks(Model model) {
-        model.addAttribute("decks", deckService.findAll());
+    public String listDecks(Model model, Principal principal) {
+        String currentUsername = (principal != null) ? principal.getName() : null;
+        List<Pair<Deck, List<Pair<Commentary, Boolean>>>> decksForView = deckService
+                .getDecksWithCommentOwnership(currentUsername);
+
+        model.addAttribute("decksForView", decksForView);
         return "decks";
     }
 
@@ -52,9 +59,8 @@ public class DecksController {
         model.addAttribute("description", deck.getDescription());
         model.addAttribute("user", user);
 
-        return "admindeck"; 
+        return "admindeck";
     }
-
 
     @PostMapping("/saveDeck")
     public String saveDeck(
@@ -68,7 +74,7 @@ public class DecksController {
             @RequestParam(required = false) String cardId6,
             Model model,
             Principal principal) {
-        
+
         if (principal == null) {
             model.addAttribute("error", "Debes estar logueado para crear un mazo");
             model.addAttribute("cards", cardService.findAll());
@@ -76,54 +82,54 @@ public class DecksController {
         }
 
         User currentUser = userService.findByUsername(principal.getName());
-        
+
         boolean success = deckService.createDeckWithCards(name, description, currentUser,
                 cardId1, cardId2, cardId3, cardId4, cardId5, cardId6);
-        
+
         if (!success) {
             model.addAttribute("error", "Error al crear el mazo. Verifica las cartas seleccionadas.");
             model.addAttribute("cards", cardService.findAll());
             return "addDeck";
         }
-        
+
         model.addAttribute("success", "¡Mazo creado correctamente!");
         model.addAttribute("decks", deckService.findAll());
         return "decks";
     }
-    
+
     @PostMapping("/deleteDeck/{id}")
-    public String deleteDeck(@PathVariable Long id, Model model ) {
+    public String deleteDeck(@PathVariable Long id, Model model) {
 
         deckService.delete(id);
-        
+
         model.addAttribute("success", "¡Mazo eliminado correctamente!");
         model.addAttribute("decks", deckService.findAll());
         return "redirect:/profile";
     }
-    
+
     @PostMapping("/editDeck/{id}")
-    public String editDeck(@RequestParam(required = false) Long id, 
-                       @RequestParam String name, 
-                       @RequestParam String description) {
-    Deck deck;
-    if (id != null) {
-       
-        Optional<Deck> optionalDeck = deckService.findById(id);
-        if (optionalDeck.isPresent()) {
-            deck = optionalDeck.get();
+    public String editDeck(@RequestParam(required = false) Long id,
+            @RequestParam String name,
+            @RequestParam String description) {
+        Deck deck;
+        if (id != null) {
+
+            Optional<Deck> optionalDeck = deckService.findById(id);
+            if (optionalDeck.isPresent()) {
+                deck = optionalDeck.get();
+            } else {
+
+                return "redirect:/profile";
+            }
         } else {
-            
-            return "redirect:/profile";
+            deck = new Deck();
         }
-    } else {
-        deck = new Deck();
+
+        deck.setName(name);
+        deck.setDescription(description);
+
+        deckService.save(deck);
+
+        return "redirect:/profile";
     }
-
-    deck.setName(name);
-    deck.setDescription(description);
-
-    deckService.save(deck);
-
-    return "redirect:/profile";
-}
 }
