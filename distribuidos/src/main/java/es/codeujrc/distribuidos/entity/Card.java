@@ -58,52 +58,18 @@ public class Card {
     public Card() {
     }
 
-    // Constructor for CHARACTER type cards
-    public Card(String name, String description, String trigger, String crew, int cost, int power, Atribute atribute,
-            Counter counter, color color, List<Deck> decks, byte[] image) {
-        super();
+    public Card(String name, String description, String triggerEffect, String crew, int cost, int power, int health,
+            CardType type, Atribute attribute, Counter counter, color color, List<Deck> decks, byte[] image) {
         this.name = name;
         this.description = description;
-        this.triggerEffect = trigger;
+        this.triggerEffect = triggerEffect;
         this.crew = crew;
         this.cost = cost;
         this.power = power;
-        this.type = CardType.CHARACTER;
-        this.attribute = atribute;
-        this.counter = counter;
-        this.color = color;
-        this.decks = decks;
-        this.image = image;
-    }
-
-    // Constructor for events and stage type cards
-    public Card(String name, String description, String trigger, String crew, int cost, CardType type, color color,
-            List<Deck> decks, byte[] image) {
-        super();
-        this.name = name;
-        this.description = description;
-        this.triggerEffect = trigger;
-        this.crew = crew;
-        this.cost = cost;
-        this.type = type;
-        this.attribute = null;
-        this.counter = Counter.NONE;
-        this.color = color;
-        this.decks = decks;
-        this.image = image;
-    }
-
-    // Constructor for leader type cards
-    public Card(String name, String description, String crew, int health, int power, Atribute atribute, color color,
-            List<Deck> decks, byte[] image) {
-        super();
-        this.name = name;
-        this.description = description;
         this.health = health;
-        this.attribute = atribute;
-        this.crew = crew;
-        this.power = power;
-        this.type = CardType.LEADER;
+        this.type = type;
+        this.attribute = attribute;
+        this.counter = counter;
         this.color = color;
         this.decks = decks;
         this.image = image;

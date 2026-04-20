@@ -20,8 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 import es.codeujrc.distribuidos.entity.Deck;
 import es.codeujrc.distribuidos.entity.User;
 import es.codeujrc.distribuidos.service.UserService;
+import jakarta.servlet.http.HttpServletResponse;
 import es.codeujrc.distribuidos.service.CardService;
 import es.codeujrc.distribuidos.service.DeckService;
+import es.codeujrc.distribuidos.service.PDFService;
 
 @Controller
 public class UserController {
@@ -32,6 +34,8 @@ public class UserController {
     private CardService cardService;
     @Autowired
     private DeckService deckService;
+    @Autowired
+    private PDFService pdfService;
 
     @GetMapping("/login")
     public String login(Model model, @RequestParam(required = false) String error,
@@ -194,6 +198,23 @@ public class UserController {
             userService.unfollow(currentUser.getId(), id);
         }
         return "redirect:/social";
+    }
+
+    //Tecnologia extra de los pdfs
+    @GetMapping("/downloadMyDecks")
+    public void downloadMyDecks(HttpServletResponse response, Principal principal) throws IOException {
+        if (principal == null) {
+            response.sendRedirect("/login");
+            return;
+        }
+
+        User user = userService.findByUsername(principal.getName());
+        List<Deck> myDecks = deckService.findByUserId(user.getId());
+
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=Mis_Mazos.pdf");
+
+        pdfService.exportDecksToPdf(myDecks, response.getOutputStream());
     }
 
 }
