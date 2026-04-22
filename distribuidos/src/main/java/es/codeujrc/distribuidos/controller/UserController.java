@@ -55,15 +55,39 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String profile(Model model, Principal principal, @RequestParam(required = false) boolean userConflict,
+    public String myProfile(Principal principal) {
+        if (principal == null) {
+            return "redirect:/login";
+        }
+        User currentUser = userService.findByUsername(principal.getName());
+        return "redirect:/profile/" + currentUser.getId();
+    }
+
+    @GetMapping("/profile/{id}")
+    public String userProfile(@PathVariable Long id, Model model, Principal principal,
+            @RequestParam(required = false) boolean userConflict,
             @RequestParam(required = false) boolean emailConflict) {
-        String username = principal.getName();
-        User user = userService.findByUsername(username);
-        model.addAttribute("user", user);
-        model.addAttribute("usernameError", userConflict);
-        model.addAttribute("emailError", emailConflict);
+
+        User profileUser = userService.findById(id);
+        boolean isOwnProfile = false;
+
+        if (principal != null) {
+            User loggedInUser = userService.findByUsername(principal.getName());
+            if (loggedInUser.getId().equals(profileUser.getId())) {
+                isOwnProfile = true;
+            }
+        }
+
+        model.addAttribute("user", profileUser);
+        model.addAttribute("isOwnProfile", isOwnProfile);
+        model.addAttribute("decks", deckService.findByUserId(profileUser.getId()));
         model.addAttribute("cards", cardService.findAll());
-        model.addAttribute("decks", deckService.findByUserId(user.getId()));
+
+        if (isOwnProfile) {
+            model.addAttribute("usernameError", userConflict);
+            model.addAttribute("emailError", emailConflict);
+        }
+
         return "profile";
     }
 
@@ -200,7 +224,7 @@ public class UserController {
         return "redirect:/social";
     }
 
-    //Tecnologia extra de los pdfs
+    // Tecnologia extra de los pdfs
     @GetMapping("/downloadMyDecks")
     public void downloadMyDecks(HttpServletResponse response, Principal principal) throws IOException {
         if (principal == null) {

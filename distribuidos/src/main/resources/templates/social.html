@@ -9,18 +9,21 @@
             <div class="col">
                 <div class="card h-100 shadow-sm border-0">
                     <div class="card-body text-center d-flex flex-column align-items-center">
-                        <img src="/user/{{id}}/image" class="profile-img rounded-circle mb-3 shadow-sm"
-                            style="width: 96px; height: 96px; object-fit: cover;"
-                            onerror="this.src='/images/default-profile.png'">
+                        
+                        <a href="/profile/{{id}}">
+                            <img src="/user/{{id}}/image" class="profile-img rounded-circle mb-3 shadow-sm"
+                                style="width: 96px; height: 96px; object-fit: cover;"
+                                onerror="this.src='/images/default-profile.png'">
+                        </a>
 
                         <h6 class="card-title fw-bold mb-1 w-100 text-truncate-custom">
-                            <a href="#" class="text-decoration-none text-dark">{{username}}</a>
+                            <span class="text-dark">{{username}}</span>
                         </h6>
 
                         <p class="card-text text-muted small mb-3 w-100 text-truncate-custom">{{email}}</p>
 
                         <form action="/user/{{id}}/unfollow" method="post" class="w-100 mt-auto">
-                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                            <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
                             <button type="submit" class="btn btn-outline-danger btn-sm w-100 position-relative"
                                 style="z-index: 2;">Eliminar</button>
                         </form>
@@ -42,18 +45,21 @@
             <div class="col">
                 <div class="card h-100 shadow-sm border-0">
                     <div class="card-body text-center d-flex flex-column align-items-center">
-                        <img src="/user/{{id}}/image" class="profile-img rounded-circle mb-3 shadow-sm"
-                            style="width: 96px; height: 96px; object-fit: cover;"
-                            onerror="this.src='/images/default-profile.png'">
+                        
+                        <a href="/profile/{{id}}">
+                            <img src="/user/{{id}}/image" class="profile-img rounded-circle mb-3 shadow-sm"
+                                style="width: 96px; height: 96px; object-fit: cover;"
+                                onerror="this.src='/images/default-profile.png'">
+                        </a>
 
                         <h6 class="card-title fw-bold mb-1 w-100 text-truncate-custom">
-                            <a href="#" class="text-decoration-none text-dark">{{username}}</a>
+                            <span class="text-dark">{{username}}</span>
                         </h6>
 
                         <p class="card-text text-muted small mb-3 w-100 text-truncate-custom">{{email}}</p>
 
                         <form action="/user/{{id}}/follow" method="post" class="w-100 mt-auto">
-                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                            <input type="hidden" name="{{csrfParameterName}}" value="{{csrfToken}}">
                             <button type="submit" class="btn btn-primary btn-sm w-100 position-relative"
                                 style="z-index: 2;">Seguir</button>
                         </form>

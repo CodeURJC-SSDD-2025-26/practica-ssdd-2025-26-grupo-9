@@ -22,8 +22,7 @@ public class SecurityConfiguration {
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider =
-                new DaoAuthenticationProvider(userDetailsService);
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
@@ -34,11 +33,18 @@ public class SecurityConfiguration {
         http.authenticationProvider(authenticationProvider());
 
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/", "/login", "/register", "/social", "/decks", "/cardDetail").permitAll()
+                .requestMatchers("/", "/login", "/register", "/decks", "/social").permitAll()
                 .requestMatchers("/card/*/image", "/user/*/image").permitAll()
                 .requestMatchers("/css/**", "/js/**", "/images/**", "/style.css").permitAll()
-                .requestMatchers("/profile", "/editUser", "/addDeck").hasAnyRole("REGISTERED", "ADMIN")
-                .requestMatchers("/adminUsers", "/editUserAdmin", "/addCards", "/adminCard").hasRole("ADMIN")
+                .requestMatchers("/addCards", "/adminCard", "/saveCard", "/deleteCard/**").hasRole("ADMIN")
+                .requestMatchers("/adminUsers", "/editUserAdmin/**", "/deleteUser/**").hasRole("ADMIN")
+                .requestMatchers("/profile", "/editUser", "/downloadMyDecks").hasAnyRole("REGISTERED", "ADMIN")
+                .requestMatchers("/addDeck", "/saveDeck", "/admindeck/**", "/editDeck/**", "/deleteDeck/**")
+                .hasAnyRole("REGISTERED", "ADMIN")
+                .requestMatchers("/commentDeck/**", "/deleteComment/**")
+                .hasAnyRole("REGISTERED", "ADMIN")
+                .requestMatchers("/user/*/follow", "/user/*/unfollow").hasAnyRole("REGISTERED", "ADMIN")
+                .requestMatchers("/cardDetail").hasAnyRole("REGISTERED", "ADMIN")
                 .anyRequest().authenticated());
 
         http.formLogin(form -> form
@@ -53,9 +59,10 @@ public class SecurityConfiguration {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login")
                 .permitAll());
-        
+
         http.exceptionHandling(exception -> exception
-        .accessDeniedPage("/error/403"));
+                .accessDeniedPage("/error/403"));
+
         return http.build();
     }
 }
