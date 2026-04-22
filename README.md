@@ -191,7 +191,43 @@ Solo si ha cambiado.
 
 #### **Capturas de Pantalla Actualizadas**
 
-Solo si han cambiado.
+#### **1. Página Principal / Home**
+![Página Principal](screenshotsV.2/home.png)
+
+#### **2. Página Registro / Login**
+![Página de Registro/Inicio de Sesion](screenshotsV.2/login.png)
+
+#### **3. Página Gestion de Cartas / Add Cards**
+![Página de gestión de cartas](screenshotsV.2/addcard.png)
+
+#### **4. Página Edicion de Cartas / Admin Card**
+![Página de edicion de cartas](screenshotsV.2/admincards.png)
+
+#### **5. Página Gestion de Usuarios / Admin Users**
+![Página de gestion de usuarios](screenshotsV.2/adminusers.png)
+
+#### **6.  Editar otro Perfil / Edit other User**
+![Editar Perfil](screenshotsV.2/editmyuser.png)
+
+#### **7. Página Social / Social**
+![Página Social](screenshotsV.2/social.png)
+
+#### **8. Mazos de la Comunidad / Decks**
+![Mazos de la Comunidad](screenshotsV.2/decks.png)
+
+#### **9. Pagina de Creacion de Mazos / Add Decks**
+![Creación de mazos](screenshotsV.2/createdeck.png)
+
+#### **10. Perfil / Profile**
+![Perfil](screenshotsV.2/profile.png)
+
+#### **11. Editar mi Perfil / Edit User**
+![Editar Perfil](screenshotsV.2/editmyuser.png)
+
+#### **12. Detalle de la Carta / Card Detail**
+![Editar Perfil](screenshotsV.2/carddetail.png)
+
+
 
 ### **Instrucciones de Ejecución**
 
