@@ -185,9 +185,12 @@ Principalmente mis tareas fueron migrar los estilos de la pagina para usar Boots
 
 ### **Navegación y Capturas de Pantalla**
 
-#### **Diagrama de Navegación**
+### **Diagrama de Navegación**
+Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicación:
 
-Solo si ha cambiado.
+![Diagrama de Navegación](images/navigation-diagram2.png)
+
+> [El color rojo representa las acciones que puede hacer el administrador y solo el administrador, el color azul representa las acciones que puede realizar el admin y los usuarios registrados, y por ultimo en verde estan las acciones que cualquier usuario puede hacer aunque no este registrado]
 
 #### **Capturas de Pantalla Actualizadas**
 
