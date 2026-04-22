@@ -4,10 +4,13 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.util.Pair;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.core.io.Resource;
 
 import es.codeujrc.distribuidos.entity.User;
 import es.codeujrc.distribuidos.repository.UserRepository;
@@ -24,6 +27,22 @@ public class UserService {
 
 	@Autowired
 	private SecurityContextUpdater securityContextManager;
+
+	private byte[] loadImage(String path) throws IOException {
+
+        Resource imageRes = new ClassPathResource(path);
+        if (imageRes.exists()) {
+            return imageRes.getContentAsByteArray();
+        }
+        
+        String fsPath = "src/main/resources/" + path;
+        Resource fsResource = new FileSystemResource(fsPath);
+        if (fsResource.exists()) {
+            return fsResource.getContentAsByteArray();
+        }
+        
+        return null; 
+    }
 
 	public User findById(long id) {
 		return usersRepository.findById(id)
@@ -51,12 +70,14 @@ public class UserService {
 		usersRepository.deleteById(id);
 	}
 
-	public boolean registerNewUser(User user) {
+	public boolean registerNewUser(User user) throws IOException {
 		if (usersRepository.existsByEmail(user.getEmail()) || usersRepository.existsByUsername(user.getUsername())) {
 			return false;
 		}
 		user.setRole(User.Role.REGISTERED);
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		byte[] defaultImg = loadImage("profileimages/ZaZaNoMi.png");
+		user.setImage(defaultImg);
 		usersRepository.save(user);
 		return true;
 	}

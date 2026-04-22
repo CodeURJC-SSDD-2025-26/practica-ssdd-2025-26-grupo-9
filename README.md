@@ -24,8 +24,8 @@ Indicar las entidades principales que gestionará la aplicación y las relacione
 
 **Relaciones entre entidades:**
 - Usuario - Mazo: Un usuario puede tener múltiples mazos (1:N)
-- Mazo - Carta: Un mazo puede contener múltiples Cartas y una carta puede estar en múltiples Mazos (N:M)
-- Mazo - Comentario: Un mazo puede tener multiples comentarios (N:1)
+- Mazo - Carta: Un mazo contiene 6 cartas y una carta puede estar en múltiples Mazos (N:6)
+- Mazo - Comentario: Un mazo puede tener multiples comentarios (1:N)
 - Usuario - Usuario: Todos los usuarios podran tener amigos y podran verlos desde su pagina de perfil(N:M)
 
 ### **Permisos de los Usuarios**
@@ -52,21 +52,19 @@ Indicar qué entidades tendrán asociadas una o varias imágenes:
 ### **Gráficos**
 Indicar qué información se mostrará usando gráficos y de qué tipo serán:
 
-- **Gráfico 1**: Cartas preferidas: Cada usuario tendrá en su perfil un gráfico radial que mostrará la proporción de uso de cartas en sus mazos, permitiendo asi ver cual/es son sus cartas preferidas.
+- **Gráfico 1**: Cartas meta: En la pagina de home, se podrá encontrar un gráfico radial que contiene proporcionalmente al numero de mazos en las que aparecen, de modo que se puede saber que cartas son las mas usadas(o meta)
 
 ### **Tecnología Complementaria**
 Indicar qué tecnología complementaria se empleará:
 
-- NO DECIDIDO TODAVIA
-- [Ej: Envío de correos electrónicos automáticos mediante JavaMailSender]
-- [Ej: Generación de PDFs de facturas usando iText o similar]
+- Se ha decidido implementar la generacion de PDFs, en concreto un PDF descargable por los usuarios registrados que contiene los mazos que han hecho
 
 ### **Algoritmo o Consulta Avanzada**
 Indicar cuál será el algoritmo o consulta avanzada que se implementará:
 
-- **Algoritmo/Consulta**: [Ej: Sistema de recomendaciones basado en el historial de compras del usuario]
-- **Descripción**: [Ej: Analiza los productos comprados previamente y sugiere productos similares o complementarios utilizando filtrado colaborativo]
-- **Alternativa**: [Ej: Consulta compleja que agrupe ventas por categoría, mes y región, con cálculo de tendencias]
+- **Algoritmo/Consulta**: Hemos implementado una consulta SQL avanzada llamada findDecksByFollowing
+- **Descripción**: Esta consulta, permite recuperar desde la base de datos de manera eficiente todos los mazos que pertenezcan a usuarios a los que el usuario logueado siga
+- **Alternativa**: Otra opcion seria visitar los perfiles de los usuarios a los que sigue uno a uno, lo cual no seria eficiente
 
 ---
 
@@ -262,33 +260,21 @@ Me he encargado principalmente de dar vida a la web con el manejo(ver,editar,cre
 
 ---
 
-#### **Alumno 3 - [Nombre Completo]**
+#### **Alumno 3 - [Sergio Espinosa Robles]**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
-
-| Nº    | Commits      | Files      |
-|:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
-
----
-
-#### **Alumno 4 - [Nombre Completo]**
-
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+[Tuve como tareas la creacion y correcta configuracion inicial de pasar el proyecto de simple html estático a una aplicacion con Spring, implementar toda la logica relacionada con usuarios y ayudar en la medida necesaria al resto y finalmente la implementacion de la tecnología extra]
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Proyect Correctly First Configurated](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/42fc518db599cc31355767781be2a09ebf02ee78)  | [DistribuidosApplication.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/distribuidos/src/main/java/es/codeujrc/distribuidos/DistribuidosApplication.java)   |
+|2| [DEntities Relations Fully Configured](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/b8aeb9ca52c2e3b52cc29ba55903830baa36c45f)  | [Entity Folder](URL_https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/tree/main/distribuidos/src/main/java/es/codeujrc/distribuidos/entityarchivo_2)   |
+|3| [Fully Editable Profile](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/42d03b41f84db1fc01e068f636b0c32d46064c1b)  | [User Controller, Service, HTMLs, & Others](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/distribuidos/src/main/java/es/codeujrc/distribuidos/controller/UserController.java)   |
+|4| [Social Page Fully Implemented](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/c84f9bc2056ec71e47e951d28cbcfac56238907b)  | [User Controller, Service, HTMLs, & Others](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/distribuidos/src/main/java/es/codeujrc/distribuidos/service/UserService.java)   |
+|5| [PDF Tech Implemented](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/08fb09db2eccd24f1dbc25db8b720c63cc773aaf)  | [PDFService.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/distribuidos/src/main/java/es/codeujrc/distribuidos/service/PDFService.java)   |
 
 ---
+
+
 
 ## 🛠 **Práctica 3: API REST, docker y despliegue**
 

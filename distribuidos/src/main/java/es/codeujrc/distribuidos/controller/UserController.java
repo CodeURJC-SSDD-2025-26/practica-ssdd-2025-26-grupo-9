@@ -128,7 +128,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String registerUser(User newUser) {
+    public String registerUser(User newUser) throws IOException {
         boolean isRegistered = userService.registerNewUser(newUser);
         if (!isRegistered) {
             return "redirect:/login?error=true";
