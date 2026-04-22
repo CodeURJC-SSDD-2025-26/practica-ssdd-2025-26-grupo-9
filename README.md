@@ -202,14 +202,40 @@ Solo si han cambiado.
 - **Git**: para clonar el repositorio
 
 #### **Pasos para ejecutar la aplicación**
-
 1. **Clonar el repositorio**
-   ```bash
-   git clone https://github.com/[usuario]/[nombre-repositorio].git
-   cd [nombre-repositorio]
-   ```
-
-2. **AQUÍ INDICAR LO SIGUIENTES PASOS**
+```bash
+git clone https://github.com/[usuario]/[nombre-repositorio].git
+cd [nombre-repositorio]
+```
+2. **Configurar la base de datos**
+Asegúrate de tener una base de datos en ejecución (por ejemplo MySQL o PostgreSQL) y crea una base de- **Nombre**: `distribuidos`
+- **Contraseña**: `1234`
+Ejemplo en MySQL:
+```sql
+CREATE DATABASE distribuidos;
+```
+> ■■ **Importante:** Verifica que las credenciales coincidan con las definidas en `application.prope
+3. **Compilar el proyecto (recomendado)**
+```bash
+mvn clean install
+```
+4. **Ejecutar la aplicación**
+**Opción 1 (con Maven):**
+```bash
+mvn spring-boot:run
+```
+**Opción 2 (con el .jar generado):**
+```bash
+java -jar target/nombre-app.jar
+```
+5. **Acceder a la aplicación**
+```
+https://localhost:8443
+```
+**Pantalla de seguridad del navegador**
+Es posible que el navegador muestre un aviso de conexión no segura debido al uso de un certificado SSPara continuar:
+- Haz clic en **"Avanzado"**
+- Luego en **"Acceder a localhost (no seguro)"**
 
 #### **Credenciales de prueba**
 - **Usuario Admin**: usuario: `admin`, contraseña: `adminpass`
