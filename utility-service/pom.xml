@@ -5,13 +5,13 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>4.0.5</version>
+		<version>4.0.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>es.codeujrc</groupId>
-	<artifactId>distribuidos</artifactId>
+	<groupId>es.codeurjc</groupId>
+	<artifactId>utility-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>distribuidos</name>
+	<name>utility-service</name>
 	<description/>
 	<url/>
 	<licenses>

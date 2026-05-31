@@ -2,11 +2,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "UtilityServiceApplication",
+            "request": "launch",
+            "mainClass": "es.codeurjc.utility_service.UtilityServiceApplication"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-DistribuidosApplication<distribuidos>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "es.codeujrc.distribuidos.DistribuidosApplication",
             "projectName": "distribuidos",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DistribuidosApplication<app-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "es.codeujrc.distribuidos.DistribuidosApplication",
+            "projectName": "app-service",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
