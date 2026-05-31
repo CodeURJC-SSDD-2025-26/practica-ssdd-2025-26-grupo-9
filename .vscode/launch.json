@@ -25,6 +25,16 @@
             "projectName": "app-service",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-UtilityServiceApplication<utility-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "es.codeurjc.utility_service.UtilityServiceApplication",
+            "projectName": "utility-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
