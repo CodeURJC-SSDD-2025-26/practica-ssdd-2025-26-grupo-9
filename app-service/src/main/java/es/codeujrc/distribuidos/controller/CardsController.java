@@ -72,11 +72,7 @@ public class CardsController {
     }
     @PostMapping("/saveCard")
     public String saveCard(Card card, @RequestParam("imageFile") MultipartFile imageFile) throws IOException {
-
-        if (imageFile != null && !imageFile.isEmpty()) {
-            card.setImage(imageFile.getBytes());
-        }
-        cardService.save(card);
+        cardService.saveCard(card, imageFile);
         return "redirect:/addCards";
     }
 }

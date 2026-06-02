@@ -35,8 +35,14 @@ public class CardService {
 
 	public void saveCard(Card card, MultipartFile imageFile) throws IOException {
         if (imageFile != null && !imageFile.isEmpty()) {
-            
             card.setImage(imageFile.getBytes());
+        } else {
+            if (card.getId() != null) {
+                Optional<Card> existingCard = repository.findById(card.getId());
+                if (existingCard.isPresent()) {
+                    card.setImage(existingCard.get().getImage());
+                }
+            }
         }
         repository.save(card);
     }
