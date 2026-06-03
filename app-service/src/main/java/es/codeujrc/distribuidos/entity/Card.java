@@ -127,6 +127,10 @@ public class Card {
         return image;
     }
 
+    public Counter getCounter() {
+        return counter;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -177,5 +181,9 @@ public class Card {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public void setCounter(Counter counter) {
+        this.counter = counter;
     }
 }
