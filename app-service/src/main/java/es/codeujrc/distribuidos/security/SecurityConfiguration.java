@@ -59,7 +59,7 @@ public class SecurityConfiguration {
             .exceptionHandling(handling -> handling.authenticationEntryPoint(unauthorizedHandlerJwt));
 
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(HttpMethod.POST, "/api/v1/auth/login", "/api/v1/auth/register").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/v1/auth/login", "/api/v1/auth/register", "/api/v1/auth/logout", "/api/v1/auth/refresh").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/v1/cards/**", "/api/v1/decks/**", "/api/v1/users/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/v1/cards/**", "/api/v1/decks/**").hasAnyRole("REGISTERED", "ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/api/v1/cards/**", "/api/v1/decks/**", "/api/v1/users/**").hasAnyRole("REGISTERED", "ADMIN")

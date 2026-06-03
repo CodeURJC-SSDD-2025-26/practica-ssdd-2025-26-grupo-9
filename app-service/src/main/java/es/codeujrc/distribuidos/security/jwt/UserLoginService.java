@@ -70,7 +70,7 @@ public class UserLoginService {
         SecurityContextHolder.clearContext();
         response.addCookie(removeTokenCookie(TokenType.ACCESS));
         response.addCookie(removeTokenCookie(TokenType.REFRESH));
-        return "logout successfully";
+        return "Logged out successfully";
     }
 
     private Cookie buildTokenCookie(TokenType type, String token) {
