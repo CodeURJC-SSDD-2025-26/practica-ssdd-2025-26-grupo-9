@@ -75,6 +75,12 @@ public class Card {
         this.image = image;
     }
 
+    
+    @Transient
+    public boolean isPresent() {
+        return this.id != null;
+    }
+    
     public Long getId() {
         return id;
     }

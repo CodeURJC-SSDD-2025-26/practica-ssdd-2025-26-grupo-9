@@ -3,7 +3,9 @@ package es.codeujrc.distribuidos.service;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.data.autoconfigure.web.DataWebProperties.Pageable;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.util.Pair;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.core.io.Resource;
 
+import es.codeujrc.distribuidos.entity.Commentary;
 import es.codeujrc.distribuidos.entity.User;
 import es.codeujrc.distribuidos.repository.UserRepository;
 import es.codeujrc.distribuidos.security.SecurityContextUpdater;
@@ -48,6 +51,10 @@ public class UserService {
 		return usersRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("User not found: " + id));
 	}
+
+	public Page<User> findByUserIdPaginated(Long userId, Pageable pageable) {
+        return usersRepository.findByUserId(userId, pageable);
+    }
 
 	public User findByUsername(String username) {
 		return usersRepository.findByUsername(username)
