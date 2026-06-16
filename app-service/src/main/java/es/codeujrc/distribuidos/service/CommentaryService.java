@@ -10,6 +10,8 @@ import es.codeujrc.distribuidos.entity.Commentary;
 import es.codeujrc.distribuidos.entity.Deck;
 import es.codeujrc.distribuidos.repository.CommentaryRepository;
 import es.codeujrc.distribuidos.entity.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Service
 public class CommentaryService {
@@ -28,6 +30,10 @@ public class CommentaryService {
 	public List<Commentary> findAll() {
 		return repository.findAll();
 	}
+
+	public Page<Commentary> findByDeckIdPaginated(Long deckId, Pageable pageable) {
+        return repository.findByDeckId(deckId, pageable);
+    }
 
 	public void save(Commentary commentary) {
 		repository.save(commentary);
