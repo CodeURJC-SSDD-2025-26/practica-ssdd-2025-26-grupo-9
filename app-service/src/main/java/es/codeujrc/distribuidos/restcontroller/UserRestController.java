@@ -37,19 +37,19 @@ public class UserRestController {
     private UserMapper userMapper;
 
 
-    @GetMapping("/")
-    public ResponseEntity<Page<UserResponseDTO>> getUsers(
-            @PathVariable Long userId,
-            Pageable pageable) {
+    //@GetMapping("/")
+    //public ResponseEntity<Page<UserResponseDTO>> getUsers(
+            //@PathVariable Long userId,
+            //Pageable pageable) {
         
-        if (!userService.findById(userId).isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        //if (!userService.findById(userId).isPresent()) {
+            //return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        //}
 
-        Page<User> usersPage = userService.findByUserIdPaginated(userId, pageable);
+        //Page<User> usersPage = userService.findByUserIdPaginated(userId, pageable);
         
-        Page<UserResponseDTO> dtoPage = usersPage.map(userMapper::toResponseDTO);
+        //Page<UserResponseDTO> dtoPage = usersPage.map(userMapper::toResponseDTO);
 
-        return ResponseEntity.ok(dtoPage);
-    }
+        //return ResponseEntity.ok(dtoPage);
+    //}
 }

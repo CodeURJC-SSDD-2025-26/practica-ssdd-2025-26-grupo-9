@@ -52,9 +52,6 @@ public class UserService {
 				.orElseThrow(() -> new RuntimeException("User not found: " + id));
 	}
 
-	public Page<User> findByUserIdPaginated(Long userId, Pageable pageable) {
-        return usersRepository.findByUserId(userId, pageable);
-    }
 
 	public User findByUsername(String username) {
 		return usersRepository.findByUsername(username)

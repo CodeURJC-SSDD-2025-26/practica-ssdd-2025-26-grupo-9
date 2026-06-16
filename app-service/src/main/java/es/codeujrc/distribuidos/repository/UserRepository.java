@@ -1,9 +1,8 @@
 package es.codeujrc.distribuidos.repository;
 
 import java.util.Optional;
-
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
-import org.springframework.boot.data.autoconfigure.web.DataWebProperties.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import es.codeujrc.distribuidos.entity.Commentary;
@@ -20,6 +19,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     
     Optional<User> findById(long id);
     
-    Page<User> findByUserId(Long userId, Pageable pageable);
+    Page<User> findById(Long userId, Pageable pageable);
 
 }
