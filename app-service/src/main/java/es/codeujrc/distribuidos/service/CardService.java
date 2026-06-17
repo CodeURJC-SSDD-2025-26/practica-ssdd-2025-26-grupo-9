@@ -8,6 +8,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import es.codeujrc.distribuidos.entity.Card;
 import es.codeujrc.distribuidos.repository.CardRepository;
@@ -29,6 +31,11 @@ public class CardService {
 	public List<Card> findAll() {
 		return repository.findAll();
 	}
+
+	public Page<Card> findAll(Pageable pageable) {
+		return repository.findAll(pageable);
+	}
+	
 	public void save(Card card) {
 		repository.save(card);
 	}

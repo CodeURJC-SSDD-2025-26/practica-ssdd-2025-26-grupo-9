@@ -55,30 +55,38 @@ public class SecurityConfiguration {
         http.authenticationProvider(authenticationProvider());
 
         http
-            .securityMatcher("/api/**")
-            .exceptionHandling(handling -> handling.authenticationEntryPoint(unauthorizedHandlerJwt));
+                .securityMatcher("/api/**")
+                .exceptionHandling(handling -> handling.authenticationEntryPoint(unauthorizedHandlerJwt));
 
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(HttpMethod.POST, "/api/v1/auth/login", "/api/v1/auth/register", "/api/v1/auth/logout", "/api/v1/auth/refresh").permitAll()
-                
+                .requestMatchers(HttpMethod.POST, "/api/v1/auth/login", "/api/v1/auth/register", "/api/v1/auth/logout",
+                        "/api/v1/auth/refresh")
+                .permitAll()
+
                 .requestMatchers(HttpMethod.GET, "/api/v1/decks/*/commentaries/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/v1/decks/*/commentaries/**").permitAll()
                 .requestMatchers(HttpMethod.DELETE, "/api/v1/decks/*/commentaries/**").permitAll()
 
-                .requestMatchers(HttpMethod.GET, "/api/v1/cards/**", "/api/v1/decks/**", "/api/v1/users/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/v1/cards/**", "/api/v1/decks/**").hasAnyRole("REGISTERED", "ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/api/v1/cards/**", "/api/v1/decks/**", "/api/v1/users/**").hasAnyRole("REGISTERED", "ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/v1/users/**", "/api/v1/cards/**", "/api/v1/decks/**").hasRole("ADMIN")
-                
-                .anyRequest().authenticated()
-        );
+                .requestMatchers(HttpMethod.GET, "/api/v1/cards", "/api/v1/cards/**", "/api/v1/decks/**", "/api/v1/users/**").permitAll()
+
+                .requestMatchers(HttpMethod.POST, "/api/v1/cards", "/api/v1/cards/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/cards/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/api/v1/cards/**").hasRole("ADMIN")
+
+                .requestMatchers(HttpMethod.POST, "/api/v1/decks", "/api/v1/decks/**").hasAnyRole("REGISTERED", "ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/decks/**", "/api/v1/users/**")
+                .hasAnyRole("REGISTERED", "ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/api/v1/users/**", "/api/v1/decks/**").hasRole("ADMIN")
+
+                .anyRequest().authenticated());
 
         http.formLogin(formLogin -> formLogin.disable());
         http.csrf(csrf -> csrf.disable());
         http.httpBasic(httpBasic -> httpBasic.disable());
         http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-        http.addFilterBefore(new JwtRequestFilter(userDetailsService, jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(new JwtRequestFilter(userDetailsService, jwtTokenProvider),
+                UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -96,7 +104,8 @@ public class SecurityConfiguration {
                 .requestMatchers("/addCards", "/adminCard", "/saveCard", "/deleteCard/**").hasRole("ADMIN")
                 .requestMatchers("/adminUsers", "/editUserAdmin/**", "/deleteUser/**").hasRole("ADMIN")
                 .requestMatchers("/profile", "/editUser", "/downloadMyDecks").hasAnyRole("REGISTERED", "ADMIN")
-                .requestMatchers("/addDeck", "/saveDeck", "/admindeck/**", "/editDeck/**", "/deleteDeck/**").hasAnyRole("REGISTERED", "ADMIN")
+                .requestMatchers("/addDeck", "/saveDeck", "/admindeck/**", "/editDeck/**", "/deleteDeck/**")
+                .hasAnyRole("REGISTERED", "ADMIN")
                 .requestMatchers("/commentDeck/**", "/deleteComment/**").hasAnyRole("REGISTERED", "ADMIN")
                 .requestMatchers("/user/*/follow", "/user/*/unfollow").hasAnyRole("REGISTERED", "ADMIN")
                 .requestMatchers("/cardDetail").hasAnyRole("REGISTERED", "ADMIN")
