@@ -2,10 +2,11 @@ package es.codeujrc.distribuidos.service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.data.autoconfigure.web.DataWebProperties.Pageable;
+import org.springframework.data.domain.Pageable;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.util.Pair;
@@ -52,6 +53,9 @@ public class UserService {
 				.orElseThrow(() -> new RuntimeException("User not found: " + id));
 	}
 
+	public Page<User> findByUserIdPaginated(Long userId, Pageable pageable) {
+        return usersRepository.findById(userId, pageable);
+    }
 
 	public User findByUsername(String username) {
 		return usersRepository.findByUsername(username)
@@ -132,6 +136,15 @@ public class UserService {
 
 		usersRepository.save(user);
 		return conflicts;
+	}
+
+	public Pair<Boolean, Boolean> updateUser(long id, String newUsername, String newEmail, String newPassword,String newRole)
+			throws IOException {
+		return updateUserAsAdmin(id, newUsername, newEmail, newPassword, newRole, null);
+	}
+	
+	public Page<User> findAll(Pageable pageable) {
+		return usersRepository.findAll(pageable);
 	}
 
 	public Pair<Boolean, Boolean> updateUserAsAdmin(long id, String newUsername, String newEmail, String newPassword,
