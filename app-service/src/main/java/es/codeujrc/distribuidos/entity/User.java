@@ -95,10 +95,6 @@ public class User {
         return followers;
     }
 
-    @Transient
-    public boolean isPresent() {
-        return this.id != null;
-    }
 
     public void setId(Long id) {
         this.id = id;
@@ -139,4 +135,5 @@ public class User {
     public void setFollowers(List<User> followers) {
         this.followers = followers;
     }
+
 }
