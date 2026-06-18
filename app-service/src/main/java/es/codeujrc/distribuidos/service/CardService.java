@@ -1,46 +1,92 @@
 package es.codeujrc.distribuidos.service;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 import java.util.Map;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import es.codeujrc.distribuidos.DTOMappers.CardMapper;
+import es.codeujrc.distribuidos.DTOs.CardBasicResponseDTO;
+import es.codeujrc.distribuidos.DTOs.CardDetailResponseDTO;
+import es.codeujrc.distribuidos.DTOs.CardRequestDTO;
 import es.codeujrc.distribuidos.entity.Card;
 import es.codeujrc.distribuidos.repository.CardRepository;
 
 @Service
 public class CardService {
 
-	@Autowired
-	private CardRepository repository;
+    @Autowired
+    private CardRepository repository;
 
-	public Optional<Card> findById(long id) {
-		return repository.findById(id);
-	}
-	
-	public boolean exist(long id) {
-		return repository.existsById(id);
-	}
+    @Autowired
+    private CardMapper cardMapper;
 
-	public List<Card> findAll() {
-		return repository.findAll();
-	}
+    public Optional<Card> findById(long id) {
+        return repository.findById(id);
+    }
 
-	public Page<Card> findAll(Pageable pageable) {
-		return repository.findAll(pageable);
-	}
-	
-	public void save(Card card) {
-		repository.save(card);
-	}
+    public boolean exist(long id) {
+        return repository.existsById(id);
+    }
 
-	public void saveCard(Card card, MultipartFile imageFile) throws IOException {
+    public List<Card> findAll() {
+        return repository.findAll();
+    }
+
+    public Page<CardBasicResponseDTO> findAll(Pageable pageable) {
+        return repository.findAll(pageable).map(cardMapper::toBasicDTO);
+    }
+
+    public Optional<CardDetailResponseDTO> findDetailById(long id) {
+        return repository.findById(id).map(cardMapper::toDetailDTO);
+    }
+
+    public void save(Card card) {
+        repository.save(card);
+    }
+
+    public CardDetailResponseDTO create(CardRequestDTO cardRequestDTO) {
+        validateCardRequest(cardRequestDTO);
+
+        Card card = cardMapper.toDomain(cardRequestDTO);
+        repository.save(card);
+
+        return cardMapper.toDetailDTO(card);
+    }
+
+    public Optional<CardDetailResponseDTO> update(long id, CardRequestDTO cardRequestDTO) {
+        validateCardRequest(cardRequestDTO);
+
+        Optional<Card> savedCard = repository.findById(id);
+        if (savedCard.isEmpty()) {
+            return Optional.empty();
+        }
+
+        Card card = savedCard.get();
+        updateCardFields(card, cardRequestDTO);
+        repository.save(card);
+
+        return Optional.of(cardMapper.toDetailDTO(card));
+    }
+
+    public boolean deleteIfExists(long id) {
+        if (!repository.existsById(id)) {
+            return false;
+        }
+
+        repository.deleteById(id);
+        return true;
+    }
+
+    public void saveCard(Card card, MultipartFile imageFile) throws IOException {
         if (imageFile != null && !imageFile.isEmpty()) {
             card.setImage(imageFile.getBytes());
         } else {
@@ -54,34 +100,61 @@ public class CardService {
         repository.save(card);
     }
 
-	public void delete(long id) {
-		repository.deleteById(id);
-	}
+    public void delete(long id) {
+        repository.deleteById(id);
+    }
 
-	public byte[] getCardImage(long id) {
-		Optional<Card> card = repository.findById(id);
-		if (card.isPresent()) {
-			return card.get().getImage();
-		}
-		return null;
-	}
-	public Map<String, Object> getMetaCardsData() {
-		
-    // Obtenemos los nombres y el tamaño de su lista de mazos
-    List<Object[]> results = repository.countCardUsageInDecks();
-    
-    List<String> names = new ArrayList<>();
-    List<Integer> deckCounts = new ArrayList<>();
+    public byte[] getCardImage(long id) {
+        Optional<Card> card = repository.findById(id);
+        if (card.isPresent()) {
+            return card.get().getImage();
+        }
+        return null;
+    }
 
-    // Limitamos a las 7 cartas más populares
-    results.stream().limit(7).forEach(row -> {
-        names.add((String) row[0]);
-        deckCounts.add((Integer) row[1]);
-    });
+    public Optional<byte[]> getImage(long id) {
+        return repository.findById(id)
+                .map(Card::getImage)
+                .filter(image -> image.length > 0);
+    }
 
-    Map<String, Object> map = new HashMap<>();
-    map.put("names", names);
-    map.put("counts", deckCounts);
-    return map;
-}
+    public Map<String, Object> getMetaCardsData() {
+
+        // Obtenemos los nombres y el tamaño de su lista de mazos
+        List<Object[]> results = repository.countCardUsageInDecks();
+
+        List<String> names = new ArrayList<>();
+        List<Integer> deckCounts = new ArrayList<>();
+
+        // Limitamos a las 7 cartas más populares
+        results.stream().limit(7).forEach(row -> {
+            names.add((String) row[0]);
+            deckCounts.add((Integer) row[1]);
+        });
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("names", names);
+        map.put("counts", deckCounts);
+        return map;
+    }
+
+    private void validateCardRequest(CardRequestDTO cardRequestDTO) {
+        if (cardRequestDTO.name() == null || cardRequestDTO.name().isBlank()) {
+            throw new IllegalArgumentException("Card name is required");
+        }
+    }
+
+    private void updateCardFields(Card card, CardRequestDTO cardRequestDTO) {
+        card.setName(cardRequestDTO.name());
+        card.setDescription(cardRequestDTO.description());
+        card.setTriggerEffect(cardRequestDTO.triggerEffect());
+        card.setCrew(cardRequestDTO.crew());
+        card.setCost(cardRequestDTO.cost());
+        card.setPower(cardRequestDTO.power());
+        card.setHealth(cardRequestDTO.health());
+        card.setType(cardRequestDTO.type());
+        card.setAttribute(cardRequestDTO.attribute());
+        card.setColor(cardRequestDTO.color());
+        card.setCounter(cardRequestDTO.counter());
+    }
 }
