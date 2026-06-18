@@ -22,112 +22,125 @@ import es.codeujrc.distribuidos.security.jwt.UnauthorizedHandlerJwt;
 @Configuration
 public class SecurityConfiguration {
 
-    @Autowired
-    private JwtTokenProvider jwtTokenProvider;
+        @Autowired
+        private JwtTokenProvider jwtTokenProvider;
 
-    @Autowired
-    private RepositoryUserDetailsService userDetailsService;
+        @Autowired
+        private RepositoryUserDetailsService userDetailsService;
 
-    @Autowired
-    private UnauthorizedHandlerJwt unauthorizedHandlerJwt;
+        @Autowired
+        private UnauthorizedHandlerJwt unauthorizedHandlerJwt;
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+        @Bean
+        public PasswordEncoder passwordEncoder() {
+                return new BCryptPasswordEncoder();
+        }
 
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return authProvider;
-    }
+        @Bean
+        public DaoAuthenticationProvider authenticationProvider() {
+                DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService);
+                authProvider.setPasswordEncoder(passwordEncoder());
+                return authProvider;
+        }
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
-        return authConfig.getAuthenticationManager();
-    }
+        @Bean
+        public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+                return authConfig.getAuthenticationManager();
+        }
 
-    @Bean
-    @Order(1)
-    public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
+        @Bean
+        @Order(1)
+        public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
 
-        http.authenticationProvider(authenticationProvider());
+                http.authenticationProvider(authenticationProvider());
 
-        http
-                .securityMatcher("/api/**")
-                .exceptionHandling(handling -> handling.authenticationEntryPoint(unauthorizedHandlerJwt));
+                http
+                                .securityMatcher("/api/**")
+                                .exceptionHandling(
+                                                handling -> handling.authenticationEntryPoint(unauthorizedHandlerJwt));
 
-        http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(HttpMethod.POST, "/api/v1/auth/login", "/api/v1/auth/register", "/api/v1/auth/logout",
-                        "/api/v1/auth/refresh")
-                .permitAll()
+                http.authorizeHttpRequests(authorize -> authorize
+                                .requestMatchers(HttpMethod.POST, "/api/v1/auth/login", "/api/v1/auth/register",
+                                                "/api/v1/auth/logout",
+                                                "/api/v1/auth/refresh")
+                                .permitAll()
 
-                .requestMatchers(HttpMethod.GET, "/api/v1/decks/*/commentaries/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/v1/decks/*/commentaries/**").permitAll()
-                .requestMatchers(HttpMethod.DELETE, "/api/v1/decks/*/commentaries/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/v1/decks/*/commentaries/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/v1/decks/*/commentaries/**").permitAll()
+                                .requestMatchers(HttpMethod.DELETE, "/api/v1/decks/*/commentaries/**").permitAll()
 
-                .requestMatchers(HttpMethod.GET, "/api/v1/cards", "/api/v1/cards/**", "/api/v1/decks/**", "/api/v1/users/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/v1/cards", "/api/v1/cards/**", "/api/v1/decks",
+                                                "/api/v1/decks/**",
+                                                "/api/v1/users/**")
+                                .permitAll()
 
-                .requestMatchers(HttpMethod.POST, "/api/v1/cards", "/api/v1/cards/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/api/v1/cards/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/v1/cards/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/api/v1/cards", "/api/v1/cards/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.PUT, "/api/v1/cards/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/api/v1/cards/**").hasRole("ADMIN")
 
-                .requestMatchers(HttpMethod.POST, "/api/v1/decks", "/api/v1/decks/**").hasAnyRole("REGISTERED", "ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/api/v1/decks/**", "/api/v1/users/**")
-                .hasAnyRole("REGISTERED", "ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/v1/users/**", "/api/v1/decks/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/api/v1/decks", "/api/v1/decks/**")
+                                .hasAnyRole("REGISTERED", "ADMIN")
+                                .requestMatchers(HttpMethod.PUT, "/api/v1/decks/**").hasAnyRole("REGISTERED", "ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/api/v1/decks/**")
+                                .hasAnyRole("REGISTERED", "ADMIN")
 
-                .anyRequest().authenticated());
+                                .requestMatchers(HttpMethod.PUT, "/api/v1/users/**").hasAnyRole("REGISTERED", "ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/api/v1/users/**").hasRole("ADMIN")
 
-        http.formLogin(formLogin -> formLogin.disable());
-        http.csrf(csrf -> csrf.disable());
-        http.httpBasic(httpBasic -> httpBasic.disable());
-        http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                                .anyRequest().authenticated());
 
-        http.addFilterBefore(new JwtRequestFilter(userDetailsService, jwtTokenProvider),
-                UsernamePasswordAuthenticationFilter.class);
+                http.formLogin(formLogin -> formLogin.disable());
+                http.csrf(csrf -> csrf.disable());
+                http.httpBasic(httpBasic -> httpBasic.disable());
+                http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-        return http.build();
-    }
+                http.addFilterBefore(new JwtRequestFilter(userDetailsService, jwtTokenProvider),
+                                UsernamePasswordAuthenticationFilter.class);
 
-    @Bean
-    @Order(2)
-    public SecurityFilterChain webFilterChain(HttpSecurity http) throws Exception {
+                return http.build();
+        }
 
-        http.authenticationProvider(authenticationProvider());
+        @Bean
+        @Order(2)
+        public SecurityFilterChain webFilterChain(HttpSecurity http) throws Exception {
 
-        http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/", "/login", "/register", "/decks", "/social").permitAll()
-                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                .requestMatchers("/card/*/image", "/user/*/image").permitAll()
-                .requestMatchers("/css/**", "/js/**", "/images/**", "/style.css").permitAll()
-                .requestMatchers("/addCards", "/adminCard", "/saveCard", "/deleteCard/**").hasRole("ADMIN")
-                .requestMatchers("/adminUsers", "/editUserAdmin/**", "/deleteUser/**").hasRole("ADMIN")
-                .requestMatchers("/profile", "/editUser", "/downloadMyDecks").hasAnyRole("REGISTERED", "ADMIN")
-                .requestMatchers("/addDeck", "/saveDeck", "/admindeck/**", "/editDeck/**", "/deleteDeck/**")
-                .hasAnyRole("REGISTERED", "ADMIN")
-                .requestMatchers("/commentDeck/**", "/deleteComment/**").hasAnyRole("REGISTERED", "ADMIN")
-                .requestMatchers("/user/*/follow", "/user/*/unfollow").hasAnyRole("REGISTERED", "ADMIN")
-                .requestMatchers("/cardDetail").hasAnyRole("REGISTERED", "ADMIN")
-                .anyRequest().authenticated());
+                http.authenticationProvider(authenticationProvider());
 
-        http.formLogin(form -> form
-                .loginPage("/login")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/", true)
-                .failureUrl("/login?errorlogin=true")
-                .permitAll());
+                http.authorizeHttpRequests(authorize -> authorize
+                                .requestMatchers("/", "/login", "/register", "/decks", "/social").permitAll()
+                                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                                .requestMatchers("/card/*/image", "/user/*/image").permitAll()
+                                .requestMatchers("/css/**", "/js/**", "/images/**", "/style.css").permitAll()
+                                .requestMatchers("/addCards", "/adminCard", "/saveCard", "/deleteCard/**")
+                                .hasRole("ADMIN")
+                                .requestMatchers("/adminUsers", "/editUserAdmin/**", "/deleteUser/**").hasRole("ADMIN")
+                                .requestMatchers("/profile", "/editUser", "/downloadMyDecks")
+                                .hasAnyRole("REGISTERED", "ADMIN")
+                                .requestMatchers("/addDeck", "/saveDeck", "/admindeck/**", "/editDeck/**",
+                                                "/deleteDeck/**")
+                                .hasAnyRole("REGISTERED", "ADMIN")
+                                .requestMatchers("/commentDeck/**", "/deleteComment/**")
+                                .hasAnyRole("REGISTERED", "ADMIN")
+                                .requestMatchers("/user/*/follow", "/user/*/unfollow").hasAnyRole("REGISTERED", "ADMIN")
+                                .requestMatchers("/cardDetail").hasAnyRole("REGISTERED", "ADMIN")
+                                .anyRequest().authenticated());
 
-        http.logout(logout -> logout
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login")
-                .permitAll());
+                http.formLogin(form -> form
+                                .loginPage("/login")
+                                .usernameParameter("username")
+                                .passwordParameter("password")
+                                .defaultSuccessUrl("/", true)
+                                .failureUrl("/login?errorlogin=true")
+                                .permitAll());
 
-        http.exceptionHandling(exception -> exception
-                .accessDeniedPage("/error/403"));
+                http.logout(logout -> logout
+                                .logoutUrl("/logout")
+                                .logoutSuccessUrl("/login")
+                                .permitAll());
 
-        return http.build();
-    }
+                http.exceptionHandling(exception -> exception
+                                .accessDeniedPage("/error/403"));
+
+                return http.build();
+        }
 }
