@@ -1,0 +1,30 @@
+services: 
+  app-service:
+    build: ./app-service
+    ports:
+      - "8443:8443"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/distribuidos
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD:-1234}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure
+
+  db:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-1234}
+      - MYSQL_DATABASE=distribuidos
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-uroot", "-p$$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      timeout: 5s
+      start_period: 10s
+      retries: 5
+
+volumes:
+  db_data:
