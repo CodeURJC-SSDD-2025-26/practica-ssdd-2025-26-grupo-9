@@ -55,7 +55,6 @@ public class CommentaryRestController {
             @PathVariable Long deckId,
             @RequestBody CommentaryRequestDTO requestDTO) {
 
-        // 1. BLINDAJE: Si no está logueado (es anonymousUser), devolvemos 401 Unauthorized inmediatamente
         String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         if (currentUsername == null || currentUsername.equals("anonymousUser")) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -82,7 +81,6 @@ public class CommentaryRestController {
             @PathVariable Long deckId,
             @PathVariable Long commentId) {
 
-        // 1. BLINDAJE: Si no está logueado, ni siquiera miramos el comentario
         String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         if (currentUsername == null || currentUsername.equals("anonymousUser")) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
