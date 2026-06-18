@@ -95,6 +95,7 @@ public class User {
         return followers;
     }
 
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -134,4 +135,5 @@ public class User {
     public void setFollowers(List<User> followers) {
         this.followers = followers;
     }
+
 }

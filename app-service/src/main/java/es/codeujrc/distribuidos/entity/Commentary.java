@@ -26,6 +26,12 @@ public class Commentary {
         this.user = user;
     }
 
+    
+    @Transient
+    public boolean isPresent() {
+        return this.id != null;
+    }
+    
     public Long getId() {
         return id;
     }

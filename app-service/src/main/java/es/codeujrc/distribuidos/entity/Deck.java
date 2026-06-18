@@ -45,6 +45,12 @@ public class Deck {
         return id;
     }
 
+    
+    @Transient
+    public boolean isPresent() {
+        return this.id != null;
+    }
+    
     public String getName() {
         return name;
     }

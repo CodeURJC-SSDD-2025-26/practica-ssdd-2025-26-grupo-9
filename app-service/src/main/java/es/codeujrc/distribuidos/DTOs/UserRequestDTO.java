@@ -6,5 +6,5 @@ public record UserRequestDTO(
     String username, 
     String password, 
     String email, 
-    User.Role role
+    String role
 ) {}
