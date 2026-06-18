@@ -9,7 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import jakarta.servlet.http.HttpServletResponse;
 
-@ControllerAdvice
+@ControllerAdvice(basePackages = "es.codeujrc.distribuidos.controller")
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResponseStatusException.class)

@@ -99,6 +99,7 @@ public class SecurityConfiguration {
 
         http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/", "/login", "/register", "/decks", "/social").permitAll()
+                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                 .requestMatchers("/card/*/image", "/user/*/image").permitAll()
                 .requestMatchers("/css/**", "/js/**", "/images/**", "/style.css").permitAll()
                 .requestMatchers("/addCards", "/adminCard", "/saveCard", "/deleteCard/**").hasRole("ADMIN")
