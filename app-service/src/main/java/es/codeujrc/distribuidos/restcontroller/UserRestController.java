@@ -12,9 +12,12 @@ import es.codeujrc.distribuidos.entity.User;
 import es.codeujrc.distribuidos.service.CommentaryService;
 import es.codeujrc.distribuidos.service.DeckService;
 import es.codeujrc.distribuidos.service.UserService;
+import jakarta.servlet.http.HttpServletResponse;
+import es.codeujrc.distribuidos.service.PDFService;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Optional;
-
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,6 +44,8 @@ public class UserRestController {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private PDFService pdfService;
 
     @GetMapping("/")
     public ResponseEntity<Page<UserResponseDTO>> getUsers(Pageable pageable) {
@@ -97,5 +102,23 @@ public class UserRestController {
         userService.delete(userId);
 
         return ResponseEntity.ok(responseDTO);
+    }
+
+    // Tecnologia extra de los pdfs
+    @GetMapping("/{userId}/MyDecksPdf")
+    public ResponseEntity<Void> downloadMyDecks(HttpServletResponse response, Principal principal) throws IOException {
+
+        if (principal == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        User user = userService.findByUsername(principal.getName());
+        List<Deck> myDecks = deckService.findByUserId(user.getId());
+
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=Mis_Mazos.pdf");
+
+        pdfService.exportDecksToPdf(myDecks, response.getOutputStream());
+        return ResponseEntity.ok().build();
     }
 }

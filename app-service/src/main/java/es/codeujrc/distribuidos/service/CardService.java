@@ -13,8 +13,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import es.codeujrc.distribuidos.DTOMappers.CardChartMapper;
 import es.codeujrc.distribuidos.DTOMappers.CardMapper;
 import es.codeujrc.distribuidos.DTOs.CardBasicResponseDTO;
+import es.codeujrc.distribuidos.DTOs.CardChartDTO;
 import es.codeujrc.distribuidos.DTOs.CardDetailResponseDTO;
 import es.codeujrc.distribuidos.DTOs.CardRequestDTO;
 import es.codeujrc.distribuidos.entity.Card;
@@ -28,6 +30,9 @@ public class CardService {
 
     @Autowired
     private CardMapper cardMapper;
+
+    @Autowired
+    private CardChartMapper cardChartMapper;
 
     public Optional<Card> findById(long id) {
         return repository.findById(id);
@@ -136,6 +141,11 @@ public class CardService {
         map.put("names", names);
         map.put("counts", deckCounts);
         return map;
+    }
+
+    public CardChartDTO getMetaCardsChartData() {
+        Map<String, Object> chartData = getMetaCardsData();
+        return cardChartMapper.toDTO(chartData);
     }
 
     private void validateCardRequest(CardRequestDTO cardRequestDTO) {
