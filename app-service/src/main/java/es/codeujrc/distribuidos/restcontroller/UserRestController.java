@@ -47,14 +47,14 @@ public class UserRestController {
     @Autowired
     private PDFService pdfService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<Page<UserResponseDTO>> getUsers(Pageable pageable) {
         Page<User> usersPage = userService.findAll(pageable);
         Page<UserResponseDTO> dtoPage = usersPage.map(userMapper::toResponseDTO);
         return ResponseEntity.ok(dtoPage);
     }
 
-    @PostMapping("/{userId}")
+    @PutMapping("/{userId}")
     public ResponseEntity<UserResponseDTO> editUsers(
             @PathVariable Long userId,
             @RequestBody UserRequestDTO requestDTO) throws IOException {
@@ -104,21 +104,4 @@ public class UserRestController {
         return ResponseEntity.ok(responseDTO);
     }
 
-    // Tecnologia extra de los pdfs
-    @GetMapping("/{userId}/MyDecksPdf")
-    public ResponseEntity<Void> downloadMyDecks(HttpServletResponse response, Principal principal) throws IOException {
-
-        if (principal == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-
-        User user = userService.findByUsername(principal.getName());
-        List<Deck> myDecks = deckService.findByUserId(user.getId());
-
-        response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "attachment; filename=Mis_Mazos.pdf");
-
-        pdfService.exportDecksToPdf(myDecks, response.getOutputStream());
-        return ResponseEntity.ok().build();
-    }
 }

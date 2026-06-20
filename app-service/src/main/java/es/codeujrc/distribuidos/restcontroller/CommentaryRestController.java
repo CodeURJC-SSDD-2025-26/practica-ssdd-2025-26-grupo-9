@@ -34,7 +34,7 @@ public class CommentaryRestController {
     @Autowired
     private CommentaryMapper commentaryMapper;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<Page<CommentaryResponseDTO>> getCommentaries(
             @PathVariable Long deckId,
             Pageable pageable) {
@@ -50,7 +50,7 @@ public class CommentaryRestController {
         return ResponseEntity.ok(dtoPage);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<CommentaryResponseDTO> createCommentary(
             @PathVariable Long deckId,
             @RequestBody CommentaryRequestDTO requestDTO) {
