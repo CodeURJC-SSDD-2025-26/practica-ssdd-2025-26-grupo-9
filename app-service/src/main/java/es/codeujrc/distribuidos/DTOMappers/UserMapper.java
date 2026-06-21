@@ -1,5 +1,6 @@
 package es.codeujrc.distribuidos.DTOMappers;
 
+import es.codeujrc.distribuidos.DTOs.UserBasicResponseDTO;
 import es.codeujrc.distribuidos.DTOs.UserRequestDTO;
 import es.codeujrc.distribuidos.DTOs.UserResponseDTO;
 import es.codeujrc.distribuidos.entity.User;
@@ -12,6 +13,7 @@ import java.util.List;
 public interface UserMapper {
 
     UserResponseDTO toResponseDTO(User user);
+    UserBasicResponseDTO toBasicResponseDTO(User user);
     List<UserResponseDTO> toResponseDTOs(Collection<User> users);
 
     @Mapping(target = "id", ignore = true)

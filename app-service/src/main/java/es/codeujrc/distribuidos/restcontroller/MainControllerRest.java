@@ -25,11 +25,6 @@ public class MainControllerRest {
 
     @GetMapping("/cards")
     public ResponseEntity<CardChartDTO> getCardChartData() {
-        
-        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-        if (currentUsername == null || currentUsername.equals("anonymousUser")) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
         CardChartDTO chartData = cardService.getMetaCardsChartData();
         return ResponseEntity.ok(chartData);
     }
