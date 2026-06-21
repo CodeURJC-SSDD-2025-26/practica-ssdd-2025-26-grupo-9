@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -18,6 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import es.codeujrc.distribuidos.security.jwt.JwtRequestFilter;
 import es.codeujrc.distribuidos.security.jwt.JwtTokenProvider;
 import es.codeujrc.distribuidos.security.jwt.UnauthorizedHandlerJwt;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
 public class SecurityConfiguration {
@@ -56,8 +58,17 @@ public class SecurityConfiguration {
 
                 http
                                 .securityMatcher("/api/**")
-                                .exceptionHandling(
-                                                handling -> handling.authenticationEntryPoint(unauthorizedHandlerJwt));
+                                .exceptionHandling(handling -> handling
+                                                .authenticationEntryPoint(unauthorizedHandlerJwt)
+                                                .accessDeniedHandler((request, response, accessDeniedException) -> {
+                                                        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                                                        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+                                                        response.setCharacterEncoding("UTF-8");
+                                                        response.getWriter().write(
+                                                                        "{\"error\":\"Forbidden\",\"message\":\"You do not have permission to access this resource\",\"path\":\"%s\"}"
+                                                                                        .formatted(request
+                                                                                                        .getServletPath()));
+                                                }));
 
                 http.authorizeHttpRequests(authorize -> authorize
                                 .requestMatchers(HttpMethod.POST, "/api/v1/auth/login", "/api/v1/auth/register",

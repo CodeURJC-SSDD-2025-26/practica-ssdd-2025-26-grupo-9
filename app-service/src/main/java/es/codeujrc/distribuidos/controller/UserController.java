@@ -40,7 +40,13 @@ public class UserController {
     @GetMapping("/login")
     public String login(Model model, @RequestParam(required = false) String error,
             @RequestParam(required = false) String errorlogin,
-            @RequestParam(required = false) String registrationSuccess) {
+            @RequestParam(required = false) String registrationSuccess,
+            Principal principal) {
+
+        if (principal != null) {
+            return "redirect:/";
+        }
+
         if (error != null) {
             model.addAttribute("error", true);
         }

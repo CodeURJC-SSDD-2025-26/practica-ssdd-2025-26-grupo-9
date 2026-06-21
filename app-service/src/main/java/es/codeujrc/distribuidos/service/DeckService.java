@@ -207,10 +207,9 @@ public class DeckService {
     }
 
     private void validateDeckAccess(Deck deck, User user) {
-        boolean isAdmin = user.getRole().equals(User.Role.ADMIN);
         boolean isOwner = deck.getUser() != null && deck.getUser().getUsername().equals(user.getUsername());
 
-        if (!isOwner && !isAdmin) {
+        if (!isOwner) {
             throw new SecurityException("You do not have permission to modify this deck");
         }
     }

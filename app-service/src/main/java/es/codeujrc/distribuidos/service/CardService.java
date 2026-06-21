@@ -2,6 +2,7 @@ package es.codeujrc.distribuidos.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +63,7 @@ public class CardService {
         validateCardRequest(cardRequestDTO);
 
         Card card = cardMapper.toDomain(cardRequestDTO);
+        updateCardImage(card, cardRequestDTO);
         repository.save(card);
 
         return cardMapper.toDetailDTO(card);
@@ -77,6 +79,7 @@ public class CardService {
 
         Card card = savedCard.get();
         updateCardFields(card, cardRequestDTO);
+        updateCardImage(card, cardRequestDTO);
         repository.save(card);
 
         return Optional.of(cardMapper.toDetailDTO(card));
@@ -166,5 +169,22 @@ public class CardService {
         card.setAttribute(cardRequestDTO.attribute());
         card.setColor(cardRequestDTO.color());
         card.setCounter(cardRequestDTO.counter());
+    }
+
+    private void updateCardImage(Card card, CardRequestDTO cardRequestDTO) {
+        if (cardRequestDTO.imageBase64() == null || cardRequestDTO.imageBase64().isBlank()) {
+            return;
+        }
+
+        String cleanImage = cardRequestDTO.imageBase64();
+        if (cleanImage.contains(",")) {
+            cleanImage = cleanImage.substring(cleanImage.indexOf(',') + 1);
+        }
+
+        try {
+            card.setImage(Base64.getDecoder().decode(cleanImage));
+        } catch (IllegalArgumentException exception) {
+            throw new IllegalArgumentException("Card image must be valid Base64");
+        }
     }
 }

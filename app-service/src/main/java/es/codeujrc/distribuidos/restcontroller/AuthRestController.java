@@ -33,6 +33,13 @@ public class AuthRestController {
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest, HttpServletResponse response) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null && auth.isAuthenticated() && !auth.getPrincipal().equals("anonymousUser")) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(new AuthResponse(AuthResponse.Status.FAILURE, "Ya tienes una sesion iniciada."));
+        }
+
         try {
             return userLoginService.login(response, loginRequest);
         } catch (AuthenticationException e) {
@@ -43,7 +50,7 @@ public class AuthRestController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@RequestBody UserRequestDTO userRequestDTO) throws IOException {
-        
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null && auth.isAuthenticated() && !auth.getPrincipal().equals("anonymousUser")) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
@@ -51,9 +58,9 @@ public class AuthRestController {
         }
 
         User newUser = userMapper.toDomain(userRequestDTO);
-        
+
         boolean isRegistered = userService.registerNewUser(newUser);
-        
+
         if (!isRegistered) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body(new AuthResponse(AuthResponse.Status.FAILURE, "El nombre de usuario o correo ya existen."));
@@ -67,7 +74,7 @@ public class AuthRestController {
     public ResponseEntity<AuthResponse> logOut(
             @CookieValue(name = "AuthToken", required = false) String token,
             HttpServletResponse response) {
-        
+
         if (token == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new AuthResponse(AuthResponse.Status.FAILURE, "No hay sesion activa."));
@@ -79,7 +86,7 @@ public class AuthRestController {
     public ResponseEntity<AuthResponse> refreshToken(
             @CookieValue(name = "RefreshToken", required = false) String refreshToken,
             HttpServletResponse response) {
-        
+
         if (refreshToken == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new AuthResponse(AuthResponse.Status.FAILURE, "No se ha proporcionado token de refresco."));
