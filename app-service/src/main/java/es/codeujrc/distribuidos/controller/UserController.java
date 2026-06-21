@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import es.codeujrc.distribuidos.DTOMappers.PDFMapper;
 import es.codeujrc.distribuidos.entity.Deck;
 import es.codeujrc.distribuidos.entity.User;
 import es.codeujrc.distribuidos.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import es.codeujrc.distribuidos.service.CardService;
 import es.codeujrc.distribuidos.service.DeckService;
-import es.codeujrc.distribuidos.service.PDFService;
 
 @Controller
 public class UserController {
@@ -35,7 +35,7 @@ public class UserController {
     @Autowired
     private DeckService deckService;
     @Autowired
-    private PDFService pdfService;
+    private PDFMapper pdfMapper;
 
     @GetMapping("/login")
     public String login(Model model, @RequestParam(required = false) String error,
@@ -237,14 +237,28 @@ public class UserController {
             response.sendRedirect("/login");
             return;
         }
-
         User user = userService.findByUsername(principal.getName());
         List<Deck> myDecks = deckService.findByUserId(user.getId());
 
-        response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "attachment; filename=Mis_Mazos.pdf");
+        List<es.codeujrc.distribuidos.DTOs.PDFDeckDTO> dtoList = pdfMapper.toDTOList(myDecks);
 
-        pdfService.exportDecksToPdf(myDecks, response.getOutputStream());
+        try {
+            org.springframework.web.client.RestClient restClient = org.springframework.web.client.RestClient.create();
+            byte[] pdfBytes = restClient.post()
+                    .uri("http://localhost:8080/api/v1/utilities/pdf")
+                    .body(dtoList)
+                    .retrieve()
+                    .body(byte[].class);
+
+            response.setContentType("application/pdf");
+            response.setHeader("Content-Disposition", "attachment; filename=Mis_Mazos.pdf");
+            response.getOutputStream().write(pdfBytes);
+            response.getOutputStream().flush();
+
+        } catch (Exception e) {
+            System.err.println("Fallo al conectar con utility-service: " + e.getMessage());
+            response.sendRedirect("/profile?errorPdf=true");
+        }
     }
 
 }

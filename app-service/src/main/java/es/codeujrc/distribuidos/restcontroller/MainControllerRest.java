@@ -1,6 +1,5 @@
 package es.codeujrc.distribuidos.restcontroller;
 
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.codeujrc.distribuidos.DTOs.CardChartDTO;
-import es.codeujrc.distribuidos.DTOMappers.CardChartMapper;
 import es.codeujrc.distribuidos.service.CardService;
 
 

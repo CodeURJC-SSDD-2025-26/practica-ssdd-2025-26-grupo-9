@@ -1,21 +1,11 @@
-package es.codeujrc.distribuidos.service;
+package es.codeurjc.utility_service.service;
 
-import org.openpdf.text.Document;
-import org.openpdf.text.DocumentException;
-import org.openpdf.text.Element;
-import org.openpdf.text.Font;
-import org.openpdf.text.FontFactory;
-import org.openpdf.text.Image;
-import org.openpdf.text.PageSize;
-import org.openpdf.text.Paragraph;
-import org.openpdf.text.pdf.PdfPCell;
-import org.openpdf.text.pdf.PdfPTable;
-import org.openpdf.text.pdf.PdfWriter;
-
-import es.codeujrc.distribuidos.entity.Card;
-import es.codeujrc.distribuidos.entity.Deck;
-
+import org.openpdf.text.*;
+import org.openpdf.text.pdf.*;
 import org.springframework.stereotype.Service;
+
+import es.codeurjc.utility_service.DTOs.PDFCardDTO;
+import es.codeurjc.utility_service.DTOs.PDFDeckDTO;
 
 import java.io.OutputStream;
 import java.util.List;
@@ -23,9 +13,8 @@ import java.util.List;
 @Service
 public class PDFService {
 
-    public void exportDecksToPdf(List<Deck> decks, OutputStream outputStream) {
+    public void exportDecksToPdf(List<PDFDeckDTO> decks, OutputStream outputStream) {
         Document document = new Document(PageSize.A4);
-        
         try {
             PdfWriter.getInstance(document, outputStream);
             document.open();
@@ -40,7 +29,7 @@ public class PDFService {
             Font normalFont = FontFactory.getFont(FontFactory.HELVETICA, 10);
             Font userFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12);
 
-            for (Deck deck : decks) {
+            for (PDFDeckDTO deck : decks) {
                 PdfPTable mainTable = new PdfPTable(new float[]{1.5f, 5f});
                 mainTable.setWidthPercentage(100);
                 mainTable.setSpacingAfter(15);
@@ -49,65 +38,57 @@ public class PDFService {
                 userCell.setBorder(PdfPCell.NO_BORDER);
                 userCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 
-                try {
-                    byte[] userImgBytes = deck.getUser().getImage();
-                    if (userImgBytes != null && userImgBytes.length > 0) {
-                        Image userImg = Image.getInstance(userImgBytes);
+                if (deck.userImage() != null && deck.userImage().length > 0) {
+                    try {
+                        Image userImg = Image.getInstance(deck.userImage());
                         userImg.scaleToFit(60, 60);
                         userImg.setAlignment(Element.ALIGN_CENTER);
                         userCell.addElement(userImg);
-                    }
-                } catch (Exception e) {
+                    } catch (Exception e) {}
                 }
 
-                Paragraph username = new Paragraph(deck.getUser().getUsername(), userFont);
+                Paragraph username = new Paragraph(deck.username(), userFont);
                 username.setAlignment(Element.ALIGN_CENTER);
                 username.setSpacingBefore(5);
                 userCell.addElement(username);
-                
                 mainTable.addCell(userCell);
 
                 PdfPCell deckCell = new PdfPCell();
                 deckCell.setBorder(PdfPCell.NO_BORDER);
-
-                Paragraph deckName = new Paragraph(deck.getName(), deckTitleFont);
+                Paragraph deckName = new Paragraph(deck.deckName(), deckTitleFont);
                 deckName.setSpacingAfter(5);
                 deckCell.addElement(deckName);
 
-                Paragraph desc = new Paragraph(deck.getDescription(), normalFont);
+                Paragraph desc = new Paragraph(deck.deckDescription(), normalFont);
                 desc.setSpacingAfter(15);
                 deckCell.addElement(desc);
 
                 PdfPTable cardsTable = new PdfPTable(6);
                 cardsTable.setWidthPercentage(100);
 
-                for (Card card : deck.getCards()) {
+                for (PDFCardDTO card : deck.cards()) {
                     PdfPCell cardCell = new PdfPCell();
                     cardCell.setBorder(PdfPCell.NO_BORDER);
                     cardCell.setHorizontalAlignment(Element.ALIGN_CENTER);
                     cardCell.setPadding(2);
 
-                    try {
-                        byte[] cardImgBytes = card.getImage();
-                        if (cardImgBytes != null && cardImgBytes.length > 0) {
-                            Image cardImg = Image.getInstance(cardImgBytes);
+                    if (card.image() != null && card.image().length > 0) {
+                        try {
+                            Image cardImg = Image.getInstance(card.image());
                             cardImg.scaleToFit(55, 80);
                             cardImg.setAlignment(Element.ALIGN_CENTER);
                             cardCell.addElement(cardImg);
-                        } else {
-                            cardCell.addElement(new Paragraph(card.getName(), normalFont));
+                        } catch (Exception e) {
+                            cardCell.addElement(new Paragraph(card.name(), normalFont));
                         }
-                    } catch (Exception e) {
-                        cardCell.addElement(new Paragraph(card.getName(), normalFont));
+                    } else {
+                        cardCell.addElement(new Paragraph(card.name(), normalFont));
                     }
                     cardsTable.addCell(cardCell);
                 }
-                
                 cardsTable.completeRow(); 
-                
                 deckCell.addElement(cardsTable);
                 mainTable.addCell(deckCell);
-
                 document.add(mainTable);
                 
                 Paragraph separator = new Paragraph("---------------------------------------------------------------------------------------------------------");
@@ -115,7 +96,6 @@ public class PDFService {
                 separator.setSpacingAfter(20);
                 document.add(separator);
             }
-
         } catch (DocumentException e) {
             e.printStackTrace();
         } finally {
@@ -125,5 +105,3 @@ public class PDFService {
         }
     }
 }
-//Tecnologia implementada gracias a la libreria que hemos sacado del repo
-//https://github.com/LibrePDF/OpenPDF
