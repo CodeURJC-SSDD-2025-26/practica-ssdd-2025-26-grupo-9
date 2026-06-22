@@ -1,7 +1,5 @@
 package es.codeujrc.distribuidos.restcontroller;
 
-import es.codeujrc.distribuidos.DTOs.CommentaryRequestDTO;
-import es.codeujrc.distribuidos.DTOs.CommentaryResponseDTO;
 import es.codeujrc.distribuidos.DTOs.UserBasicResponseDTO;
 import es.codeujrc.distribuidos.DTOs.UserRequestDTO;
 import es.codeujrc.distribuidos.DTOs.UserResponseDTO;
