@@ -185,4 +185,7 @@ public class CardService {
             throw new IllegalArgumentException("Card image must be valid Base64");
         }
     }
+    public Page<Card> findAllCardsPaginated(Pageable pageable) {
+        return repository.findAll(pageable);
+    }
 }

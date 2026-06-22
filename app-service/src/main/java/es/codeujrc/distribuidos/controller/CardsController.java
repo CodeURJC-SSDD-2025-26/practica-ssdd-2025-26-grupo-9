@@ -2,6 +2,8 @@ package es.codeujrc.distribuidos.controller;
 
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,10 +28,19 @@ public class CardsController {
     
 
     @GetMapping("/addCards")
-    public String addCards(Model model) {
-        model.addAttribute("cards", cardService.findAll());
-        return "addCards";
-    }
+public String addCards(Model model, @RequestParam(defaultValue = "0") int page) {
+    Page<Card> cardsPage = cardService.findAllCardsPaginated(PageRequest.of(page, 6));
+    
+    model.addAttribute("cards", cardsPage.getContent()); 
+    
+    model.addAttribute("currentPage", page);
+    model.addAttribute("nextPage", page + 1);
+    model.addAttribute("prevPage", page - 1);
+    model.addAttribute("hasNext", cardsPage.hasNext());
+    model.addAttribute("hasPrev", cardsPage.hasPrevious());
+    
+    return "addCards";
+}
 
     @GetMapping("/adminCard")
     public String adminCard(Model model, @RequestParam(required = false) Long id) {

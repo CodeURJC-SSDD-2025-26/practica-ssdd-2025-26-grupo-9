@@ -52,6 +52,27 @@
                     </table>
                 </div>
             </section>
+
+            <nav aria-label="Navegación de páginas de cartas" class="mt-4 d-flex justify-content-center">
+                <ul class="pagination">
+                    {{#hasPrev}}
+                    <li class="page-item">
+                        <a class="page-link" href="/addCards?page={{prevPage}}">Anterior</a>
+                    </li>
+                    {{/hasPrev}}
+                    
+                    <li class="page-item disabled">
+                        <span class="page-link bg-light text-dark">Página {{currentPage}}</span>
+                    </li>
+                    
+                    {{#hasNext}}
+                    <li class="page-item">
+                        <a class="page-link" href="/addCards?page={{nextPage}}">Siguiente</a>
+                    </li>
+                    {{/hasNext}}
+                </ul>
+            </nav>
+
         </div>
     </main>
 

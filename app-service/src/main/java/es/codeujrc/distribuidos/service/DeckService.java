@@ -213,4 +213,17 @@ public class DeckService {
             throw new SecurityException("You do not have permission to modify this deck");
         }
     }
+
+    public Page<Pair<Deck, List<Pair<Commentary, Boolean>>>> getDecksWithCommentOwnership(String currentUsername, Pageable pageable) {
+        Page<Deck> decksPage = deckRepository.findAll(pageable);
+
+        return decksPage.map(deck -> {
+            List<Pair<Commentary, Boolean>> commentsList = new ArrayList<>();
+            for (Commentary comment : deck.getCommentaries()) {
+                boolean isOwner = currentUsername != null && comment.getUser().getUsername().equals(currentUsername);
+                commentsList.add(Pair.of(comment, isOwner));
+            }
+            return Pair.of(deck, commentsList);
+        });
+    }
 }

@@ -2,6 +2,8 @@ package es.codeujrc.distribuidos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,12 +29,20 @@ public class DecksController {
     private UserService userService;
 
     @GetMapping("/decks")
-    public String listDecks(Model model, Principal principal) {
+    public String listDecks(Model model, Principal principal, @RequestParam(defaultValue = "0") int page) {
         String currentUsername = (principal != null) ? principal.getName() : null;
-        List<Pair<Deck, List<Pair<Commentary, Boolean>>>> decksForView = deckService
-                .getDecksWithCommentOwnership(currentUsername);
 
-        model.addAttribute("decksForView", decksForView);
+        Page<Pair<Deck, List<Pair<Commentary, Boolean>>>> decksPage = deckService
+                .getDecksWithCommentOwnership(currentUsername, PageRequest.of(page, 3));
+
+        model.addAttribute("decksForView", decksPage.getContent());
+
+        model.addAttribute("currentPage", page);
+        model.addAttribute("nextPage", page + 1);
+        model.addAttribute("prevPage", page - 1);
+        model.addAttribute("hasNext", decksPage.hasNext());
+        model.addAttribute("hasPrev", decksPage.hasPrevious());
+
         return "decks";
     }
 
@@ -91,7 +101,6 @@ public class DecksController {
             return "addDeck";
         }
 
-        
         return "redirect:/decks";
     }
 
@@ -106,22 +115,22 @@ public class DecksController {
     }
 
     @PostMapping("/editDeck/{id}")
-    public String editDeck(@RequestParam(required = false) Long id, 
-                       @RequestParam String name, 
-                       @RequestParam String description) {
-    Deck deck;
-    if (id != null) {
-       
-        Deck optionalDeck = deckService.findById(id);
-        if (optionalDeck != null) {
-            deck = optionalDeck;
+    public String editDeck(@RequestParam(required = false) Long id,
+            @RequestParam String name,
+            @RequestParam String description) {
+        Deck deck;
+        if (id != null) {
+
+            Deck optionalDeck = deckService.findById(id);
+            if (optionalDeck != null) {
+                deck = optionalDeck;
+            } else {
+
+                return "redirect:/profile";
+            }
         } else {
-            
-            return "redirect:/profile";
+            deck = new Deck();
         }
-    } else {
-        deck = new Deck();
-    }
 
         deck.setName(name);
         deck.setDescription(description);
