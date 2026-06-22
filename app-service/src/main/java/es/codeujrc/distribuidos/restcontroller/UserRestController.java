@@ -13,7 +13,10 @@ import es.codeujrc.distribuidos.service.DeckService;
 import es.codeujrc.distribuidos.service.UserService;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.Map;
+import java.util.Optional;
 import java.util.List;
+import org.springframework.http.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -64,6 +67,18 @@ public class UserRestController {
         return ResponseEntity.ok(dtoPage);
     }
 
+    @GetMapping("/{userId}")
+    public ResponseEntity<?> getUser(@PathVariable Long userId) {
+        Optional<UserResponseDTO> user = Optional.ofNullable(userService.findById(userId)).map(userMapper::toResponseDTO);
+
+        if (user.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("error", "User not found"));
+        }
+
+        return ResponseEntity.ok(user.get());
+    }
+
     @PutMapping("/admin/{userId}")
     public ResponseEntity<UserResponseDTO> editUsersAdmin(
             @PathVariable Long userId,
@@ -85,6 +100,10 @@ public class UserRestController {
         }
 
         userService.updateUser(userId, requestDTO.username(), requestDTO.email(), requestDTO.password(), requestDTO.role());
+        
+        if (requestDTO.imageBase64() != null && !requestDTO.imageBase64().isBlank()) {
+            userService.updateUserImage(userId, requestDTO.imageBase64());
+        }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(userMapper.toResponseDTO(userService.findById(userId)));
     }
@@ -108,6 +127,10 @@ public class UserRestController {
         }
 
         userService.updateUser(userId, requestDTO.username(), requestDTO.email(), requestDTO.password(), (org.springframework.web.multipart.MultipartFile) null);
+        
+        if (requestDTO.imageBase64() != null && !requestDTO.imageBase64().isBlank()) {
+            userService.updateUserImage(userId, requestDTO.imageBase64());
+        }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(userMapper.toResponseDTO(userService.findById(userId)));
     }
@@ -170,6 +193,20 @@ public class UserRestController {
             System.err.println("Fallo al conectar con utility-service: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    @GetMapping("/{userId}/image")
+    public ResponseEntity<?> getUserImage(@PathVariable Long userId) {
+        Optional<byte[]> image = userService.getImage(userId);
+
+        if (image.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("error", "User image not found"));
+        }
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_TYPE, "image/png")
+                .body(image.get());
     }
 
 }

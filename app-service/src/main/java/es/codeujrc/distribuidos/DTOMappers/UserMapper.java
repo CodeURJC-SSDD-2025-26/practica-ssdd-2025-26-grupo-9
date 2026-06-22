@@ -14,6 +14,8 @@ public interface UserMapper {
 
     UserResponseDTO toResponseDTO(User user);
     UserBasicResponseDTO toBasicResponseDTO(User user);
+    es.codeujrc.distribuidos.DTOs.UserImageResponseDTO toImageDTO(User user);
+    java.util.List<es.codeujrc.distribuidos.DTOs.UserImageResponseDTO> toImageDTOs(java.util.Collection<User> users);
     List<UserResponseDTO> toResponseDTOs(Collection<User> users);
 
     @Mapping(target = "id", ignore = true)

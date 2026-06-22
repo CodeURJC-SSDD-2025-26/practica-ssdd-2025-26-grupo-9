@@ -1,6 +1,7 @@
 package es.codeujrc.distribuidos.service;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -93,6 +94,12 @@ public class UserService {
 		return user.getImage();
 	}
 
+	public java.util.Optional<byte[]> getImage(long id) {
+		return usersRepository.findById(id)
+				.map(User::getImage)
+				.filter(image -> image != null && image.length > 0);
+	}
+
 	private Pair<Boolean, Boolean> updateCommon(User user, String newUsername, String newEmail, String newPassword,
 			MultipartFile imageFile) throws IOException {
 		boolean userConflict = false;
@@ -177,6 +184,26 @@ public class UserService {
 		if (currentUser.getFollowing().contains(targetUser)) {
 			currentUser.getFollowing().remove(targetUser);
 			usersRepository.save(currentUser);
+		}
+	}
+
+	public void updateUserImage(long id, String imageBase64) {
+		if (imageBase64 == null || imageBase64.isBlank()) {
+			return;
+		}
+
+		User user = findById(id);
+
+		String cleanImage = imageBase64;
+		if (cleanImage.contains(",")) {
+			cleanImage = cleanImage.substring(cleanImage.indexOf(',') + 1);
+		}
+
+		try {
+			user.setImage(Base64.getDecoder().decode(cleanImage));
+			usersRepository.save(user);
+		} catch (IllegalArgumentException exception) {
+			throw new IllegalArgumentException("User image must be valid Base64");
 		}
 	}
 
