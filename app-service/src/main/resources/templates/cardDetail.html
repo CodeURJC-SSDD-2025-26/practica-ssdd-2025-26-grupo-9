@@ -107,13 +107,11 @@
 </main>
 
 <script>
-    // Vista previa de imagen
     document.getElementById('user-image').onchange = e => {
         const [file] = e.target.files;
         if (file) document.getElementById('preview-imagen').src = URL.createObjectURL(file);
     };
 
-    // Sincronización de selects (SINTAXIS SEGURA)
     (function() {
         const data = {
             type: "{{#type}}{{type}}{{/type}}",
