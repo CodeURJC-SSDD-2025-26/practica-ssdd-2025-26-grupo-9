@@ -355,7 +355,7 @@ Me he encargado principalmente de dar vida a la web con el manejo(ver,editar,cre
 
 Diagrama actualizado incluyendo los @RestController y su relación con los @Service compartidos:
 
-![Diagrama de Clases Actualizado](images\casses-diagramlast.PNG)
+![Diagrama de Clases Actualizado](images/casses-diagramlast.png)
 
 ### **Instrucciones de Ejecución con Docker**
 
