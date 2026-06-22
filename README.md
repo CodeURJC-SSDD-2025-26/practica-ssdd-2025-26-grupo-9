@@ -424,7 +424,7 @@ Diagrama actualizado incluyendo los @RestController y su relación con los @Serv
 
 ### **Participación de Miembros en la Práctica 3**
 
-#### **Alumno 1 - [Nombre Completo]**
+#### **Alumno 1 - [Aarón Fernádez Lijó]**
 
 [Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
 
