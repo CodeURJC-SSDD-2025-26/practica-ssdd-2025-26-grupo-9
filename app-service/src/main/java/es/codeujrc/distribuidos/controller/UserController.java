@@ -230,7 +230,7 @@ public class UserController {
         return "redirect:/social";
     }
 
-    // Tecnologia extra de los pdfs
+    // PDF Technology
     @GetMapping("/downloadMyDecks")
     public void downloadMyDecks(HttpServletResponse response, Principal principal) throws IOException {
         if (principal == null) {

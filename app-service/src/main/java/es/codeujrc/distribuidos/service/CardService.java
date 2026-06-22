@@ -128,13 +128,11 @@ public class CardService {
 
     public Map<String, Object> getMetaCardsData() {
 
-        // Obtenemos los nombres y el tamaño de su lista de mazos
         List<Object[]> results = repository.countCardUsageInDecks();
 
         List<String> names = new ArrayList<>();
         List<Integer> deckCounts = new ArrayList<>();
 
-        // Limitamos a las 7 cartas más populares
         results.stream().limit(7).forEach(row -> {
             names.add((String) row[0]);
             deckCounts.add((Integer) row[1]);
