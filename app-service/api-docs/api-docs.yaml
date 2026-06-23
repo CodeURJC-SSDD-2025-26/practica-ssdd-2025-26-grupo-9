@@ -1,0 +1,828 @@
+openapi: 3.1.0
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: https://localhost:8443
+  description: Generated server url
+paths:
+  /api/v1/users/{userId}:
+    get:
+      tags:
+      - user-rest-controller
+      operationId: getUser
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+    put:
+      tags:
+      - user-rest-controller
+      operationId: editUsers
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserRequestDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/UserResponseDTO"
+    delete:
+      tags:
+      - user-rest-controller
+      operationId: deleteUser
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/UserResponseDTO"
+  /api/v1/users/admin/{userId}:
+    put:
+      tags:
+      - user-rest-controller
+      operationId: editUsersAdmin
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserRequestDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/UserResponseDTO"
+  /api/v1/decks/{deckId}:
+    get:
+      tags:
+      - deck-rest-controller
+      operationId: getDeck
+      parameters:
+      - name: deckId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+    put:
+      tags:
+      - deck-rest-controller
+      operationId: updateDeck
+      parameters:
+      - name: deckId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeckRequestDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+    delete:
+      tags:
+      - deck-rest-controller
+      operationId: deleteDeck
+      parameters:
+      - name: deckId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/v1/cards/{cardId}:
+    get:
+      tags:
+      - card-rest-controller
+      operationId: getCard
+      parameters:
+      - name: cardId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+    put:
+      tags:
+      - card-rest-controller
+      operationId: updateCard
+      parameters:
+      - name: cardId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CardRequestDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+    delete:
+      tags:
+      - card-rest-controller
+      operationId: deleteCard
+      parameters:
+      - name: cardId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/v1/decks:
+    get:
+      tags:
+      - deck-rest-controller
+      operationId: getDecks
+      parameters:
+      - name: pageable
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/Pageable"
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PagedModelDeckBasicResponseDTO"
+    post:
+      tags:
+      - deck-rest-controller
+      operationId: createDeck
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeckRequestDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/v1/decks/{deckId}/commentaries:
+    get:
+      tags:
+      - commentary-rest-controller
+      operationId: getCommentaries
+      parameters:
+      - name: deckId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: pageable
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/Pageable"
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PagedModelCommentaryResponseDTO"
+    post:
+      tags:
+      - commentary-rest-controller
+      operationId: createCommentary
+      parameters:
+      - name: deckId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommentaryRequestDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CommentaryResponseDTO"
+  /api/v1/cards:
+    get:
+      tags:
+      - card-rest-controller
+      operationId: getCards
+      parameters:
+      - name: pageable
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/Pageable"
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PagedModelCardBasicResponseDTO"
+    post:
+      tags:
+      - card-rest-controller
+      operationId: createCard
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CardRequestDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/v1/auth/register:
+    post:
+      tags:
+      - auth-rest-controller
+      operationId: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserRequestDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+  /api/v1/auth/refresh:
+    post:
+      tags:
+      - auth-rest-controller
+      operationId: refreshToken
+      parameters:
+      - name: RefreshToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+  /api/v1/auth/logout:
+    post:
+      tags:
+      - auth-rest-controller
+      operationId: logOut
+      parameters:
+      - name: AuthToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+  /api/v1/auth/login:
+    post:
+      tags:
+      - auth-rest-controller
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+  /api/v1/users:
+    get:
+      tags:
+      - user-rest-controller
+      operationId: getUsers
+      parameters:
+      - name: pageable
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/Pageable"
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PagedModelUserBasicResponseDTO"
+  /api/v1/users/{userId}/image:
+    get:
+      tags:
+      - user-rest-controller
+      operationId: getUserImage
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/v1/users/{userId}/MyDecksPdf:
+    get:
+      tags:
+      - user-rest-controller
+      operationId: downloadMyDecksAPI
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: byte
+  /api/v1/users/admin:
+    get:
+      tags:
+      - user-rest-controller
+      operationId: getUsersAdmin
+      parameters:
+      - name: pageable
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/Pageable"
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PagedModelUserResponseDTO"
+  /api/v1/charts/cards:
+    get:
+      tags:
+      - main-controller-rest
+      operationId: getCardChartData
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CardChartDTO"
+  /api/v1/cards/{cardId}/image:
+    get:
+      tags:
+      - card-rest-controller
+      operationId: getCardImage
+      parameters:
+      - name: cardId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/v1/decks/{deckId}/commentaries/{commentId}:
+    delete:
+      tags:
+      - commentary-rest-controller
+      operationId: deleteCommentary
+      parameters:
+      - name: deckId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: commentId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CommentaryResponseDTO"
+components:
+  schemas:
+    UserRequestDTO:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+        imageBase64:
+          type: string
+    UserResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+          enum:
+          - ADMIN
+          - REGISTERED
+    DeckRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        cardIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+    CardRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        triggerEffect:
+          type: string
+        crew:
+          type: string
+        cost:
+          type: integer
+          format: int32
+        power:
+          type: integer
+          format: int32
+        health:
+          type: integer
+          format: int32
+        type:
+          type: string
+          enum:
+          - LEADER
+          - EVENT
+          - STAGE
+          - CHARACTER
+        attribute:
+          type: string
+          enum:
+          - STRIKE
+          - SLASH
+          - SPECIAL
+          - RANGED
+          - WISDOM
+        color:
+          type: string
+          enum:
+          - RED
+          - BLUE
+          - GREEN
+          - YELLOW
+          - PURPLE
+          - BLACK
+        counter:
+          type: string
+          enum:
+          - ONETHOUSAND
+          - TWOTHOUSAND
+          - NONE
+        imageBase64:
+          type: string
+    CommentaryRequestDTO:
+      type: object
+      properties:
+        content:
+          type: string
+        deckId:
+          type: integer
+          format: int64
+    CommentaryResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        content:
+          type: string
+        user:
+          $ref: "#/components/schemas/UserBasicResponseDTO"
+    UserBasicResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+    AuthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILURE
+        message:
+          type: string
+        error:
+          type: string
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    Pageable:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          minimum: 0
+        size:
+          type: integer
+          format: int32
+          minimum: 1
+        sort:
+          type: array
+          items:
+            type: string
+    PageMetadata:
+      type: object
+      properties:
+        size:
+          type: integer
+          format: int64
+        number:
+          type: integer
+          format: int64
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int64
+    PagedModelUserBasicResponseDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserBasicResponseDTO"
+        page:
+          $ref: "#/components/schemas/PageMetadata"
+    PagedModelUserResponseDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserResponseDTO"
+        page:
+          $ref: "#/components/schemas/PageMetadata"
+    CardImageResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    DeckBasicResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        formattedDate:
+          type: string
+        user:
+          $ref: "#/components/schemas/UserResponseDTO"
+        cards:
+          type: array
+          items:
+            $ref: "#/components/schemas/CardImageResponseDTO"
+    PagedModelDeckBasicResponseDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/DeckBasicResponseDTO"
+        page:
+          $ref: "#/components/schemas/PageMetadata"
+    PagedModelCommentaryResponseDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommentaryResponseDTO"
+        page:
+          $ref: "#/components/schemas/PageMetadata"
+    CardChartDTO:
+      type: object
+      properties:
+        names:
+          type: array
+          items:
+            type: string
+        counts:
+          type: array
+          items:
+            type: integer
+            format: int32
+    CardBasicResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        cost:
+          type: integer
+          format: int32
+        power:
+          type: integer
+          format: int32
+        health:
+          type: integer
+          format: int32
+        type:
+          type: string
+          enum:
+          - LEADER
+          - EVENT
+          - STAGE
+          - CHARACTER
+        attribute:
+          type: string
+          enum:
+          - STRIKE
+          - SLASH
+          - SPECIAL
+          - RANGED
+          - WISDOM
+        color:
+          type: string
+          enum:
+          - RED
+          - BLUE
+          - GREEN
+          - YELLOW
+          - PURPLE
+          - BLACK
+    PagedModelCardBasicResponseDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/CardBasicResponseDTO"
+        page:
+          $ref: "#/components/schemas/PageMetadata"

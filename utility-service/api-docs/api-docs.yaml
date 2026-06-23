@@ -1,0 +1,55 @@
+openapi: 3.1.0
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+paths:
+  /api/v1/utilities/pdf:
+    post:
+      tags:
+      - utility-rest-controller
+      operationId: generateDecksPdf
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/PDFDeckDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: byte
+components:
+  schemas:
+    PDFCardDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        image:
+          type: string
+          format: byte
+    PDFDeckDTO:
+      type: object
+      properties:
+        username:
+          type: string
+        userImage:
+          type: string
+          format: byte
+        deckName:
+          type: string
+        deckDescription:
+          type: string
+        cards:
+          type: array
+          items:
+            $ref: "#/components/schemas/PDFCardDTO"
