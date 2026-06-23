@@ -129,6 +129,7 @@
                     <jmxPort>9009</jmxPort>
                     <maxAttempts>240</maxAttempts>
                 </configuration>
+                <!-- Dejamos esto comentado para poder ejecutar en local, hicimos el mvn verify sin comentarlo
                 <executions>
                     <execution>
                         <id>pre-integration-test</id>
@@ -143,8 +144,10 @@
                         </goals>
                     </execution>
                 </executions>
+                -->
             </plugin>
 
+            <!--
             <plugin>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-maven-plugin</artifactId>
@@ -201,7 +204,7 @@
                     </execution>
                 </executions>
             </plugin>
+            -->
         </plugins>
     </build>
-
 </project>

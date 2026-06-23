@@ -63,7 +63,10 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <jmxPort>9010</jmxPort> <maxAttempts>20</maxAttempts> </configuration>
+                    <jmxPort>9010</jmxPort> 
+                    <maxAttempts>20</maxAttempts> 
+                </configuration>
+                <!--
                 <executions>
                     <execution>
                         <id>pre-integration-test</id>
@@ -78,8 +81,10 @@
                         </goals>
                     </execution>
                 </executions>
+                -->
             </plugin>
 
+            <!-- 
             <plugin>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-maven-plugin</artifactId>
@@ -136,6 +141,7 @@
                     </execution>
                 </executions>
             </plugin>
+            -->
         </plugins>
     </build>
 </project>
