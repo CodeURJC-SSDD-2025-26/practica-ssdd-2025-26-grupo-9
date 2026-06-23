@@ -175,9 +175,10 @@ public class UserRestController {
         List<es.codeujrc.distribuidos.DTOs.PDFDeckDTO> dtoList = pdfMapper.toDTOList(myDecks);
         
         try {
+            String baseUrl = System.getenv().getOrDefault("UTILITY_SERVICE_URL", "http://localhost:8080");
             org.springframework.web.client.RestClient restClient = org.springframework.web.client.RestClient.create();
             byte[] pdfBytes = restClient.post()
-                    .uri("http://localhost:8080/api/v1/utilities/pdf")
+                    .uri(baseUrl + "/api/v1/utilities/pdf")
                     .body(dtoList)
                     .retrieve()
                     .body(byte[].class);
