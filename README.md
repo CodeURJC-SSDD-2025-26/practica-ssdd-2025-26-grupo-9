@@ -447,15 +447,15 @@ Durante esta fase de la práctica he trabajado principalmente en la implementaci
 
 #### **Alumno 2 - [Pablo León Molero]**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Documentacion, rest user y rest char, con su postman correspondiente
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Imagenes de usuario](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/a1e9a9f201614d6b6a5325f00a9ef4a1b6319f05)  | [UserRest](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/restcontroller/UserRestController.java)   |
+|2| [chart rest hecha](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/0247b7c95c1727c471d585c3a43852b47650db89)  | [MaincontrollerRest](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/restcontroller/MainControllerRest.java)   |
+|3| [finalizacion de apirest user](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/b14eb1abd62d1a749af8d6762125b6f735bc1179)  | [UserRest](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/restcontroller/UserRestController.java)   |
+|4| [fixes en rest user](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/173bec7d4998872c8de3821776696849fae30de2)  | [UserRest](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/restcontroller/UserRestController.java)   |
+|5| [Readme pablo](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/9d9255fef8aa7192f81712eb726e1f9633cc1cf1)  
 
 ---
 
