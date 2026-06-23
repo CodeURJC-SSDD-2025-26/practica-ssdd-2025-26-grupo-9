@@ -434,19 +434,16 @@ Diagrama mostrando la conexion entre usuario/api a app-service y conexion con ut
 
 ### **Participación de Miembros en la Práctica 3**
 
-#### **Alumno 1 - [Aarón Fernádez Lijó]**
+#### **Alumno 1 - Aarón Fernández Lijó**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Durante esta fase de la práctica he trabajado principalmente en la implementación y corrección de la API REST de cartas y mazos. Mi aportación se ha centrado en crear endpoints REST para listar, consultar en detalle, crear, validar, editar y borrar cartas y mazos, siguiendo la estructura `/api/v1/` y usando DTOs. También he corregido la arquitectura para mover la lógica de negocio desde los controladores REST hacia los servicios, dejando los controladores únicamente como capa de entrada HTTP y construcción de respuestas. Además, he trabajado en correcciones de autenticación, control de acceso, errores JSON de la API y soporte de imágenes Base64 en cartas. Además, aunque no quede reflejado directamente en los commits, también me he encargado de preparar y probar en Postman las peticiones REST correspondientes a cartas y mazos, incluyendo los `GET`, `POST`, `PUT` y `DELETE` necesarios para validar el funcionamiento completo de la API.
 
-| Nº    | Commits      | Files      |
-|:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
-
----
+| Nº | Commits | Files |
+|:---:|:---|:---|
+| 1 | [card api create postman](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/d99b4bb) | [CardRestController.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/restcontroller/CardRestController.java), [CardService.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/service/CardService.java), [SecurityConfiguration.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/security/SecurityConfiguration.java) |
+| 2 | [Refactor cards REST logic into service](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/1df1bfb22ba7eb1e181852a7f0b004d81e67b72d) | [CardService.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/service/CardService.java), [CardRestController.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/restcontroller/CardRestController.java) |
+| 3 | [Add decks REST API endpoints](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/151ec00) | [DeckRestController.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/restcontroller/DeckRestController.java), [DeckService.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/service/DeckService.java), [SecurityConfiguration.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/security/SecurityConfiguration.java) |
+| 4 | [multiple code corrections Aaron](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/c7f4d91) | [CardRequestDTO.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/DTOs/CardRequestDTO.java), [AuthRestController.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/restcontroller/AuthRestController.java), [SecurityConfiguration.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/security/SecurityConfiguration.java), [UnauthorizedHandlerJwt.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/security/jwt/UnauthorizedHandlerJwt.java), [CardService.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/service/CardService.java), [DeckService.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/service/DeckService.java) |
 
 #### **Alumno 2 - [Pablo León Molero]**
 
