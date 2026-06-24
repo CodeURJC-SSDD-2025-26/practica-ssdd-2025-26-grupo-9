@@ -380,11 +380,11 @@ Diagrama mostrando la conexion entre usuario/api a app-service y conexion con ut
    git clone https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9.git
    cd practica-ssdd-2025-26-grupo-9
    ```
-   2. **Lanzar el OCI Artifact ya creado y disponible en DockerHub**:
+2. **Lanzar el OCI Artifact ya creado y disponible en DockerHub**:
    ```bash
    docker compose -f oci://docker.io/espidocker3/ssdd-proyecto:latest up -d
    ```
-   3. **Apagarlo cuando se termine de usar**:
+3. **Apagarlo cuando se termine de usar**:
    
    ```bash
    docker compose -f oci://docker.io/espidocker3/ssdd-proyecto:latest down
