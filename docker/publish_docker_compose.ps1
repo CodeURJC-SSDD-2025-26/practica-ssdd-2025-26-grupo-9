@@ -17,7 +17,6 @@ $FULL_IMAGE = "${Username}/${IMAGE_NAME}:${TAG}"
 
 Write-Host "--- Publicando Docker Compose como OCI Artifact ---" -ForegroundColor Cyan
 
-# Publicación nativa de OCI Artifact
 docker compose -f docker/docker-compose.yml publish $FULL_IMAGE --with-env
 
 if ($LASTEXITCODE -eq 0) {

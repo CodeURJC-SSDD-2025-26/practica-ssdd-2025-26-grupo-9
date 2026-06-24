@@ -370,65 +370,57 @@ Diagrama mostrando la conexion entre usuario/api a app-service y conexion con ut
 ### **Instrucciones de Ejecución con Docker**
 
 #### **Requisitos previos:**
-- Docker instalado (versión 20.10 o superior)
-- Docker Compose instalado (versión 2.0 o superior)
+- Tener instalado **Docker** (Docker Desktop en Windows/Mac o Docker Engine en Linux).
+- Tener una cuenta en **Docker Hub** y estar logueado en la terminal (`docker login`).
+- Asegurarse de tener el **puerto 3306** (MySQL), el puerto **8080** (Utility Service) y el puerto **8443** (App Service) libres
 
-#### **Pasos para ejecutar con docker-compose:**
-
+#### **Pasos para ejecutar el docker-compose:**
 1. **Clonar el repositorio** (si no lo has hecho ya):
    ```bash
-   git clone https://github.com/[usuario]/[repositorio].git
-   cd [repositorio]
+   git clone https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9.git
+   cd practica-ssdd-2025-26-grupo-9
    ```
-
-2. **AQUÍ LOS SIGUIENTES PASOS**:
-
+   2. **Lanzar el OCI Artifact ya creado y disponible en DockerHub**:
+   ```bash
+   docker compose -f oci://docker.io/espidocker3/ssdd-proyecto:latest up -d
+   ```
+   3. **Apagarlo cuando se termine de usar**:
+   
+   ```bash
+   docker compose -f oci://docker.io/espidocker3/ssdd-proyecto:latest down
+   ```
 ### **Construcción de la Imagen Docker**
 
 #### **Requisitos:**
-- Docker instalado en el sistema
+- Tener instalado **Docker** (Docker Desktop en Windows/Mac o Docker Engine en Linux).
+- Tener una cuenta en **Docker Hub** y estar logueado en la terminal (`docker login`).
 
-#### **Pasos para construir y publicar la imagen:**
+#### **Pasos para construir y publicar las imagenes y para crear el OCI Artifact:**
 
 1. **Navegar al directorio de Docker**:
-   ```bash
+   ```powershell
    cd docker
    ```
 
-2. **AQUÍ LOS SIGUIENTES PASOS**
-
-### **Despliegue en Máquina Virtual**
-
-#### **Requisitos:**
-- Acceso a la máquina virtual (SSH)
-- Clave privada para autenticación
-- Conexión a la red correspondiente o VPN configurada
-
-#### **Pasos para desplegar:**
-
-1. **Conectar a la máquina virtual**:
-   ```bash
-   ssh -i [ruta/a/clave.key] [usuario]@[IP-o-dominio-VM]
+2. **Construir las imágenes localmente:**
+  ```powershell
+  .\create_image.ps1 -Username "tunombredeusuariodocker"
    ```
-   
-   Ejemplo:
-   ```bash
-   ssh -i ssh-keys/app.key vmuser@10.100.139.XXX
+3. **Publicar las imágenes en Docker Hub:**
+  ```powershell
+  .\publish_image.ps1 -Username "tunombredeusuariodocker"
    ```
-
-2. **AQUÍ LOS SIGUIENTES PASOS**:
-
-### **URL de la Aplicación Desplegada**
-
-🌐 **URL de acceso**: `https://[nombre-app].etsii.urjc.es:8443`
+4. **Publicar el OCI Artifact:**
+  ```powershell
+  .\publish_docker_compose.ps1 -Username "tunombredeusuariodocker"
+   ```
 
 #### **Credenciales de Usuarios de Ejemplo**
 
 | Rol | Usuario | Contraseña |
 |:---|:---|:---|
-| Administrador | admin | admin123 |
-| Usuario Registrado | user1 | user123 |
-| Usuario Registrado | user2 | user123 |
+| Administrador | Admin | adminpass |
+| Usuario Registrado | Carlos | pass |
 
 ### **OTRA DOCUMENTACIÓN ADICIONAL REQUERIDA EN LA PRÁCTICA**
 
@@ -459,14 +451,14 @@ Documentacion, rest user y rest char, con su postman correspondiente
 
 ---
 
-#### **Alumno 3 - [Nombre Completo]**
+#### **Alumno 3 - [Sergio Espinosa Robles]**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+[En esta entrega me encargue de la separación de la aplicacion web y el servicio de generacion de pdfs en dos proyectos diferentes, configurando el flujo de trabajo entre ambas para aislar el servicio de pdf de la base de datos mediante el intercambio de informacion a través de REST, tambien realice las consultas relacionadas con la sesion en Postman y los comentarios e hice los DTOs y Mappers de todas las entidades que necesitarian mis compañeros para hacer el resto de consultas de manera segura(usando solo los datos que necesiten las consultas correspondientes), añadi tambien paginacion en dos endpoints de la web para cumplir con los requisitos del enunciado, me encargue de configurar la generacion automatica de documentacion con OpenApi y finalmente, hice todo lo relacionado con Docker, archivos Dockerfile y compose, y los scripts para generar, publicar imagenes y la aplicacion empaquetada junto con la imagen oficial de MySQL para su correcto funcionamiento.]
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [DTO Mappers and Dependency Added](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/5afbe8c55c22a8d8342d024608446bdba0c610c0)  | [(Entities)Mapper.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/tree/main/app-service/src/main/java/es/codeujrc/distribuidos/DTOMappers)   |
+|2| [Proyect Divided Into App-Service and Utility Service](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/4de62ee3aef7356195c39d56111b6b9568c8280f)  | [All Proyect](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/tree/main/)   |
+|3| [Paginated Web Cards and Decks](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/e590531c774cc6c417610f9d38fb6c344e83e127)  | [Card and Deck Controller and Services](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/blob/main/app-service/src/main/java/es/codeujrc/distribuidos/controller/DecksController.java)   |
+|4| [Api Doc Generated](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/ddbc2a0156f966e093ff7bdf890f6b603533a0c7)  | [api-docs](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/tree/main/app-service/api-docs)   |
+|5| [Docker Images Scripts Created and Functional](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/commit/0ac0e4c14117580f8523d6dbf86038fb1574f32c)  | [Docker Folder](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-9/tree/main/docker)   |

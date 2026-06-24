@@ -17,42 +17,38 @@ import org.springframework.http.ResponseEntity;
 import es.codeujrc.distribuidos.entity.Card;
 import es.codeujrc.distribuidos.service.CardService;
 
-
 @Controller
 public class CardsController {
 
-    
     @Autowired
     private CardService cardService;
 
-    
-
     @GetMapping("/addCards")
-public String addCards(Model model, @RequestParam(defaultValue = "0") int page) {
-    Page<Card> cardsPage = cardService.findAllCardsPaginated(PageRequest.of(page, 6));
-    
-    model.addAttribute("cards", cardsPage.getContent()); 
-    
-    model.addAttribute("currentPage", page);
-    model.addAttribute("nextPage", page + 1);
-    model.addAttribute("prevPage", page - 1);
-    model.addAttribute("hasNext", cardsPage.hasNext());
-    model.addAttribute("hasPrev", cardsPage.hasPrevious());
-    
-    return "addCards";
-}
+    public String addCards(Model model, @RequestParam(defaultValue = "0") int page) {
+        Page<Card> cardsPage = cardService.findAllCardsPaginated(PageRequest.of(page, 6));
+
+        model.addAttribute("cards", cardsPage.getContent());
+
+        model.addAttribute("currentPage", page);
+        model.addAttribute("nextPage", page + 1);
+        model.addAttribute("prevPage", page - 1);
+        model.addAttribute("hasNext", cardsPage.hasNext());
+        model.addAttribute("hasPrev", cardsPage.hasPrevious());
+
+        return "addCards";
+    }
 
     @GetMapping("/adminCard")
     public String adminCard(Model model, @RequestParam(required = false) Long id) {
-    if (id != null) {
+        if (id != null) {
 
-        Card card = cardService.findById(id).orElseThrow();
-        model.addAttribute("card", card);
-    } else {
+            Card card = cardService.findById(id).orElseThrow();
+            model.addAttribute("card", card);
+        } else {
 
-        model.addAttribute("card", new Card());
-    }
-    return "adminCard";
+            model.addAttribute("card", new Card());
+        }
+        return "adminCard";
     }
 
     @GetMapping("/cardDetail")
@@ -61,7 +57,7 @@ public String addCards(Model model, @RequestParam(defaultValue = "0") int page) 
         Card card = cardService.findById(id).orElseThrow();
         model.addAttribute("card", card);
 
-    return "cardDetail";
+        return "cardDetail";
     }
 
     @GetMapping("/card/{id}/image")
@@ -81,10 +77,10 @@ public String addCards(Model model, @RequestParam(defaultValue = "0") int page) 
         cardService.delete(id);
         return "redirect:/addCards";
     }
+
     @PostMapping("/saveCard")
     public String saveCard(Card card, @RequestParam("imageFile") MultipartFile imageFile) throws IOException {
         cardService.saveCard(card, imageFile);
         return "redirect:/addCards";
     }
 }
-
